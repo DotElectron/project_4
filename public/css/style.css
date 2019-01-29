@@ -1,0 +1,145 @@
+/* Cascading Style Sheet */
+/* Author : David ESQUIS */
+/* --------------------- */
+
+/***********************/
+/*     MASTER STYLE    */
+/***********************/
+
+body
+{
+	/* fonts definition */
+	font-family: 'Anonymous Pro', Helvetica, sans-serif;
+	text-align: center;
+	margin: auto;
+
+	width: 100%;
+}
+
+header
+{
+	z-index: 1;
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+header img
+{
+	height: 8em;
+}
+h1
+{
+	padding-left: 1em;
+	padding-right: 1em;
+}
+nav
+{
+	min-width: 4em;
+	margin-right: 4em;
+}
+
+main
+{
+	width: 100%;
+	padding-top: 9em;
+	overflow: hidden;
+}
+
+footer
+{
+	width: 100%;
+	height: 4em;
+	position: fixed;
+	bottom: 0;
+}
+footer p
+{
+	padding-top: 1em;
+}
+
+
+/* * * * * * * * * * * */
+/*   Generic Classes   */
+/* * * * * * * * * * * */
+
+.hidden-tag
+{
+	display: none;
+}
+
+.no-leap
+{
+	margin: 0;
+	padding: 0;
+}
+
+.as-inblock
+{
+	display: inline-block;
+}
+
+.cCase
+{
+	text-transform: capitalize;
+}
+.uCase
+{
+	text-transform: uppercase;
+}
+.lCase
+{
+	text-transform: lowercase;
+}
+
+.theme-bckgrnd-color
+{
+	background-color: #FDE6BB;		/* chamois */
+}
+
+.theme-color
+{
+	color: #E69C58;					/* 3856 chamois */
+}
+
+.theme-boxed
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #D6AF8C;			/* ton6 chamois */
+}
+
+.theme-radius
+{
+	border-radius: 1em;
+}
+
+.theme-shadow
+{
+	text-shadow: black 2px 2px 8px;
+}
+
+.theme-light-shadow
+{
+	text-shadow: grey 1px 1px 6px;
+}
+
+/* * * * * * * * * * * * */
+/*   Specific Classes    */
+/* * * * * * * * * * * * */
+
+
+/* * * * * * * * * * * * */
+/*     Media Queries     */
+/* * * * * * * * * * * * */
+
+@media screen and (max-width: 55em)
+{
+	
+}
+
+@media screen and (max-width: 28em)
+{
+	
+}
+
+/* * * * * * * * */
