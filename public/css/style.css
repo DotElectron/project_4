@@ -8,13 +8,12 @@
 
 body
 {
-	margin: auto;
-	width: 100%;
-}
-
-main, nav, h1, h2, h3, footer
-{
+	/* fonts definition */
 	font-family: 'Anonymous Pro', Helvetica, sans-serif;
+	text-align: center;
+	margin: auto;
+
+	width: 100%;
 }
 
 header
@@ -32,7 +31,6 @@ h1
 {
 	padding-left: 1em;
 	padding-right: 1em;
-	font-weight: bold;
 }
 nav
 {
@@ -57,7 +55,6 @@ footer
 footer p
 {
 	padding-top: 1em;
-	font-weight: bold;
 }
 
 
