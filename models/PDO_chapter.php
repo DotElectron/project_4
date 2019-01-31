@@ -2,6 +2,8 @@
 
 namespace Rochefort\Classes;
 
+require_once('PDO_manager.php');
+
 class PDO_chapter extends PDO_manager
 {							//inDB...
 	private $id;			//chap_id 			int 				P_KEY
@@ -34,13 +36,16 @@ class PDO_chapter extends PDO_manager
 	}
 
 	/**
-	* ...		(when admin create a new chapter)
+	* ...		(when admin creates a new chapter)
 	* @param ...
 	* @return ...
 	*/
 	public function createChapter($order, $title) 
 	{
-		
+		if ($this->dbConnect())
+		{
+
+		}
 	}
 	/**
 	* [External test of: ]					[]
@@ -50,7 +55,7 @@ class PDO_chapter extends PDO_manager
 	*/
 
 	/**
-	* ...		(when admin modify the chapter)
+	* ...		(when admin modifies the chapter)
 	* @param ...
 	* @return ...
 	*/
@@ -66,7 +71,7 @@ class PDO_chapter extends PDO_manager
 	*/
 
 	/**
-	* ...		(when admin delete the chapter)
+	* ...		(when admin deletes the chapter)
 	* @param ...
 	* @return ...
 	*/
@@ -82,7 +87,7 @@ class PDO_chapter extends PDO_manager
 	*/
 
 	/**
-	* ...		(when ux request the navigation)
+	* ...		(when ux requests the navigation)
 	* @param ...
 	* @return ...
 	*/

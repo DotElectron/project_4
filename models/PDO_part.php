@@ -2,6 +2,8 @@
 
 namespace Rochefort\Classes;
 
+require_once('PDO_manager.php');
+
 class PDO_part extends PDO_manager
 {							//inDB...
 	private $id;			//part_id 			int 				P_KEY
@@ -59,7 +61,10 @@ class PDO_part extends PDO_manager
 	*/
 	public function createPart($chapter, $subtitle, $html) 
 	{
-		
+		if ($this->dbConnect())
+		{
+			
+		}
 	}
 	/**
 	* [External test of: ]					[]

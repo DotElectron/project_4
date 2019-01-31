@@ -2,6 +2,8 @@
 
 namespace Rochefort\Classes;
 
+require_once('PDO_manager.php');
+
 class PDO_comment extends PDO_manager
 {							//inDB...
 	private $id;			//com_id 			int 				P_KEY
@@ -62,13 +64,16 @@ class PDO_comment extends PDO_manager
 	}
 
 	/**
-	* ...		(when a user post a new comment)
+	* ...		(when a user posts a new comment)
 	* @param ...
 	* @return ...
 	*/
 	public function createComment($auth, $html) 
 	{
-		
+		if ($this->dbConnect())
+		{
+			
+		}
 	}
 	/**
 	* [External test of: ]					[]
@@ -78,7 +83,7 @@ class PDO_comment extends PDO_manager
 	*/
 
 	/**
-	* ...		(when a user post again his comment)
+	* ...		(when a user posts again his comment)
 	* @param ...
 	* @return ...
 	*/
@@ -94,7 +99,7 @@ class PDO_comment extends PDO_manager
 	*/
 
 	/**
-	* ...		(when user put a flag on the comment)
+	* ...		(when user puts a flag on the comment)
 	* @param ...
 	* @return ...
 	*/
@@ -110,7 +115,7 @@ class PDO_comment extends PDO_manager
 	*/
 
 	/**
-	* ...		(when admin decide to mute the comment)
+	* ...		(when admin decides to mute the comment)
 	* @param ...
 	* @return ...
 	*/
@@ -126,7 +131,7 @@ class PDO_comment extends PDO_manager
 	*/
 
 	/**
-	* ...		(when user/admin request a group of comments)
+	* ...		(when user/admin requests a group of comments)
 	* @param bool $muted (else: visible), bool $flagOrder (else: dateOrder)
 	* @return ...
 	*/
