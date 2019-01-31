@@ -7,7 +7,7 @@ abstract class PDO_manager
 	private $db;
 
 	/**
-	* Etablished a PDO connection with the user (reader) or writer (admin) account
+	* Etablished a PDO connection with the reader (user) or writer (admin) account
 	* @param optional bool $asWriter, default = false
 	* @return Boolean statement about the connection
 	*/
@@ -41,7 +41,7 @@ abstract class PDO_manager
 	    } 
 	    catch (PDOException $e) 
 	    {
-	        die('Connection failed: ' . $e->getMessage() . "\n");
+	        die('Unabled to finalize connection: ' . $e->getMessage());
 	    }
 	    finally
 	    {
@@ -53,7 +53,7 @@ abstract class PDO_manager
 		return ($this->db !== null);
 	}
 	/**
-	* [External test of: dbConnect]					[PASSED]
+	* [External test of: dbConnect]					[0.0.3.2 PASSED]
 	* Conditions: without 'abstract' & 'protected' scope 
 	*
 	* require_once('models/PDO_manager.php');
