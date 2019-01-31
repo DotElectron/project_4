@@ -2,25 +2,25 @@
 
 namespace Rochefort\Classes;
 
-class PDO_manager
+abstract class PDO_manager
 {
 	private $db;
 
 	/**
 	* Etablished a PDO connection with the user (reader) or writer (admin) account
-	* @param optional bool $asReader, default = true
+	* @param optional bool $asWriter, default = false
 	* @return Boolean statement about the connection
 	*/
-	protected function dbConnect($asReader = true) 
+	protected function dbConnect($asWriter = false) 
 	{
-		$db = null;
+		$this->db = null;
 		try 
     	{
     		//Get the configuration...
-    		$conf = parse_ini_file('../private/config.ini'); 
+    		$config = parse_ini_file('private/config.ini'); 
     		$account = null;
     		$password = null;
-    		if ($asReader)
+    		if (!$asWriter)
     		{
     			$account = $config['reader'];
     			$password = $config['reader_pwd'];
@@ -33,11 +33,11 @@ class PDO_manager
     			$config['reader_pwd'] = null;
     		}
     		//Etablished connection...
-        	$db = new PDO('mysql:host=' . $config['servername']
+        	$this->db = new \PDO('mysql:host=' . $config['server_name']
         				  . ';dbname=' . $config['db_name']
         				  . ';charset=' . $config['db_charset'],
         				  $account, $password);
-        	$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        	$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	    } 
 	    catch (PDOException $e) 
 	    {
@@ -52,6 +52,20 @@ class PDO_manager
 	    }
 		return ($this->db !== null);
 	}
+	/**
+	* [External test of: dbConnect]					[PASSED]
+	* Conditions: without 'abstract' & 'protected' scope 
+	*
+	* require_once('models/PDO_manager.php');
+	* use Rochefort\Classes\PDO_manager;
+	*
+	* $PDO_test = new PDO_manager();
+	*
+	* echo $PDO_test->dbConnect();
+	* $PDO_test = null;
+	*/
+
+	abstract protected function dbRelease();
 }
 
 ?>
