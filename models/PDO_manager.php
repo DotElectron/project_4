@@ -53,7 +53,7 @@ abstract class PDO_manager
 		return ($this->db !== null);
 	}
 	/**
-	* [External test of: dbConnect]					[0.0.3.2 PASSED]
+	* [External test of: dbConnect]					[0.0.4.2 PASSED]
 	* Conditions: without 'abstract' & 'protected' scope 
 	*
 	* require_once('models/PDO_manager.php');
