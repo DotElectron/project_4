@@ -44,13 +44,21 @@ class PDO_chapter extends PDO_manager
 	{
 		if ($this->dbConnect())
 		{
-
+			return true;
 		}
+		return false;
 	}
 	/**
 	* [External test of: ]					[]
-	* Conditions: 
+	* Conditions: any particular...
 	*
+	* require_once('models/PDO_chapter.php');
+	* use Rochefort\Classes\PDO_chapter;
+	*
+	* $PDO_test = new PDO_chapter();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->createChapter(null, null), true);
+	* $PDO_test = null;
 	* 
 	*/
 

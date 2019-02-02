@@ -11,7 +11,7 @@ class PDO_part extends PDO_manager
 	private $subtitle;		//part_subtitle 	varchar(255) 		
 	private $htmlText;		//part_text			text
 	private $timeStamp;		//part_modifier		timestamp 			
-	private $chapter;		//part_chap_id 		int 				INDEX
+	private $chapter;		//part_chap_id 		int 				INDEX				F_KEY
 
 	function setId($_id) 
 	{

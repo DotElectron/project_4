@@ -11,8 +11,8 @@ class PDO_comment extends PDO_manager
 	private $htmlText;		//com_text 			text
 	private $flag;			//com_flag			int
 	private $muted;			//com_muted			tinyint 			(bool)
-	private $timeStamp;		//com_modifier		timestamp 			INDEX
-	private $part;			//com_part_id 		int
+	private $timeStamp;		//com_modifier		timestamp 			INDEX				DESC
+	private $part;			//com_part_id 		int					INDEX				F_KEY
 
 	function setId($_id) 
 	{
