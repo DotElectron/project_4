@@ -37,19 +37,41 @@ class PDO_chapter extends PDO_manager
 
 	/**
 	* ...		(when admin creates a new chapter)
-	* @param ...
-	* @return ...
+	* @param int $order
+	* @param String $title
+	* @return Boolean connection/request
 	*/
 	public function createChapter($order, $title) 
 	{
-		if ($this->dbConnect())
+		if ($this->dbConnect(true))
 		{
+			if ($order !== null && $title !== null)
+			{
+				$result = -1;
+				try
+				{
+					$request = $this->getConnection()->prepare('INSERT INTO chapters(chap_order, chap_title) 
+																VALUES(?, ?)');
+					$result = $request->execute(array($order, $title));
+				}
+				catch (PDOException $err) 
+				{
+					Error_manager::setErr('Failed to create chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+				finally
+				{
+					return ($result > 0);
+				}
+			}
+			else { Error_manager::setErr('Vous devez choisir un titre et une position pour le chapitre...'); }
+			// Default blank response...
 			return true;
 		}
+		//Connection error...
 		return false;
 	}
 	/**
-	* [External test of: ]					[]
+	* [External test of: createChapter]					[0.0.5.2 PASSED]
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -64,55 +86,146 @@ class PDO_chapter extends PDO_manager
 
 	/**
 	* ...		(when admin modifies the chapter)
-	* @param ...
-	* @return ...
+	* @param int $id
+	* @param int $order
+	* @param String $title
+	* @return Boolean connection/request
 	*/
 	public function updateChapter($id, $order, $title) 
 	{
-		
+		if ($this->dbConnect(true))
+		{
+			if ($id !== null && $order !== null && $title !== null)
+			{
+				$result = -1;
+				try
+				{
+					$request = $this->getConnection()->prepare('UPDATE chapters 
+																SET chap_order = ?, chap_title = ? 
+																WHERE chap_id = ?');
+					$result = $request->execute(array($order, $title, $id));
+				}
+				catch (PDOException $err) 
+				{
+					Error_manager::setErr('Failed to update chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+				finally
+				{
+					return ($result > 0);
+				}
+			}
+			else { Error_manager::setErr('Les informations du chapitre sont invalides...'); }
+			// Default blank response...
+			return true;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: updateChapter]					[0.0.5.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_chapter.php');
+	* use Rochefort\Classes\PDO_chapter;
+	*
+	* $PDO_test = new PDO_chapter();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->updateChapter(null, null, null), true);
+	* $PDO_test = null;
 	*/
 
 	/**
 	* ...		(when admin deletes the chapter)
-	* @param ...
-	* @return ...
+	* @param int $id
+	* @return Boolean connection/request
 	*/
 	public function deleteChapter($id) 
 	{
-		
+		if ($this->dbConnect(true))
+		{
+			if ($id !== null)
+			{
+				$result = -1;
+				try
+				{
+					$request = $this->getConnection()->prepare('DELETE FROM chapters 
+																WHERE chap_id = ?');
+					$result = $request->execute(array($id));
+				}
+				catch (PDOException $err) 
+				{
+					Error_manager::setErr('Failed to delete chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+				finally
+				{
+					return ($result > 0);
+				}
+			}
+			else { Error_manager::setErr('Le chapitre doit être spécifié...'); }
+			// Default blank response...
+			return true;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: deleteChapter]					[0.0.5.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_chapter.php');
+	* use Rochefort\Classes\PDO_chapter;
+	*
+	* $PDO_test = new PDO_chapter();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->deleteChapter(null), true);
+	* $PDO_test = null;
 	*/
 
 	/**
 	* ...		(when ux requests the navigation)
-	* @param ...
-	* @return ...
+	* @return array(PDO_Chapter) List of...
 	*/
 	public function getAllChapters() 
 	{
-		
+		if ($this->dbConnect())
+		{
+			$result = null;
+			try
+			{
+				$result = $this->getConnection()->query('SELECT chap_title FROM chapters 
+														 ORDER BY chap_order ASC');
+			}
+			catch (PDOException $err) 
+			{
+				Error_manager::setErr('Failed to load chapters: ' . $err->getCode() . ' - ' . $err->getMessage());
+			}
+			finally
+			{
+				return $result;
+			}
+
+			// Default blank response...
+			return true;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: getAllChapters]					[0.0.5.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_chapter.php');
+	* use Rochefort\Classes\PDO_chapter;
+	*
+	* $PDO_test = new PDO_chapter();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->getAllChapters(), true);
+	* $PDO_test = null;
 	*/
 
 	protected function dbRelease()
 	{
-
+		
 	}
 }
 

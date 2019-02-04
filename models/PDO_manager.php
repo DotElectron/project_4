@@ -1,10 +1,15 @@
 <?php
 
 namespace Rochefort\Classes;
+require_once('models/Error_manager.php');
 
 abstract class PDO_manager
 {
 	private $db;
+	function getConnection() 
+	{
+		return ($this->db);
+	}
 
 	/**
 	* Etablished a PDO connection with the reader (user) or writer (admin) account
@@ -39,9 +44,9 @@ abstract class PDO_manager
         				  $account, $password);
         	$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	    } 
-	    catch (PDOException $e) 
+	    catch (PDOException $err) 
 	    {
-	        die('Unabled to finalize connection: ' . $e->getMessage());
+	        Error_manager::setErr('Unabled to finalize connection: ' . $err->getCode() . ' - ' . $err->getMessage());
 	    }
 	    finally
 	    {
