@@ -5,12 +5,10 @@ OpenClassRooms Project
 
 Current version :
 
-0.0.4.2 - Update database : Foreign Keys and InnoDB
-	* Updated version to : InnoDB (via MySQL WorkBench)
-	* Added foreign keys to: part_chap_id & com_part_id
-	* Inject adv-flex-style.css & disable external api
-	* PDO updates (since db + basic test)
-	* index.php + style.css : new block "debug-area"
+0.0.5.2 - Chapter class : SQL treatments
+	* Error management (class)
+	* Update database (gen)
+	* Chapter class : set requests
 	* Beta test : PASSED !
 
 -----------------------
