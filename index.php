@@ -51,34 +51,14 @@
 
     <!-- Main section -->
     <main>
-        <div id="debug-area" class="c-flx">
+        <div id="debug-area" class="c-flx flx-jst-st">
             <?php 
+                require_once('models/Error_manager.php');
+                use Rochefort\Classes\Error_manager;
+
                 // You can push here your instant unit test...
                 // OR include of your external test file.
-
-                require_once('models/Error_manager.php');
-	            use Rochefort\Classes\Error_manager;
-	            Error_manager::setErr('BLANK TEST: is a valid test !');
-
-                //Empty test: DB connection...
-                require_once('models/PDO_chapter.php');
-                use Rochefort\Classes\PDO_chapter;
-                $PDO_test = new PDO_chapter();
-                Error_manager::setErr('DB connection-create: ' . var_export($PDO_test->createChapter(null, null), true));
-                Error_manager::setErr('DB connection-update: ' . var_export($PDO_test->updateChapter(null, null, null), true));
-                Error_manager::setErr('DB connection-delete: ' . var_export($PDO_test->deleteChapter(null), true));
-                Error_manager::setErr('DB connection-fetchAll: ' . var_export($PDO_test->getAllChapters(), true));
-                //Not NULL : Test Data...
-                // Error_manager::setErr('DB-create: ' . var_export($PDO_test->createChapter(0, 'Primary chapter'), true));
-                // Error_manager::setErr('DB-create: ' . var_export($PDO_test->createChapter(1, 'Secondary chapter'), true));
-                // Error_manager::setErr('DB-create: ' . var_export($PDO_test->createChapter(3, 'Next chapter'), true));
-                // Error_manager::setErr('DB-update: ' . var_export($PDO_test->updateChapter(21, 2, 'Third chapter'), true));
-                // Error_manager::setErr('DB-delete: ' . var_export($PDO_test->deleteChapter(19), true));
-                foreach ($PDO_test->getAllChapters() as $row)
-                {
-                    Error_manager::setErr('DB-fetchAll: ' . $row['chap_title']);
-                }
-                $PDO_test = null;
+                include('controllers/Test_file.php');
 
                 //Final display...
 	            Error_manager::displayErr();
