@@ -9,7 +9,13 @@ class Error_manager
 	private static $err;
 	public static function setErr($_err) 
 	{
-		self::$err .= '<div>' . $_err . '</div>';
+		$inErr = '';
+		if(stristr($_err, 'false')
+		   || stristr($_err, 'error')) 
+		{ 
+			$inErr = ' style="color:red"'; 
+		}
+		self::$err .= '<div' . $inErr . '>' . $_err . '</div>';
 	}
 	private static function getErr() 
 	{
@@ -33,7 +39,7 @@ class Error_manager
 		}
 	}
 	/**
-	* [External test of: displayErr]					[0.0.5.2 PASSED]
+	* [External test of: displayErr]					[0.0.6.2 PASSED]
 	* Conditions: ---
 	*
 	* require_once('models/Error_manager.php');
