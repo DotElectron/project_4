@@ -5,20 +5,30 @@ require_once('models/Error_manager.php');
 
 abstract class PDO_manager
 {
-	private $db;
+	private $db = null;
 	function getConnection() 
 	{
-		return ($this->db);
+		return $this->db;
+	}
+	function hasConnection()
+	{
+		return ($this->db !== null);
+	}
+	private $acc = false;
+	function asAdmin()
+	{
+		return $this->acc;
 	}
 
 	/**
 	* Etablished a PDO connection with the reader (user) or writer (admin) account
-	* @param optional bool $asWriter, default = false
-	* @return Boolean statement about the connection
+	* @param bool [optional] $asWriter default=false
+	* @return bool statement about the connection
 	*/
 	protected function dbConnect($asWriter = false) 
 	{
 		$this->db = null;
+		$this->acc = false;
 		try 
     	{
     		//Get the configuration...
@@ -36,13 +46,14 @@ abstract class PDO_manager
     			$account = $config['writer'];
     			$password = $config['writer_pwd']; 
     			$config['reader_pwd'] = null;
-    		}
-    		//Etablished connection...
+			}
+			//Etablished connection...
         	$this->db = new \PDO('mysql:host=' . $config['server_name']
         				  . ';dbname=' . $config['db_name']
         				  . ';charset=' . $config['db_charset'],
         				  $account, $password);
-        	$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			$this->acc = $asWriter;
 	    } 
 	    catch (PDOException $err) 
 	    {
@@ -50,6 +61,8 @@ abstract class PDO_manager
 	    }
 	    finally
 	    {
+			//Debug...
+			Error_manager::setErr('ConnectTo: ' . $account);
 	    	//Release data...
         	unset($config);
         	unset($account);
