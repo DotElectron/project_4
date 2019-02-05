@@ -8,10 +8,13 @@
 	require_once('models/PDO_chapter.php');
 	use Rochefort\Classes\PDO_chapter;
 	$PDO_test = new PDO_chapter();
-	Error_manager::setErr('DB connection-CheckOne: ' . var_export($PDO_test->isExist(null, true), true));
-	Error_manager::setErr('DB connection-CheckOrder: ' . var_export($PDO_test->isClean(null, null, true), true));
-	Error_manager::setErr('DB connection-fetchId-Title: ' . var_export($PDO_test->getIdByTitle(null, true), true));
-	Error_manager::setErr('DB connection-fetchId-Order: ' . var_export($PDO_test->getIdByOrder(null, true), true));
+	//(Optional section)
+	// Error_manager::setErr('DB connection-CheckOne: ' . var_export($PDO_test->isExist(null, true), true));
+	// Error_manager::setErr('DB connection-CheckOrder: ' . var_export($PDO_test->isClean(null, null, true), true));
+	// Error_manager::setErr('DB connection-fetchId-Title: ' . var_export($PDO_test->getIdByTitle(null, true), true));
+	// Error_manager::setErr('DB connection-fetchId-Order: ' . var_export($PDO_test->getIdByOrder(null, true), true));
+	// Error_manager::setErr('DB connection-fetchTitle-Id: ' . var_export($PDO_test->getTitleById(null, true), true));
+	//(Necessary section)
 	Error_manager::setErr('DB connection-create: ' . var_export($PDO_test->createChapter(null, null, true), true));
 	Error_manager::setErr('DB connection-update: ' . var_export($PDO_test->updateChapter(null, null, null, true), true));
 	Error_manager::setErr('DB connection-delete: ' . var_export($PDO_test->deleteChapter(null, true), true));

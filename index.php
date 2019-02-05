@@ -58,7 +58,7 @@
 
                 // You can push here your instant unit test...
                 // OR include of your external test file.
-                include('controllers/Test_file.php');
+                //include('controllers/Test_file.php');
 
                 //Final display...
 	            Error_manager::displayErr();

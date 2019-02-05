@@ -62,7 +62,7 @@ abstract class PDO_manager
 	    finally
 	    {
 			//Debug...
-			Error_manager::setErr('ConnectTo: ' . $account);
+			// Error_manager::setErr('ConnectTo: ' . $account);
 	    	//Release data...
         	unset($config);
         	unset($account);

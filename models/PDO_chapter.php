@@ -43,7 +43,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return bool Chapter exists...
 	*/
-	function isExist($_id, $_default = false) 
+	private function isExist($_id, $_default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -95,7 +95,7 @@ class PDO_chapter extends PDO_manager
 	* @param int [optional] $_id default=-1
 	* @return bool Free Order...
 	*/
-	function isClean($_order, $_id = null, $_default = false) 
+	private function isClean($_order, $_id = null, $_default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -150,7 +150,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return int $id...
 	*/
-	function getIdByTitle($_title, $_default = false) 
+	private function getIdByTitle($_title, $_default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -201,7 +201,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_order
 	* @return int $id...
 	*/
-	function getIdByOrder($_order, $_default = false) 
+	private function getIdByOrder($_order, $_default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -252,7 +252,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return string $title...
 	*/
-	function getTitleById($_id, $_default = false) 
+	private function getTitleById($_id, $_default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
