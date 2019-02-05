@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `rochefort_ebook` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `rochefort_ebook`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: rochefort_ebook
@@ -27,7 +29,8 @@ CREATE TABLE `chapters` (
   `chap_order` int(11) NOT NULL COMMENT 'Order of the chapter (as Index)',
   `chap_title` varchar(255) NOT NULL COMMENT 'Title of the chapter',
   PRIMARY KEY (`chap_id`),
-  UNIQUE KEY `IDX_order` (`chap_order`)
+  UNIQUE KEY `IDX_order` (`chap_order`),
+  UNIQUE KEY `IDX_title` (`chap_title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Contains definition of the book''s chapter, ordered and appointed.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,4 +86,4 @@ CREATE TABLE `parts` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-04 11:50:01
+-- Dump completed on 2019-02-05 17:06:15
