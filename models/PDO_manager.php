@@ -1,11 +1,13 @@
 <?php
 
 namespace Rochefort\Classes;
-require_once('models/Error_manager.php');
+require_once('Error_manager.php');
 
 abstract class PDO_manager
 {
 	private $db = null;
+	private $acc = false;
+	
 	function getConnection() 
 	{
 		return $this->db;
@@ -14,11 +16,17 @@ abstract class PDO_manager
 	{
 		return ($this->db !== null);
 	}
-	private $acc = false;
 	function asAdmin()
 	{
 		return $this->acc;
 	}
+	// function rollBack()
+	// {
+	// 	if (hasConnection())
+	// 	{
+	// 		$this->db->rollBack();
+	// 	}
+	// }
 
 	/**
 	* Etablished a PDO connection with the reader (user) or writer (admin) account
@@ -27,6 +35,7 @@ abstract class PDO_manager
 	*/
 	protected function dbConnect($asWriter = false) 
 	{
+		global $activeDebug;
 		$this->db = null;
 		$this->acc = false;
 		try 
@@ -51,18 +60,18 @@ abstract class PDO_manager
         	$this->db = new \PDO('mysql:host=' . $config['server_name']
         				  . ';dbname=' . $config['db_name']
         				  . ';charset=' . $config['db_charset'],
-        				  $account, $password);
-			$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+						  $account, $password,
+						  array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$this->acc = $asWriter;
 	    } 
-	    catch (PDOException $err) 
-	    {
-	        Error_manager::setErr('Unabled to finalize connection: ' . $err->getCode() . ' - ' . $err->getMessage());
+		catch (\PDOException $err) 
+		{
+			Error_manager::setErr('Unabled to finalize connection: ' . $err->getCode() . ' - ' . $err->getMessage());
 	    }
 	    finally
 	    {
 			//Debug...
-			// Error_manager::setErr('ConnectTo: ' . $account);
+			if (isset($activeDebug) && $this->hasConnection()) { Error_manager::setErr('ConnectTo: ' . $account); }
 	    	//Release data...
         	unset($config);
         	unset($account);

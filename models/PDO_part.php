@@ -1,7 +1,6 @@
 <?php
 
 namespace Rochefort\Classes;
-
 require_once('PDO_manager.php');
 
 class PDO_part extends PDO_manager

@@ -1,7 +1,6 @@
 <?php
 
 namespace Rochefort\Classes;
-
 require_once('PDO_manager.php');
 
 class PDO_chapter extends PDO_manager
@@ -60,7 +59,7 @@ class PDO_chapter extends PDO_manager
 						$result = $request->fetchColumn();
 					}
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to load chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -113,7 +112,7 @@ class PDO_chapter extends PDO_manager
 						$result = $request->fetchColumn();
 					}
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to find data: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -167,7 +166,7 @@ class PDO_chapter extends PDO_manager
 						$result = $request->fetchColumn();
 					}
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to find chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -218,7 +217,7 @@ class PDO_chapter extends PDO_manager
 						$result = $request->fetchColumn();
 					}
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to find chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -269,7 +268,7 @@ class PDO_chapter extends PDO_manager
 						$result = $request->fetchColumn();
 					}
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to find chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -330,7 +329,7 @@ class PDO_chapter extends PDO_manager
 																VALUES(?, ?)');
 					$result = $request->execute(array($_order, $_title));
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to create chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -402,7 +401,7 @@ class PDO_chapter extends PDO_manager
 																	WHERE chap_id = ?');
 						$result = $request->execute(array($_order, $_title, $_id));
 					}
-					catch (PDOException $err) 
+					catch (\PDOException $err) 
 					{
 						Error_manager::setErr('Failed to update chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 					}
@@ -459,7 +458,7 @@ class PDO_chapter extends PDO_manager
 																WHERE chap_id = ?');
 					$result = $request->execute(array($_id));
 				}
-				catch (PDOException $err) 
+				catch (\PDOException $err) 
 				{
 					Error_manager::setErr('Failed to delete chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
@@ -503,7 +502,7 @@ class PDO_chapter extends PDO_manager
 														 FROM chapters 
 														 ORDER BY chap_order ASC');
 			}
-			catch (PDOException $err) 
+			catch (\PDOException $err) 
 			{
 				Error_manager::setErr('Failed to load chapters: ' . $err->getCode() . ' - ' . $err->getMessage());
 			}
@@ -536,7 +535,7 @@ class PDO_chapter extends PDO_manager
 
 	protected function dbRelease()
 	{
-		
+		// $this->rollBack();
 	}
 }
 

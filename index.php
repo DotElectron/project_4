@@ -4,6 +4,11 @@
 // include_once('../controllers/user_selector.php');
 // include_once('../controllers/main_selector.php');
 
+//Error Management...
+require_once('models/Error_manager.php');
+use Rochefort\Classes\Error_manager;
+$activeDebug = true;
+
 ?>
 
 <!DOCTYPE HTML>
@@ -53,12 +58,9 @@
     <main>
         <div id="debug-area" class="c-flx flx-jst-st">
             <?php 
-                require_once('models/Error_manager.php');
-                use Rochefort\Classes\Error_manager;
-
                 // You can push here your instant unit test...
                 // OR include of your external test file.
-                //include('controllers/Test_file.php');
+                if (isset($activeDebug)) { include('controllers/Test_file.php'); }
 
                 //Final display...
 	            Error_manager::displayErr();

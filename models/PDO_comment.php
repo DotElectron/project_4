@@ -1,7 +1,6 @@
 <?php
 
 namespace Rochefort\Classes;
-
 require_once('PDO_manager.php');
 
 class PDO_comment extends PDO_manager

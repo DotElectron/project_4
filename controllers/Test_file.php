@@ -28,10 +28,14 @@
 	Error_manager::setErr('DB-create--Last: ' . var_export($PDO_test->createChapter(6, 'Last chapter'), true));
 	Error_manager::setErr('DB-update++Next: ' . var_export($PDO_test->updateChapter('Next chapter', 2, 'Third chapter'), true));
 	Error_manager::setErr('DB-delete--Last: ' . var_export($PDO_test->deleteChapter('Last chapter'), true));
-	Error_manager::setErr('DB-create--Pri-Sec: ' . var_export($PDO_test->createChapter(1, 'Pri-Sec Chapter'), true));
-	foreach ($PDO_test->getAllChapters() as $row)
+	Error_manager::setErr('DB-create--Pri-Sec: ' . var_export($PDO_test->createChapter(1, 'Pri-Sec chapter'), true));
+	$PDO_data = $PDO_test->getAllChapters();
+	if ($PDO_data)
 	{
-		Error_manager::setErr('DB-fetchAll: ' . $row['chap_title']);
+		foreach ($PDO_data as $row)
+		{
+			Error_manager::setErr('DB-fetchAll: ' . $row['chap_title']);
+		}
 	}
 
 	//Data test : Clean DB...
@@ -39,6 +43,7 @@
 	Error_manager::setErr('DB-delete--Pri-Sec: ' . var_export($PDO_test->deleteChapter('Pri-Sec chapter'), true));
 	Error_manager::setErr('DB-delete--Secondary: ' . var_export($PDO_test->deleteChapter('Secondary chapter'), true));
 	Error_manager::setErr('DB-delete--Third: ' . var_export($PDO_test->deleteChapter('Third chapter'), true));
+	$PDO_data = null;
 	$PDO_test = null;
 	
 ?>
