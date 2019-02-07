@@ -11,7 +11,8 @@ class Error_manager
 	{
 		$inErr = '';
 		if(stristr($_err, 'false')
-		   || stristr($_err, 'error')) 
+		   || stristr($_err, 'error')
+		   || stristr($_err, 'erreur'))  
 		{ 
 			$inErr = ' style="color:red"'; 
 		}

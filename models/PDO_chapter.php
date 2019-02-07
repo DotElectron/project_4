@@ -6,32 +6,67 @@ require_once('PDO_manager.php');
 class PDO_chapter extends PDO_manager
 {							//inDB...
 	private $id;			//chap_id 			int 				P_KEY
-	private $order;			//chap_order		int 				UNIQUE
+	private $order;			//chap_order		int 				UNIQUE			(base 0)
 	private $title;			//chap_title 		varchar(255) 		UNIQUE
 
-	function setId($_id) 
+	// --------------------------------
+	// --------------------------------
+
+	private function setId($_id) 
 	{
 		$this->id = $_id;
 	}
-	function getId() 
+	public function getId() 
 	{
 		return ($this->id);
 	}
-	function setOrder($_order) 
+	private function setOrder($_order) 
 	{
 		$this->order = $_order;
 	}
-	function getOrder() 
+	public function getOrder() 
 	{
 		return ($this->order);
 	}
-	function setTitle($_title) 
+	private function setTitle($_title) 
 	{
 		$this->title = $_title;
 	}
-	function getTitle() 
+	public function getTitle() 
 	{
 		return ($this->title);
+	}
+
+	// --------------------------------
+	// --------------------------------
+
+	function __construct($_title = null)
+	{
+		if ($_title !== null)
+		{
+			if ($this->hasConnection() || $this->dbConnect())
+			{	
+				try
+				{
+					$request = $this->getConnection()->prepare('SELECT *
+																FROM chapters 
+																WHERE chap_title = ?');
+					if ($request->execute(array($_title)) > 0)
+					{
+						$result = $request->fetch();
+						$this->setId($result['chap_id']);
+						$this->setOrder($result['chap_order']);
+						$this->setTitle($result['chap_title']);
+					}
+				}
+				catch (\PDOException $err) 
+				{
+					Error_manager::setErr('Failed to load chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+			}
+			else { Error_manager::setErr('Erreur sur le chapitre : connexion impossible à la base de données !'); }
+		}
+		else { Error_manager::setErr('Aucun chapitre ne peut persister sans titre dans la base...'); }
 	}
 
 	// --------------------------------
@@ -302,7 +337,7 @@ class PDO_chapter extends PDO_manager
 
 	/**
 	* ...		(when admin creates a new chapter)
-	* @param int $_order
+	* @param int $_order (base 0)
 	* @param string $_title
 	* @return bool connection/request
 	*/
