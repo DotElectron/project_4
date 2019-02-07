@@ -122,16 +122,19 @@ class PDO_part extends PDO_manager
 				$result = -1;
 				try
 				{
-					$request = $this->getConnection()->prepare('SELECT COUNT(part_order) 
+					//Order execution...
+					$request = $this->getConnection()->prepare('SELECT MAX(part_order)
 																FROM parts');
 					if ($request->execute() > 0)
 					{
 						$result = $request->fetchColumn();
+						if ($result === null) { $result = 0; }
+						else { $result += 1; }
 					}
 				}
 				catch (\PDOException $err) 
 				{
-					Error_manager::setErr('Failed to count part: ' . $err->getCode() . ' - ' . $err->getMessage());
+					Error_manager::setErr('Failed to get max order: ' . $err->getCode() . ' - ' . $err->getMessage());
 				}
 				finally
 				{
@@ -267,7 +270,7 @@ class PDO_part extends PDO_manager
 					$result = $request->execute(array($_order));
 
 					//Reorder current parts...
-					
+
 				}
 				catch (\PDOException $err) 
 				{
