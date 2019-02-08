@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `rochefort_ebook` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `rochefort_ebook`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: rochefort_ebook
@@ -27,7 +25,7 @@ DROP TABLE IF EXISTS `chapters`;
 CREATE TABLE `chapters` (
   `chap_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID of the chapter (as P_KEY)',
   `chap_order` int(11) NOT NULL COMMENT 'Order of the chapter (as Index)',
-  `chap_title` varchar(255) NOT NULL COMMENT 'Title of the chapter',
+  `chap_title` varchar(255) NOT NULL COMMENT 'Title of the chapter (as Index)',
   PRIMARY KEY (`chap_id`),
   UNIQUE KEY `IDX_order` (`chap_order`),
   UNIQUE KEY `IDX_title` (`chap_title`)
@@ -48,7 +46,7 @@ CREATE TABLE `comments` (
   `com_flag` int(11) NOT NULL COMMENT 'The flag counter (from users)',
   `com_muted` tinyint(1) NOT NULL COMMENT 'The muted status (from admin)',
   `com_modifier` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'TimeStamp of the last modification (as Index)',
-  `com_part_id` int(11) DEFAULT NULL COMMENT 'ID from the parent part',
+  `com_part_id` int(11) DEFAULT NULL COMMENT 'ID from the parent part (as Foreign)',
   PRIMARY KEY (`com_id`),
   KEY `IDX_modifier` (`com_modifier`),
   KEY `IDX_part_id` (`com_part_id`),
@@ -65,14 +63,15 @@ DROP TABLE IF EXISTS `parts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parts` (
   `part_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID of the part (as P_KEY)',
-  `part_order` int(11) NOT NULL,
-  `part_subtitle` varchar(255) NOT NULL COMMENT 'Subtitle of the part (as Index)',
+  `part_order` int(11) NOT NULL COMMENT 'Order of the part (as Index)',
+  `part_subtitle` varchar(255) DEFAULT NULL COMMENT 'Subtitle of the part (as Unique)',
   `part_text` text NOT NULL COMMENT 'Html content of the part',
   `part_modifier` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'TimeStamp of the last modification (as Index)',
-  `part_chap_id` int(11) DEFAULT NULL COMMENT 'ID from the parent chapter',
+  `part_chap_id` int(11) DEFAULT NULL COMMENT 'ID from the parent chapter (as Foreign)',
   PRIMARY KEY (`part_id`),
   UNIQUE KEY `IDX_order` (`part_order`),
-  KEY `IDX_chap_id` (`part_chap_id`) USING BTREE,
+  UNIQUE KEY `IDX_subtitle` (`part_subtitle`),
+  KEY `IDX_chap_id` (`part_chap_id`),
   CONSTRAINT `F_KEY_chap_id` FOREIGN KEY (`part_chap_id`) REFERENCES `chapters` (`chap_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Contains definition of the chapter''s part, ordered and appointed.';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -86,4 +85,4 @@ CREATE TABLE `parts` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-05 17:06:15
+-- Dump completed on 2019-02-08  8:58:08
