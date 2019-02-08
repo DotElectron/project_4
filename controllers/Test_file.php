@@ -81,7 +81,8 @@
 	Error_manager::setErr('DB-delete--Tri: ' . var_export($PDO_test->deletePart(1), true));
 	Error_manager::setErr('DB-create--Third: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'III) With a glory of...', 'Part of life'), true));
 	Error_manager::setErr('DB-create--Second: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'II) About a world of...', 'Single way'), true));
-	Error_manager::setErr('DB-change--Second: ' . var_export($PDO_test->changeOrder(3, 1), true));
+	Error_manager::setErr('DB-change--Second: ' . var_export($PDO_test->changeOrder(3, 0), true));
+	Error_manager::setErr('DB-change--Second: ' . var_export($PDO_test->changeOrder(0, 1), true));
 	Error_manager::setErr('DB-delete--Tmp: ' . var_export($PDO_test->deletePart(2), true));
 	$PDO_part = new PDO_part(0);
 	Error_manager::setErr('DB-update--First: ' 

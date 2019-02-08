@@ -363,13 +363,13 @@ class PDO_part extends PDO_manager
 							}
 							if (isset($activeDebug))
 							{
-								Error_manager::setErr('(afterDelete->recursiveReordered: ' 
-														. $last_order . ' to ' . $new_order . ' limit ' . $recursiveTarget . ')'); 
+								Error_manager::setErr('(parsedOp->recursiveReordered: ' 
+														. $last_order . ' to:' . $new_order . ' limit:' . $recursiveTarget . ')'); 
 							} 
 						}
 						else
 						{
-							//From a admin request...
+							//From a change request...
 							$request = $this->getConnection()->prepare('UPDATE parts 
 																		SET  part_order = -1
 																		WHERE part_order = ?');
@@ -377,8 +377,8 @@ class PDO_part extends PDO_manager
 							$this->changeOrder($new_order, ($new_order - $vector), $last_order, $__default);
 							if (isset($activeDebug))
 							{
-								Error_manager::setErr('(afterDelete->recursiveReordered: ' 
-														. $last_order . ' to ' . $new_order . ' as single)'); 
+								Error_manager::setErr('(inFine->recursiveReordered: ' 
+														. $last_order . ' to:' . $new_order . ' as single)'); 
 							} 
 							$last_order = -1;
 						}
