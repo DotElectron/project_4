@@ -7,7 +7,7 @@
 //Error Management...
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
-$activeDebug = true;
+//$activeDebug = true;
 
 ?>
 
@@ -45,7 +45,7 @@ $activeDebug = true;
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
         <a href=""><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
-        <h1>Jean Rochefort - Un billet en Alaska</h1>    
+        <h1>Jean Rochefort - Un billet en Alaska<?php if (isset($activeDebug)) {echo ' (Beta version)'; } ?></h1>    
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php 
