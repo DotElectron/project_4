@@ -64,29 +64,12 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when a user posts a new comment)
-	* @param ...
+	* @param int $_part
+	* @param string $_htmlText
+	* @param string [optional] $_author default=null
 	* @return ...
 	*/
-	public function createComment($auth, $html) 
-	{
-		if ($this->dbConnect())
-		{
-			
-		}
-	}
-	/**
-	* [External test of: ]					[]
-	* Conditions: 
-	*
-	* 
-	*/
-
-	/**
-	* ...		(when a user posts again his comment)
-	* @param ...
-	* @return ...
-	*/
-	public function updateComment($id, $html) 
+	public function createComment($_part, $_htmlText, $_author = null) 
 	{
 		
 	}
@@ -99,10 +82,10 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when user puts a flag on the comment)
-	* @param ...
+	* @param int $_id
 	* @return ...
 	*/
-	public function updateFlag($action) 
+	public function updateFlag($_id, $__default = false) 
 	{
 		//++ || --
 	}
@@ -115,10 +98,11 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when admin decides to mute the comment)
-	* @param ...
+	* @param int $_id
+	* @param bool $_muted
 	* @return ...
 	*/
-	public function updateMuted($state) 
+	public function updateMuted($_id, $_muted, $__default = false) 
 	{
 		
 	}
@@ -131,10 +115,12 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when user/admin requests a group of comments)
-	* @param bool $muted (else: visible), bool $flagOrder (else: dateOrder)
+	* @param int [optional] $_part default=-1
+	* @param bool [optional] $flagOrder (else: dateOrder DESC) default=false
+	* @param bool [optional] $visibleRange (0:notOnly;1:mutedOnly;2:both) default=0
 	* @return ...
 	*/
-	public function getComments($muted, $flagOrder)
+	public function getComments($_part = -1, $flagOrder = false, $visibleRange = 0, $__default = false)
 	{
 		
 	}

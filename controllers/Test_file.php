@@ -54,6 +54,7 @@
 	// --------------------------------
 
 	//Empty test: DB connection...
+	Error_manager::setErr('---------------------------------');
 	Error_manager::setErr('------- BLANK "PART" TEST -------');
 	require_once('models/PDO_part.php');
 	use Rochefort\Classes\PDO_part;
@@ -98,15 +99,38 @@
 
 	//Data test : Clean DB...
 	Error_manager::setErr('------- DATA "PART" CLEAN -------');
+	$PDO_part_test = $PDO_test;		//use to next Tests...
 	$PDO_part = null;
-	for ($r = 0; $r < count($PDO_data); $r++)
+	for ($r = 1; $r < count($PDO_data); $r++)
 	{
 		Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_test->deletePart(0), true));
 	}
 	$PDO_data = null;
 	$PDO_test = null;
-	Error_manager::setErr('------- DATA "CHAP" CLEAN -------');
+	Error_manager::setErr('---------- (Emb "CHAP" Clean) ---');
 	Error_manager::setErr('DB-delete--Primary: ' . var_export($PDO_chap_test->deleteChapter('Primary chapter'), true));
 	$PDO_chap_test = null;
+
+	//Empty test: DB connection...
+	Error_manager::setErr('--------------------------------');
+	Error_manager::setErr('------- BLANK "COM" TEST -------');
+	require_once('models/PDO_comment.php');
+	use Rochefort\Classes\PDO_comment;
+	$PDO_test = new PDO_comment();
+	//(Optional section)
+	// ...
+	//(Necessary section)
+	// ...
+
+	//Data test : DB operations...
+	Error_manager::setErr('------- DATA "COM" TEST -------');
+	// ...
+
+	//Data test : Clean DB...
+	Error_manager::setErr('------- DATA "COM" CLEAN -------');
+	// ...
+	Error_manager::setErr('--------- (Emb "PART" Clean) ---');
+	Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_part_test->deletePart(0), true));
+	$PDO_part_test = null;
 	
 ?>
