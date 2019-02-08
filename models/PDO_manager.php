@@ -7,6 +7,8 @@ abstract class PDO_manager
 {
 	private $db = null;
 	private $acc = false;
+	// Internal function - optional arg: 
+	// ($__default = false) => used to report test from the connection response...
 	
 	function getConnection() 
 	{

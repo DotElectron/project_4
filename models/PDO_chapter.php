@@ -77,7 +77,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return bool Chapter exists...
 	*/
-	private function isExist($_id, $_default = false) 
+	private function isExist($_id, $__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -105,7 +105,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -129,7 +129,7 @@ class PDO_chapter extends PDO_manager
 	* @param int [optional] $_id default=-1
 	* @return bool Free Order...
 	*/
-	private function isClean($_order, $_id = null, $_default = false) 
+	private function isClean($_order, $_id = null, $__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -158,7 +158,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -184,7 +184,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return int $id...
 	*/
-	private function getIdByTitle($_title, $_default = false) 
+	private function getIdByTitle($_title, $__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -212,7 +212,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -235,7 +235,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_order
 	* @return int $id...
 	*/
-	private function getIdByOrder($_order, $_default = false) 
+	private function getIdByOrder($_order, $__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -263,7 +263,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Aucun chapitre sans position ne peut persister dans la base...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -286,7 +286,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return string $title...
 	*/
-	private function getTitleById($_id, $_default = false) 
+	private function getTitleById($_id, $__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -314,7 +314,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -341,19 +341,19 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return bool connection/request
 	*/
-	public function createChapter($_order, $_title, $_default = false) 
+	public function createChapter($_order, $_title, $__default = false) 
 	{
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order) && $_title !== null)
 			{
 				//Check a clean order...
-				if (!$this->isClean($_order, $_default))
+				if (!$this->isClean($_order, $__default))
 				{
 					//Move it to next position (about order)			//By object ? getChapterBy ?
-					$_parseId = $this->getIdByOrder($_order, $_default);
+					$_parseId = $this->getIdByOrder($_order, $__default);
 					$this->updateChapter($_parseId, ($_order + 1), 
-											$this->getTitleById($_parseId, $_default));
+											$this->getTitleById($_parseId, $__default));
 				}
 
 				//Create execution...
@@ -375,7 +375,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Vous devez choisir un titre et une position pour le chapitre...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -401,7 +401,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return bool connection/request
 	*/
-	public function updateChapter($_id, $_order, $_title, $_default = false) 
+	public function updateChapter($_id, $_order, $_title, $__default = false) 
 	{
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
@@ -412,19 +412,19 @@ class PDO_chapter extends PDO_manager
 				//Particular case: a string was sent into the $_id variable
 				if (!is_numeric($_id))
 				{
-					$_id = $this->getIdByTitle($_id, $_default);
+					$_id = $this->getIdByTitle($_id, $__default);
 				}
 
 				//Check a valid ID...
 				if ($this->isExist($_id))
 				{
 					//Check a clean order...
-					if (!$this->isClean($_order, $_id, $_default))
+					if (!$this->isClean($_order, $_id, $__default))
 					{
 						//Move it to next position (about order)			//By object ? getChapterBy ?
-						$_parseId = $this->getIdByOrder($_order, $_default);
+						$_parseId = $this->getIdByOrder($_order, $__default);
 						$this->updateChapter($_parseId, ($_order + 1), 
-											 $this->getTitleById($_parseId, $_default));
+											 $this->getTitleById($_parseId, $__default));
 					}
 
 					//Update execution...
@@ -449,7 +449,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Les informations du chapitre sont invalides...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -472,7 +472,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id (or string->getIdByTitle)
 	* @return bool connection/request
 	*/
-	public function deleteChapter($_id, $_default = false) 
+	public function deleteChapter($_id, $__default = false) 
 	{
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
@@ -481,7 +481,7 @@ class PDO_chapter extends PDO_manager
 				//Particular case: a string was sent into the $_id variable
 				if (!is_numeric($_id))
 				{
-					$_id = $this->getIdByTitle($_id, $_default);
+					$_id = $this->getIdByTitle($_id, $__default);
 				}
 
 				//Delete execution...
@@ -504,7 +504,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Le chapitre doit être spécifié...'); }
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;
@@ -526,7 +526,7 @@ class PDO_chapter extends PDO_manager
 	* ...		(when ux requests the navigation)
 	* @return array All Chapters...
 	*/
-	public function getAllChapters($_default = false) 
+	public function getAllChapters($__default = false) 
 	{
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
 		{
@@ -545,9 +545,8 @@ class PDO_chapter extends PDO_manager
 			{
 				return $result;
 			}
-
 			// Default blank response...
-			return $_default;
+			return $__default;
 		}
 		//Connection error...
 		return false;

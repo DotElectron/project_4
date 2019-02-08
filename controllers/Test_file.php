@@ -59,23 +59,53 @@
 	use Rochefort\Classes\PDO_part;
 	$PDO_test = new PDO_part();
 	//(Optional section)
+	// Error_manager::setErr('DB connection-CheckOne: ' . var_export($PDO_test->isExist(null, true), true));
 	// Error_manager::setErr('DB connection-nextOrder: ' . var_export($PDO_test->nextOrder(true), true));
 	//(Necessary section)
 	Error_manager::setErr('DB connection-create: ' . var_export($PDO_test->createPart(null, null, null, true), true));
+	Error_manager::setErr('DB-connection-update: ' . var_export($PDO_test->updatePart(null, null, null, null, true), true));
+	Error_manager::setErr('DB-connection-change: ' . var_export($PDO_test->changeOrder(null, null, null, true), true));
+	Error_manager::setErr('DB-connection-delete: ' . var_export($PDO_test->deletePart(null, true), true));
+	Error_manager::setErr('DB connection-fetchAll: ' . var_export($PDO_test->getPartsOfChapter(null, true), true));
 
 	//Data test : DB operations...
 	Error_manager::setErr('------- DATA "PART" TEST -------');
 	$PDO_class = new PDO_chapter('Primary chapter');
-	Error_manager::setErr('DB-create--First: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'A new story...'), true));
+	Error_manager::setErr('DB-create--First: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'I) A new story...'), true));
 	Error_manager::setErr('DB-create--Second: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'About a world of...', 'Single way'), true));
+	Error_manager::setErr('DB-create--Bis: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'A new bis story...'), true));
+	Error_manager::setErr('DB-create--Tri: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'A new tri story...'), true));
+	Error_manager::setErr('DB-delete--Bis: ' . var_export($PDO_test->deletePart(2), true));
+	Error_manager::setErr('DB-create--Tmp: ' . var_export($PDO_test->createPart($PDO_class->getId(), '...', 'Erratum template'), true));
+	Error_manager::setErr('DB-delete--Second: ' . var_export($PDO_test->deletePart(1), true));
+	Error_manager::setErr('DB-delete--Tri: ' . var_export($PDO_test->deletePart(1), true));
+	Error_manager::setErr('DB-create--Third: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'III) With a glory of...', 'Part of life'), true));
+	Error_manager::setErr('DB-create--Second: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'II) About a world of...', 'Single way'), true));
+	Error_manager::setErr('DB-change--Second: ' . var_export($PDO_test->changeOrder(3, 1), true));
+	Error_manager::setErr('DB-delete--Tmp: ' . var_export($PDO_test->deletePart(2), true));
+	$PDO_part = new PDO_part(0);
+	Error_manager::setErr('DB-update--First: ' 
+						  . var_export($PDO_test->updatePart($PDO_part->getOrder(), $PDO_class->getId(), 'The ended part', $PDO_part->getHtmlText()), true));
+	$PDO_data = $PDO_test->getPartsOfChapter($PDO_class->getId());
+	if ($PDO_data)
+	{
+		foreach ($PDO_data as $row)
+		{
+			Error_manager::setErr('DB-fetchAll: ' . $row['part_subtitle'] . ' - ' . $row['part_text']);
+		}
+	}
 
 	//Data test : Clean DB...
 	Error_manager::setErr('------- DATA "PART" CLEAN -------');
-	Error_manager::setErr('DB-delete--First: ' . var_export($PDO_test->deletePart(0), true));
-	Error_manager::setErr('DB-delete--First: ' . var_export($PDO_test->deletePart(1), true));
-	Error_manager::setErr('------- DATA "CHAP" CLEAN -------');
-	Error_manager::setErr('DB-delete--Primary: ' . var_export($PDO_chap_test->deleteChapter('Primary chapter'), true));
+	$PDO_part = null;
+	for ($r = 0; $r < count($PDO_data); $r++)
+	{
+		Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_test->deletePart(0), true));
+	}
 	$PDO_data = null;
 	$PDO_test = null;
+	Error_manager::setErr('------- DATA "CHAP" CLEAN -------');
+	Error_manager::setErr('DB-delete--Primary: ' . var_export($PDO_chap_test->deleteChapter('Primary chapter'), true));
+	$PDO_chap_test = null;
 	
 ?>
