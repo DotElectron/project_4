@@ -6,10 +6,10 @@ require_once('PDO_manager.php');
 class PDO_comment extends PDO_manager
 {							//inDB...
 	private $id;			//com_id 			int 				P_KEY
-	private $author;		//com_author	 	varchar(60) 		(default: Anon)		
+	private $author;		//com_author	 	varchar(60) 		(default: Anonyme)		
 	private $htmlText;		//com_text 			text
 	private $flag;			//com_flag			int
-	private $muted;			//com_muted			tinyint 			(bool)
+	private $muted;			//com_muted			tinyint(1)			(bool)
 	private $timeStamp;		//com_modifier		timestamp 			INDEX				DESC
 	private $part;			//com_part_id 		int					INDEX				F_KEY
 
@@ -85,10 +85,17 @@ class PDO_comment extends PDO_manager
 			{	
 				try
 				{
+					$statement = ' WHERE com_id = ?';
+					if ($_id === '?')
+					{
+						// Particular case: get last id...
+						$statement = ' ORDER BY com_id DESC LIMIT 1';
+					}
 					$request = $this->getConnection()->prepare('SELECT *
-																FROM comments 
-																WHERE com_id = ?');
-					if ($request->execute(array($_id)) > 0)
+																FROM comments' 
+																. $statement);
+					if ((is_numeric($_id) && $request->execute(array($_id)) > 0)
+						|| ($_id === '?' && $request->execute() > 0))
 					{
 						$result = $request->fetch();
 						$this->setId($result['com_id']);
@@ -122,14 +129,70 @@ class PDO_comment extends PDO_manager
 	// --------------------------------
 
 	/**
+	* ...		(internal existancial request about the chapter)
+	* @param int $_id
+	* @return bool Comment exists...
+	*/
+	private function isExist($_id, $__default = false) 
+	{
+		global $activeDebug;
+		if ($this->hasConnection() || $this->dbConnect())
+		{
+			if ($_id !== null && is_numeric($_id))
+			{
+				$result = -1;
+				try
+				{
+					$request = $this->getConnection()->prepare('SELECT COUNT(*) 
+																FROM comments 
+																WHERE com_id = ?');
+					if ($request->execute(array($_id)) > 0)
+					{
+						$result = $request->fetchColumn();
+					}
+				}
+				catch (\PDOException $err) 
+				{
+					Error_manager::setErr('Failed to load comment: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+				finally
+				{
+					return ($result > 0);
+				}
+			}
+			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
+			// Default blank response...
+			return $__default;
+		}
+		//Connection error...
+		return false;
+	}
+	/**
+	* [External test of: isExist]					[0.0.9.2 PASSED]
+	* Conditions: scope public, not private...
+	*
+	* require_once('models/PDO_comment.php');
+	* use Rochefort\Classes\PDO_comment;
+	*
+	* $PDO_test = new PDO_comment();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->isExist(null, true), true);
+	* $PDO_test = null;
+	*/
+
+	// --------------------------------
+	// --------------------------------
+
+	/**
 	* ...		(when a user posts a new comment)
 	* @param int $_part
 	* @param string $_htmlText
-	* @param string [optional] $_author default=Anonyme
+	* @param string [optional] $_author default=Invité
 	* @return bool connection/request
 	*/
-	public function createComment($_part, $_htmlText, $_author = '', $__default = false) 
+	public function createComment($_part, $_htmlText, $_author = 'Invité', $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_part !== null && is_numeric($_part) && $_htmlText !== null)
@@ -151,7 +214,7 @@ class PDO_comment extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else { Error_manager::setErr('Un commentaire doit être rattaché à un épisode et avoir un contenu...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('Un commentaire doit être rattaché à un épisode et avoir un contenu...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -175,17 +238,64 @@ class PDO_comment extends PDO_manager
 	/**
 	* ...		(when user puts a flag on the comment)
 	* @param int $_id
+	* @param bool $flagVector (added/removed)
 	* @return bool connection/request
 	*/
-	public function updateFlag($_id, $__default = false) 
+	public function updateFlag($_id, $flagVector, $__default = false) 
 	{
-		//++ || --
+		global $activeDebug;
+		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
+		{
+			if ($_id !== null && is_numeric($_id)
+				&& $flagVector !== null && is_bool($flagVector))
+			{
+				//Check a valid Order...
+				if ($this->isExist($_id))
+				{
+					//Transform value...
+					$flagValue = 1;
+					if (!$flagVector)
+					{
+						$flagValue = -1;
+					}
+					//Update execution...
+					$result = -1;
+					try
+					{
+						$request = $this->getConnection()->prepare('UPDATE comments
+																	SET com_flag = com_flag + ?
+																	WHERE com_id = ?');
+						$result = $request->execute(array($flagValue, $_id));
+					}
+					catch (\PDOException $err) 
+					{
+						Error_manager::setErr('Failed to update flag statement: ' . $err->getCode() . ' - ' . $err->getMessage());
+					}
+					finally
+					{
+						return ($result > 0);
+					}
+				}
+				else { Error_manager::setErr('Le commentaire est invalide...'); return false; }
+			}
+			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
+			// Default blank response...
+			return $__default;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: updateFlag]					[0.0.9.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_comment.php');
+	* use Rochefort\Classes\PDO_comment;
+	*
+	* $PDO_test = new PDO_comment();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->updateFlag(null, null, true), true);
+	* $PDO_test = null;
 	*/
 
 	/**
@@ -194,23 +304,67 @@ class PDO_comment extends PDO_manager
 	* @param bool $_muted
 	* @return bool connection/request
 	*/
-	public function updateMuted($_id, $_muted, $__default = false) 
+	public function updateMute($_id, $_muted, $__default = false) 
 	{
-		
+		global $activeDebug;
+		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
+		{
+			if ($_id !== null && is_numeric($_id)
+				&& $_muted !== null && is_bool($_muted))
+			{
+				//Check a valid Order...
+				if ($this->isExist($_id))
+				{
+					//Corrective value...		//See 'bindValue'
+					//if (!$_muted) { $_muted = 0; }
+					//Update execution...
+					$result = -1;
+					try
+					{
+						$request = $this->getConnection()->prepare('UPDATE comments
+																	SET com_muted = ?
+																	WHERE com_id = ?');
+						$request->bindValue(1, $_muted, \PDO::PARAM_BOOL);
+						$request->bindValue(2, $_id);
+						$result = $request->execute();
+					}
+					catch (\PDOException $err) 
+					{
+						Error_manager::setErr('Failed to update mute statement: ' . $err->getCode() . ' - ' . $err->getMessage());
+					}
+					finally
+					{
+						return ($result > 0);
+					}
+				}
+				else { Error_manager::setErr('Le commentaire est invalide...'); return false; }
+			}
+			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
+			// Default blank response...
+			return $__default;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: updateMute]					[0.0.9.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_comment.php');
+	* use Rochefort\Classes\PDO_comment;
+	*
+	* $PDO_test = new PDO_comment();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->updateMute(null, null, true), true);
+	* $PDO_test = null;
 	*/
 
 	/**
-	* ...		(when BETA TEST deletes form part)
-	* @param int $_part
+	* ...		(when BETA TEST deletes from part)
+	* @param int [optional] $_part default=-1
 	* @return bool connection/request
 	*/
-	public function deleteAllComments($_part, $__default = false) 
+	public function deleteAllComments($_part = -1, $__default = false) 
 	{
 		global $activeDebug;
 		if (isset($activeDebug))
@@ -225,7 +379,8 @@ class PDO_comment extends PDO_manager
 					{
 						$request = $this->getConnection()->prepare('DELETE 
 																	FROM comments 
-																	WHERE com_part_id = ?');
+																	WHERE com_part_id = ? 
+																	OR com_part_id IS NULL');
 						$result = $request->execute(array($_part));
 					}
 					catch (\PDOException $err) 
@@ -237,7 +392,6 @@ class PDO_comment extends PDO_manager
 						return ($result > 0);
 					}
 				}
-				else { Error_manager::setErr('L\'épisode des commentaires doit être spécifié...'); }
 				// Default blank response...
 				return $__default;
 			}
@@ -265,6 +419,7 @@ class PDO_comment extends PDO_manager
 	*/
 	public function deleteMuteComments($_part, $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_part !== null && is_numeric($_part))
@@ -275,8 +430,9 @@ class PDO_comment extends PDO_manager
 				{
 					$request = $this->getConnection()->prepare('DELETE 
 																FROM comments 
-																WHERE com_muted = 1
-																AND com_part_id = ?');
+																WHERE (com_muted = 1
+																AND com_part_id = ?)
+																OR com_part_id IS NULL');
 					$result = $request->execute(array($_part));
 				}
 				catch (\PDOException $err) 
@@ -288,7 +444,7 @@ class PDO_comment extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else { Error_manager::setErr('L\'épisode des commentaires masqués doit être spécifié...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('L\'épisode des commentaires masqués doit être spécifié...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -310,20 +466,71 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when user/admin requests a group of comments)
-	* @param int [optional] $_part default=-1
-	* @param bool [optional] $flagOrder (else: dateOrder DESC) default=false
-	* @param bool [optional] $visibleRange (0:notOnly;1:mutedOnly;2:both) default=0
-	* @return bool connection/request
+	* @param int $_part
+	* @param bool [optional] $flagOrder (else: dateOrder) default=false
+	* @param bool [optional] $visibleRange (0:notMutedOnly;1:mutedOnly;2:both) default=0
+	* @return bool All ordered Comments of the part...
 	*/
-	public function getCommentsOfPart($_part = -1, $flagOrder = false, $visibleRange = 0, $__default = false)
+	public function getCommentsOfPart($_part, $flagOrder = false, $visibleRange = 0, $__default = false)
 	{
-		
+		global $activeDebug;
+		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
+		{
+			//Select execution...
+			$result = null;
+			try
+			{
+				//Query values insertion...
+				$where = ' = ' . $_part;
+				if ($_part === null) { $where = ' IS NULL'; }
+				$range = '';
+				if (is_numeric($visibleRange) & $visibleRange < 2)
+				{
+					$range = ' AND com_muted = ' . $visibleRange;
+				}
+				$orderBy = ' com_modifier ';
+				if ($flagOrder) 
+				{ 
+					$orderBy = ' com_flag '; 
+					$range .= ' AND com_flag > 0';
+				}
+				//First version is the user fields...
+				$fields = ' com_author, DATE_FORMAT(com_modifier, \'%d/%m/%y %H:%i\') AS com_date_fr, com_text';
+				if ($flagOrder || (is_numeric($visibleRange) && $visibleRange > 0) || $_part === null)
+				{
+					//This version is the admin fields...
+					$fields = ' com_flag, com_part_id, com_author, com_text, com_muted ';
+				}
+				$result = $this->getConnection()->query('SELECT' . $fields 
+														. ' FROM comments
+															WHERE com_part_id' . $where . $range
+														. ' ORDER BY' . $orderBy . 'DESC');
+			}
+			catch (\PDOException $err) 
+			{
+				Error_manager::setErr('Failed to load comments: ' . $err->getCode() . ' - ' . $err->getMessage());
+			}
+			finally
+			{
+				return $result;
+			}
+			// Default blank response...
+			return $__default;
+		}
+		//Connection error...
+		return false;
 	}
 	/**
-	* [External test of: ]					[]
-	* Conditions: 
+	* [External test of: getPartsOfChapter]					[0.0.9.2 PASSED]
+	* Conditions: any particular...
 	*
-	* 
+	* require_once('models/PDO_comment.php');
+	* use Rochefort\Classes\PDO_comment;
+	*
+	* $PDO_test = new PDO_comment();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->getCommentsOfPart(null, null, null, true), true);
+	* $PDO_test = null;
 	*/
 
 	// --------------------------------
