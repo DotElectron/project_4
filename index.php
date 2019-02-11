@@ -7,7 +7,7 @@
 //Error Management...
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
-$activeDebug = true;
+// $activeDebug = true;
 
 ?>
 
