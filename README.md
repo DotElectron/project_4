@@ -5,10 +5,10 @@ OpenClassRooms Project
 
 Current version :
 
-0.0.8.2 - Part class : SQL treatments + test planning
-	* Update database (subtitle index in part)
-	* Update PDO class (Advanced "construct" + tests)
-	* Update specific part class : finalize SQL jobs
+0.1.0.0 - Comment class : SQL treatments + test planning
+	* Update database (author NN in comments)
+	* Update PDO class (Enhanced "activeDebug")
+	* Update specific comment class : finalize SQL jobs
 	* Generate and execute the test file
 	* Beta test : PASSED !
 
@@ -16,6 +16,9 @@ Current version :
 
 Last versions :
 
+0.0.9.3 - Comment class : SQL treatments
+0.0.8.3 - Corrective Part class content
+0.0.8.2 - Part class : SQL treatments + test planning
 0.0.7.2 - Part class : SQL treatments
 0.0.6.2 - Chapter class : SQL treatments + test planning
 0.0.5.2 - Chapter class : SQL treatments
