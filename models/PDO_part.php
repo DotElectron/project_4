@@ -70,7 +70,8 @@ class PDO_part extends PDO_manager
 	function __construct($_order = null, $_subtitle = null)
 	{
 		global $activeDebug;
-		if ($_order !== null || $_subtitle !== null)
+		if (($_order !== null && is_numeric($_order)) 
+			|| $_subtitle !== null)
 		{
 			if ($this->hasConnection() || $this->dbConnect())
 			{	
@@ -175,6 +176,7 @@ class PDO_part extends PDO_manager
 	*/
 	private function isExist($_order, $__default = false) 
 	{
+		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -199,7 +201,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -231,6 +233,7 @@ class PDO_part extends PDO_manager
 	*/
 	public function createPart($_chapter, $_htmlText, $_subtitle = null, $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_chapter !== null && is_numeric($_chapter) && $_htmlText !== null)
@@ -255,7 +258,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else { Error_manager::setErr('Un épisode doit être rattaché à un chapitre et avoir un contenu...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('Un épisode doit être rattaché à un chapitre et avoir un contenu...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -286,6 +289,7 @@ class PDO_part extends PDO_manager
 	*/
 	public function updatePart($_order, $_chapter, $_subtitle, $_htmlText, $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order) 
@@ -315,7 +319,7 @@ class PDO_part extends PDO_manager
 				}
 				else { Error_manager::setErr('L\'épisode est invalide...'); return false; }
 			}
-			else { Error_manager::setErr('Les informations sur l\'épisode sont invalides...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur l\'épisode sont invalides...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -344,6 +348,7 @@ class PDO_part extends PDO_manager
 	*/
 	public function changeOrder($last_order, $new_order, $recursiveTarget = -1, $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			global $activeDebug;
@@ -408,7 +413,7 @@ class PDO_part extends PDO_manager
 				}
 				else { Error_manager::setErr('Les positions d\'épisodes doivent être différentes...'); }
 			}
-			else { Error_manager::setErr('Les positions d\'épisodes doivent être spécifiées...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('Les positions d\'épisodes doivent être spécifiées...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -435,6 +440,7 @@ class PDO_part extends PDO_manager
 	*/
 	public function deletePart($_order, $__default = false) 
 	{
+		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -472,7 +478,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else { Error_manager::setErr('La position de l\'épisode doit être spécifiée...'); }
+			else if (!isset($activeDebug)) { Error_manager::setErr('La position de l\'épisode doit être spécifiée...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -493,22 +499,31 @@ class PDO_part extends PDO_manager
 	*/
 
 	/**
-	* ...
-	* @param ...
-	* @return ...
+	* ...		(when ux requests the navigation)
+	* @param int [optional] $_chapter default=null(:draft)
+	* @return array All ordered Parts of the chapter...
 	*/
-	public function getPartsOfChapter($_chapter, $__default = false) 
+	public function getPartsOfChapter($_chapter = null, $__default = false) 
 	{
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
 		{
+			//Select execution...
 			$result = null;
 			try
 			{
+				//Corrective value...
+				$statement = ' = ? ';
+				if ($_chapter === null)
+				{
+					// Particular case: get draft parts...
+					$statement = ' IS NULL ';
+				}
 				$request = $this->getConnection()->prepare('SELECT part_subtitle, part_text
-														   FROM parts 
-														   WHERE part_chap_id = ?
-														   ORDER BY part_order ASC');
-				if ($request->execute(array($_chapter)) > 0)
+														   FROM parts
+														   WHERE part_chap_id' . $statement
+														   . 'ORDER BY part_order ASC');
+				if ((is_numeric($_chapter) && $request->execute(array($_chapter)) > 0)
+					|| ($_chapter === null && $request->execute() > 0))
 				{
 					$result = $request->fetchAll();
 				}
