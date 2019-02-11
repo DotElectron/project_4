@@ -42,6 +42,7 @@ class PDO_chapter extends PDO_manager
 
 	function __construct($_title = null)
 	{
+		global $activeDebug;
 		if ($_title !== null)
 		{
 			if ($this->hasConnection() || $this->dbConnect())
@@ -66,7 +67,14 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Erreur sur le chapitre : connexion impossible à la base de données !'); }
 		}
-		else { Error_manager::setErr('Aucun chapitre ne peut persister sans titre dans la base...'); }
+		else if (isset($activeDebug))
+		{ 
+			Error_manager::setErr('[Empty Constructor]'); 
+		}
+		else
+		{
+			Error_manager::setErr('Aucun chapitre ne peut persister sans titre dans la base...'); 
+		}
 	}
 
 	// --------------------------------
