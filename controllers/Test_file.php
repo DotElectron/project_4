@@ -103,13 +103,14 @@
 	$PDO_part = null;
 	for ($r = 1; $r < count($PDO_data); $r++)
 	{
-		Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_test->deletePart(0), true));
+		Error_manager::setErr('DB-delete--Order-1: ' . var_export($PDO_test->deletePart(1), true));
 	}
 	$PDO_data = null;
 	$PDO_test = null;
 	Error_manager::setErr('---------- (Emb "CHAP" Clean) ---');
 	Error_manager::setErr('DB-delete--Primary: ' . var_export($PDO_chap_test->deleteChapter('Primary chapter'), true));
 	$PDO_chap_test = null;
+	$PDO_class= null;
 
 	//Empty test: DB connection...
 	Error_manager::setErr('--------------------------------');
@@ -120,17 +121,20 @@
 	//(Optional section)
 	// ...
 	//(Necessary section)
-	// ...
+	Error_manager::setErr('DB connection-create: ' . var_export($PDO_test->createComment(null, null, null, true), true));
 
 	//Data test : DB operations...
 	Error_manager::setErr('------- DATA "COM" TEST -------');
-	// ...
+	$PDO_class = new PDO_part(0);
+	Error_manager::setErr('DB-create--Com\'One: ' . var_export($PDO_test->createComment($PDO_class->getId(), 'Nice attempt !'), true));
+	Error_manager::setErr('DB-create--Com\'Two: ' . var_export($PDO_test->createComment($PDO_class->getId(), 'Really shy part...', 'Robert'), true));
 
 	//Data test : Clean DB...
 	Error_manager::setErr('------- DATA "COM" CLEAN -------');
-	// ...
+	Error_manager::setErr('DB-delete--Comments: ' . var_export($PDO_test->deleteAllComments($PDO_class->getId()), true));
 	Error_manager::setErr('--------- (Emb "PART" Clean) ---');
 	Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_part_test->deletePart(0), true));
 	$PDO_part_test = null;
+	$PDO_class= null;
 	
 ?>
