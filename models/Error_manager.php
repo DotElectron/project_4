@@ -2,7 +2,7 @@
 
 namespace Rochefort\Classes;
 
-class Error_manager
+final class Error_manager
 {
 	private function __construct() {}		//Force no instanciation...
 

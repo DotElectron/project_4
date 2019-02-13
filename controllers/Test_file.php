@@ -208,5 +208,13 @@
 	Error_manager::setErr('DB-delete--Order-0: ' . var_export($PDO_part_test->deletePart(0), true));
 	$PDO_part_test = null;
 	$PDO_class= null;
+
+	//----------------------------------------------
+	//----------------------------------------------
+
+	//User test connection...
+	Error_manager::setErr('------- USER CONNECT -------');
+	// require_once('user_selector.php');
+	// Error_manager::setErr('...: ' . var_export(isValidPass(), true));
 	
 ?>

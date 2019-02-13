@@ -1,13 +1,19 @@
 <?php
 
-//Session management...
-// include_once('../controllers/user_selector.php');
-// include_once('../controllers/main_selector.php');
-
 //Error Management...
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
 $activeDebug = true;
+
+//Session management...
+session_name('PhpRootSession');
+if (session_start())
+{
+    // include_once('../controllers/user_selector.php');
+    if (isset($activeDebug)) { Error_manager::setErr('Session is loaded !'); }
+}
+else { Error_manager::setErr('Session is down !'); }
+// include_once('../controllers/main_selector.php');
 
 ?>
 
