@@ -16,7 +16,7 @@ class PDO_comment extends PDO_manager
 	// --------------------------------
 	// --------------------------------
 
-	private function setId($_id) 
+	final protected function setId($_id) 
 	{
 		$this->id = $_id;
 	}
@@ -24,7 +24,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->id);
 	}
-	private function setAuthor($_author) 
+	final protected function setAuthor($_author) 
 	{
 		$this->author = $_author;
 	}
@@ -32,7 +32,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->author);
 	}
-	private function setHtmlText($_htmlText) 
+	final protected function setHtmlText($_htmlText) 
 	{
 		$this->htmlText = $_htmlText;
 	}
@@ -40,7 +40,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->htmlText);
 	}	
-	private function setFlag($_flag) 
+	final protected function setFlag($_flag) 
 	{
 		$this->flag = $_flag;
 	}
@@ -48,7 +48,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->flag);
 	}
-	private function setMuted($_muted) 
+	final protected function setMuted($_muted) 
 	{
 		$this->muted = $_muted;
 	}
@@ -56,7 +56,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->muted);
 	}
-	private function setTimeStamp($_timeStamp) 
+	final protected function setTimeStamp($_timeStamp) 
 	{
 		$this->timeStamp = $_timeStamp;
 	}
@@ -64,7 +64,7 @@ class PDO_comment extends PDO_manager
 	{
 		return ($this->timeStamp);
 	}
-	private function setPart($_part) 
+	final protected function setPart($_part) 
 	{
 		$this->part = $_part;
 	}
@@ -133,7 +133,7 @@ class PDO_comment extends PDO_manager
 	* @param int $_id
 	* @return bool Comment exists...
 	*/
-	private function isExist($_id, $__default = false) 
+	protected function isExist($_id, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -168,7 +168,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: isExist]					[0.0.9.2 PASSED]
+	* [External test of: isExist]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_comment.php');
@@ -190,7 +190,7 @@ class PDO_comment extends PDO_manager
 	* @param string [optional] $_author default=Invité
 	* @return bool connection/request
 	*/
-	public function createComment($_part, $_htmlText, $_author = 'Invité', $__default = false) 
+	final public function createComment($_part, $_htmlText, $_author = 'Invité', $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -222,7 +222,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: createComment]					[0.0.9.2 PASSED]
+	* [External test of: createComment]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -241,7 +241,7 @@ class PDO_comment extends PDO_manager
 	* @param bool $flagVector (added/removed)
 	* @return bool connection/request
 	*/
-	public function updateFlag($_id, $flagVector, $__default = false) 
+	final public function updateFlag($_id, $flagVector, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -286,7 +286,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: updateFlag]					[0.0.9.2 PASSED]
+	* [External test of: updateFlag]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -304,7 +304,7 @@ class PDO_comment extends PDO_manager
 	* @param bool $_muted
 	* @return bool connection/request
 	*/
-	public function updateMute($_id, $_muted, $__default = false) 
+	final public function updateMute($_id, $_muted, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -347,7 +347,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: updateMute]					[0.0.9.2 PASSED]
+	* [External test of: updateMute]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -364,7 +364,7 @@ class PDO_comment extends PDO_manager
 	* @param int [optional] $_part default=-1
 	* @return bool connection/request
 	*/
-	public function deleteAllComments($_part = -1, $__default = false) 
+	final public function deleteAllComments($_part = -1, $__default = false) 
 	{
 		global $activeDebug;
 		if (isset($activeDebug))
@@ -400,7 +400,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: deleteAllComments]					[0.0.9.2 PASSED]
+	* [External test of: deleteAllComments]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -417,7 +417,7 @@ class PDO_comment extends PDO_manager
 	* @param int $_part
 	* @return bool connection/request
 	*/
-	public function deleteMuteComments($_part, $__default = false) 
+	final public function deleteMuteComments($_part, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -452,7 +452,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: deleteMuteComments]					[0.0.9.2 PASSED]
+	* [External test of: deleteMuteComments]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -471,7 +471,7 @@ class PDO_comment extends PDO_manager
 	* @param bool [optional] $visibleRange (0:notMutedOnly;1:mutedOnly;2:both) default=0
 	* @return bool All ordered Comments of the part...
 	*/
-	public function getCommentsOfPart($_part, $flagOrder = false, $visibleRange = 0, $__default = false)
+	final public function getCommentsOfPart($_part, $flagOrder = false, $visibleRange = 0, $__default = false)
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
@@ -521,7 +521,7 @@ class PDO_comment extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getPartsOfChapter]					[0.0.9.2 PASSED]
+	* [External test of: getPartsOfChapter]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
@@ -532,14 +532,6 @@ class PDO_comment extends PDO_manager
 	* echo 'DB connection: ' . var_export($PDO_test->getCommentsOfPart(null, null, null, true), true);
 	* $PDO_test = null;
 	*/
-
-	// --------------------------------
-	// --------------------------------
-
-	protected function dbRelease()
-	{
-
-	}
 }
 
 ?>

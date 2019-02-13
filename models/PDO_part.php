@@ -15,7 +15,7 @@ class PDO_part extends PDO_manager
 	// --------------------------------
 	// --------------------------------
 
-	private function setId($_id) 
+	final protected function setId($_id) 
 	{
 		$this->id = $_id;
 	}
@@ -23,7 +23,7 @@ class PDO_part extends PDO_manager
 	{
 		return ($this->id);
 	}
-	private function setOrder($_order) 
+	final protected function setOrder($_order) 
 	{
 		$this->order = $_order;
 	}
@@ -31,7 +31,7 @@ class PDO_part extends PDO_manager
 	{
 		return ($this->order);
 	}
-	private function setSubtitle($_subtitle) 
+	final protected function setSubtitle($_subtitle) 
 	{
 		$this->subtitle = $_subtitle;
 	}
@@ -39,7 +39,7 @@ class PDO_part extends PDO_manager
 	{
 		return ($this->subtitle);
 	}
-	private function setHtmlText($_htmlText) 
+	final protected function setHtmlText($_htmlText) 
 	{
 		$this->htmlText = $_htmlText;
 	}
@@ -47,7 +47,7 @@ class PDO_part extends PDO_manager
 	{
 		return ($this->htmlText);
 	}
-	private function setTimeStamp($_timeStamp) 
+	final protected function setTimeStamp($_timeStamp) 
 	{
 		$this->timeStamp = $_timeStamp;
 	}
@@ -55,7 +55,7 @@ class PDO_part extends PDO_manager
 	{
 		return ($this->timeStamp);
 	}
-	private function setChapter($_chapter) 
+	final protected function setChapter($_chapter) 
 	{
 		$this->chapter = $_chapter;
 	}
@@ -122,7 +122,7 @@ class PDO_part extends PDO_manager
 	* ...		(internal request to find the next available order)
 	* @return bool next order from count (base 0)...
 	*/
-	private function nextOrder($__default = false) 
+	protected function nextOrder($__default = false) 
 	{
 		if ($this->hasConnection() || $this->dbConnect())
 		{
@@ -157,7 +157,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: nextOrder]					[0.0.7.2 PASSED]
+	* [External test of: nextOrder]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_part.php');
@@ -174,7 +174,7 @@ class PDO_part extends PDO_manager
 	* @param int $_order
 	* @return bool Part exists...
 	*/
-	private function isExist($_order, $__default = false) 
+	protected function isExist($_order, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -209,7 +209,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: isExist]					[0.0.7.2 PASSED]
+	* [External test of: isExist]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_part.php');
@@ -231,7 +231,7 @@ class PDO_part extends PDO_manager
 	* @param string [optional] $_subtitle default=null
 	* @return bool connection/request
 	*/
-	public function createPart($_chapter, $_htmlText, $_subtitle = null, $__default = false) 
+	final public function createPart($_chapter, $_htmlText, $_subtitle = null, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -266,7 +266,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: createPart]					[0.0.7.2 PASSED]
+	* [External test of: createPart]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
@@ -287,7 +287,7 @@ class PDO_part extends PDO_manager
 	* @param string $_htmlText
 	* @return bool connection/request
 	*/
-	public function updatePart($_order, $_chapter, $_subtitle, $_htmlText, $__default = false) 
+	final public function updatePart($_order, $_chapter, $_subtitle, $_htmlText, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -327,7 +327,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: updatePart]					[0.0.7.2 PASSED]
+	* [External test of: updatePart]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
@@ -346,7 +346,7 @@ class PDO_part extends PDO_manager
 	* @param int [optional] $recursiveTarget default=-1
 	* @return bool connection/request
 	*/
-	public function changeOrder($last_order, $new_order, $recursiveTarget = -1, $__default = false) 
+	final public function changeOrder($last_order, $new_order, $recursiveTarget = -1, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -421,7 +421,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: changeOrder]					[0.0.7.2 PASSED]
+	* [External test of: changeOrder]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
@@ -438,7 +438,7 @@ class PDO_part extends PDO_manager
 	* @param int $_order
 	* @return bool connection/request
 	*/
-	public function deletePart($_order, $__default = false) 
+	final public function deletePart($_order, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -486,7 +486,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: deletePart]					[0.0.7.2 PASSED]
+	* [External test of: deletePart]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
@@ -503,7 +503,7 @@ class PDO_part extends PDO_manager
 	* @param int [optional] $_chapter default=null(:draft)
 	* @return array All ordered Parts of the chapter...
 	*/
-	public function getPartsOfChapter($_chapter = null, $__default = false) 
+	final public function getPartsOfChapter($_chapter = null, $__default = false) 
 	{
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
 		{
@@ -543,7 +543,7 @@ class PDO_part extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getPartsOfChapter]					[0.0.7.2 PASSED]
+	* [External test of: getPartsOfChapter]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
@@ -554,14 +554,6 @@ class PDO_part extends PDO_manager
 	* echo 'DB connection: ' . var_export($PDO_test->getPartsOfChapter(null, true), true);
 	* $PDO_test = null;
 	*/
-
-	// --------------------------------
-	// --------------------------------
-
-	protected function dbRelease()
-	{
-
-	}
 }
 
 ?>

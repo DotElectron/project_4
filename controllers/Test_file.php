@@ -74,6 +74,7 @@
 	//Data test : DB operations...
 	Error_manager::setErr('------- DATA "PART" TEST -------');
 	$PDO_class = new PDO_chapter('Primary chapter');
+	Error_manager::setErr('DB-instantiate--PrimaryChapter');
 	Error_manager::setErr('DB-create--First: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'I) A new story...'), true));
 	Error_manager::setErr('DB-create--Second: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'About a world of...', 'Single way'), true));
 	Error_manager::setErr('DB-create--Bis: ' . var_export($PDO_test->createPart($PDO_class->getId(), 'A new bis story...'), true));
@@ -88,7 +89,8 @@
 	Error_manager::setErr('DB-change(0-1)--Second: ' . var_export($PDO_test->changeOrder(0, 1), true));
 	Error_manager::setErr('DB-delete--Tmp: ' . var_export($PDO_test->deletePart(2), true));
 	$PDO_part = new PDO_part(0);
-	Error_manager::setErr('DB-update--First: ' 
+	Error_manager::setErr('DB-instantiate--First');
+	Error_manager::setErr('DB-update--FirstPart: ' 
 						  . var_export($PDO_test->updatePart($PDO_part->getOrder(), $PDO_class->getId(), 'The ended part', $PDO_part->getHtmlText()), true));
 	$PDO_data = $PDO_test->getPartsOfChapter($PDO_class->getId());
 	if ($PDO_data)
@@ -103,9 +105,12 @@
 	Error_manager::setErr('------- DATA "PART" CLEAN -------');
 	$PDO_part_test = $PDO_test;		//use to next Tests...
 	$PDO_part = null;
-	for ($r = 1; $r < count($PDO_data); $r++)
+	if ($PDO_data)
 	{
-		Error_manager::setErr('DB-delete--Order-1: ' . var_export($PDO_test->deletePart(1), true));
+		for ($r = 1; $r < count($PDO_data); $r++)
+		{
+			Error_manager::setErr('DB-delete--Order-1: ' . var_export($PDO_test->deletePart(1), true));
+		}
 	}
 	$PDO_data = null;
 	$PDO_test = null;
@@ -129,10 +134,13 @@
 	//Data test : DB operations...
 	Error_manager::setErr('------- DATA "COM" TEST -------');
 	$PDO_class = new PDO_part(0);
+	Error_manager::setErr('DB-instantiate--FirstPart');
 	Error_manager::setErr('DB-create--Com\'One: ' . var_export($PDO_test->createComment($PDO_class->getId(), 'Nice attempt !'), true));
 	$PDO_comOne = new PDO_comment('?');
+	Error_manager::setErr('DB-instantiate--Com\'One');
 	Error_manager::setErr('DB-create--Com\'Two: ' . var_export($PDO_test->createComment($PDO_class->getId(), 'Really shy part...', 'Robert'), true));
 	$PDO_comTwo = new PDO_comment('?');
+	Error_manager::setErr('DB-instantiate--Com\'Two');
 	Error_manager::setErr('DB-Flag--Com\'One: ' . var_export($PDO_test->updateFlag($PDO_comOne->getId(), true), true));
 	Error_manager::setErr('DB-Flag--Com\'One: ' . var_export($PDO_test->updateFlag($PDO_comOne->getId(), true), true));
 	Error_manager::setErr('DB-UnFlag--Com\'One: ' . var_export($PDO_test->updateFlag($PDO_comOne->getId(), false), true));

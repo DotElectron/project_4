@@ -12,7 +12,7 @@ class PDO_chapter extends PDO_manager
 	// --------------------------------
 	// --------------------------------
 
-	private function setId($_id) 
+	final protected function setId($_id) 
 	{
 		$this->id = $_id;
 	}
@@ -20,7 +20,7 @@ class PDO_chapter extends PDO_manager
 	{
 		return ($this->id);
 	}
-	private function setOrder($_order) 
+	final protected function setOrder($_order) 
 	{
 		$this->order = $_order;
 	}
@@ -28,7 +28,7 @@ class PDO_chapter extends PDO_manager
 	{
 		return ($this->order);
 	}
-	private function setTitle($_title) 
+	final protected function setTitle($_title) 
 	{
 		$this->title = $_title;
 	}
@@ -85,7 +85,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return bool Chapter exists...
 	*/
-	private function isExist($_id, $__default = false) 
+	protected function isExist($_id, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -120,7 +120,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: isExist]					[0.0.6.2 PASSED]
+	* [External test of: isExist]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -138,7 +138,7 @@ class PDO_chapter extends PDO_manager
 	* @param int [optional] $_id default=-1
 	* @return bool Free Order...
 	*/
-	private function isClean($_order, $_id = null, $__default = false) 
+	protected function isClean($_order, $_id = null, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -174,7 +174,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: isClean]					[0.0.6.2 PASSED]
+	* [External test of: isClean]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -194,7 +194,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return int $id...
 	*/
-	private function getIdByTitle($_title, $__default = false) 
+	protected function getIdByTitle($_title, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -229,7 +229,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getIdByTitle]					[0.0.6.2 PASSED]
+	* [External test of: getIdByTitle]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -246,7 +246,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_order
 	* @return int $id...
 	*/
-	private function getIdByOrder($_order, $__default = false) 
+	protected function getIdByOrder($_order, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -281,7 +281,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getIdByOrder]					[0.0.6.2 PASSED]
+	* [External test of: getIdByOrder]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -298,7 +298,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id
 	* @return string $title...
 	*/
-	private function getTitleById($_id, $__default = false) 
+	protected function getTitleById($_id, $__default = false) 
 	{
 		global $activeDebug;
 		if ($this->hasConnection() || $this->dbConnect())
@@ -333,7 +333,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getTitleById]					[0.0.6.2 PASSED]
+	* [External test of: getTitleById]					
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -354,7 +354,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return bool connection/request
 	*/
-	public function createChapter($_order, $_title, $__default = false) 
+	final public function createChapter($_order, $_title, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -395,7 +395,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: createChapter]					[0.0.6.2 PASSED]
+	* [External test of: createChapter]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -415,7 +415,7 @@ class PDO_chapter extends PDO_manager
 	* @param string $_title
 	* @return bool connection/request
 	*/
-	public function updateChapter($_id, $_order, $_title, $__default = false) 
+	final public function updateChapter($_id, $_order, $_title, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -470,7 +470,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: updateChapter]					[0.0.6.2 PASSED]
+	* [External test of: updateChapter]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -487,7 +487,7 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id (or string->getIdByTitle)
 	* @return bool connection/request
 	*/
-	public function deleteChapter($_id, $__default = false) 
+	final public function deleteChapter($_id, $__default = false) 
 	{
 		global $activeDebug;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -526,7 +526,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: deleteChapter]					[0.0.6.2 PASSED]
+	* [External test of: deleteChapter]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -542,7 +542,7 @@ class PDO_chapter extends PDO_manager
 	* ...		(when ux requests the navigation)
 	* @return array All ordered Chapters...
 	*/
-	public function getAllChapters($__default = false) 
+	final public function getAllChapters($__default = false) 
 	{
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
 		{
@@ -568,7 +568,7 @@ class PDO_chapter extends PDO_manager
 		return false;
 	}
 	/**
-	* [External test of: getAllChapters]					[0.0.5.2 PASSED]
+	* [External test of: getAllChapters]					
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
@@ -579,14 +579,6 @@ class PDO_chapter extends PDO_manager
 	* echo 'DB connection: ' . var_export($PDO_test->getAllChapters(true), true);
 	* $PDO_test = null;
 	*/
-
-	// --------------------------------
-	// --------------------------------
-
-	protected function dbRelease()
-	{
-		// $this->rollBack();
-	}
 }
 
 ?>
