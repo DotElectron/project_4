@@ -1,5 +1,6 @@
 <?php
 
+	namespace Rochefort\Controllers;
 	require_once('models/Error_manager.php');
 	use Rochefort\Classes\Error_manager;
 
@@ -7,6 +8,8 @@
 
 	// --------------------------------
 	// --------------------------------
+
+	Error_manager::setErr('********* DATABASE *********');
 
 	//Empty test: DB connection...
 	Error_manager::setErr('------- BLANK "CHAP" TEST -------');
@@ -212,9 +215,12 @@
 	//----------------------------------------------
 	//----------------------------------------------
 
+	Error_manager::setErr('********* ACCOUNTS *********');
+
 	//User test connection...
-	Error_manager::setErr('------- USER CONNECT -------');
-	// require_once('user_selector.php');
+	Error_manager::setErr('------- SWITCH USER -------');
+	require_once('user_selector.php');
+	// dbg_clearSession();
 	// Error_manager::setErr('...: ' . var_export(isValidPass(), true));
 	
 ?>

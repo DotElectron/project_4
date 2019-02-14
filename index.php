@@ -9,11 +9,10 @@ $activeDebug = true;
 session_name('PhpRootSession');
 if (session_start())
 {
-    // include_once('../controllers/user_selector.php');
-    if (isset($activeDebug)) { Error_manager::setErr('Session is loaded !'); }
+    if (isset($activeDebug)) { Error_manager::setErr('[Session is loaded]'); }
+    else { include_once('controllers/user_selector.php'); }
 }
-else { Error_manager::setErr('Session is down !'); }
-// include_once('../controllers/main_selector.php');
+else { Error_manager::setErr('Error: session is down !'); }
 
 ?>
 
@@ -55,7 +54,8 @@ else { Error_manager::setErr('Session is down !'); }
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php 
-                // include('../views/navbar.php'); 
+                // include_once('controllers/nav_selector.php')
+                    // include_once('../views/navbar.php');
             ?>
         </nav>
     </header>
@@ -66,20 +66,22 @@ else { Error_manager::setErr('Session is down !'); }
             <?php 
                 // You can push here your instant unit test...
                 // OR include of your external test file.
-                if (isset($activeDebug)) { include('controllers/Test_file.php'); }
+                if (isset($activeDebug)) { include_once('controllers/test_file.php'); }
 
                 //Final display...
 	            Error_manager::displayErr();
             ?>
         </div>
         <?php 
-            // include('../views/current_main.php'); 
+            // include_once('controllers/main_selector.php')
+                // include_once('../views/current_main.php'); 
         ?>
     </main>
 
     <!-- Footer section -->
     <footer class="theme-boxed theme-color theme-bckgrnd-color c-flx">
         <span>Ce site est un projet de formation...</span>
+        <!-- Add a front z-index to alert about cookies usage -->
     </footer>
 </body>
 </html>

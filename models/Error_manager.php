@@ -11,6 +11,7 @@ final class Error_manager
 	{
 		$inErr = '';
 		if(stristr($_err, 'false')
+		   || stristr($_err, 'failed')
 		   || stristr($_err, 'error')
 		   || stristr($_err, 'erreur'))  
 		{ 
@@ -40,7 +41,7 @@ final class Error_manager
 		}
 	}
 	/**
-	* [External test of: displayErr]					[0.0.6.2 PASSED]
+	* [External test of: displayErr]					
 	* Conditions: ---
 	*
 	* require_once('models/Error_manager.php');

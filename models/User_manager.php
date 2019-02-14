@@ -1,6 +1,7 @@
 <?php
 
 namespace Rochefort\Classes;
+require_once('Error_manager.php');
 
 final class userType
 {
@@ -13,17 +14,27 @@ final class userType
 
 final class User_manager
 {
-	private $accountType;		//as userType (enum value)
+	private $accountType = null;		//as userType (enum int value)
+	private $accountTitle = null;		//as userName (string value)
+
 	private function setAccountType($_accountType)
 	{
-		$this->$accountType = $_accountType;
+		$this->accountType = $_accountType;
 	}
 	public function getAccountType()
 	{
-		return $this->$accountType;
+		return $this->accountType;
+	}
+	private function setAccountTitle($_accountTitle)
+	{
+		$this->accountTitle = $_accountTitle;
+	}
+	public function getAccountTitle()
+	{
+		return $this->accountTitle;
 	}
 
-	function __construct($asUserType, $userName = null)
+	function __construct($asUserType = -1, $userData = null)
 	{
 		//Define the account type...
 		if (is_numeric($asUserType) 
@@ -37,25 +48,43 @@ final class User_manager
 		switch ($asUserType)
 		{
 			case userType::STANDARD_USER:
-				if ($userName !== null)
+				if (!(empty($userData)))
 				{
-					//Set/Get Cookie...
-					//... (frontend value: '$userName')
+					$this->setAccountTitle($userData);
 				}
+				else { $this->setAccountType(-1); }
 				break;
 			case userType::ADMINISTRATOR:
-				//Get Admin pass...
-				//... (frontend value: 'Jean Rochefort')
+				if ($this->isValidPassword($userData))
+				{
+					$this->setAccountTitle('Jean Rochefort');
+				}
+				else { $this->setAccountType(-1); }
 				break;
-			default:		//Force 'userType::GUEST_USER'
-				//... (default frontend value: 'Invité')
+			default:	//Force 'userType::GUEST_USER'
+				$this->setAccountTitle('Invité');
 				break;
 		}
 	}
 
-	function isValidPassword()
+	public function hasValidAccount()
 	{
-		// if (password_hash($_POST['SendPwd'], PASSWORD_DEFAULT));)
+		return ($this->accountType >= 0
+				&& $this->accountType <= 2);
+	}
+
+	private function isValidPassword($blockData)
+	{
+		try
+		{
+			$config = parse_ini_file('private/config.ini'); 
+			return ($config['pass_hash'] === password_hash($blockData, PASSWORD_DEFAULT));
+		}
+		catch (\PDOException $err) 
+		{
+			Error_manager::setErr('Unabled to hash data: ' . $err->getCode() . ' - ' . $err->getMessage());
+			return false;
+		}
 	}
 }
 
