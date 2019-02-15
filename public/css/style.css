@@ -10,6 +10,7 @@ body
 {
 	margin: auto;
 	width: 100%;
+	min-width: 55em;
 }
 
 main, nav, h1, h2, h3, footer
@@ -37,7 +38,8 @@ header
 }
 header img
 {
-	height: 100%;
+	padding-top: 0.25em;
+	padding-left: 0.25em;
 	max-height: 12em;
 }
 h1
@@ -46,9 +48,17 @@ h1
 	padding-right: 1em;
 	font-weight: bold;
 }
+h1 em
+{
+	padding: 0.4em;
+}
+h1 .title
+{
+	min-width: 8em;
+}
 nav
 {
-	min-width: 4em;
+	min-width: 12em;
 	margin-right: 4em;
 }
 nav a, 
@@ -60,11 +70,24 @@ nav a:visited
 }
 nav i:hover
 {
-	transform: rotateZ(25deg);
+	transform: rotateZ(-25deg);
+}
+nav strong:hover
+{
+	transform: rotateZ(10deg);
+}
+nav strong
+{
+	padding-left: 0.5em;
+	word-break: break-word;
 }
 nav div
 {
 	padding: 0.5em;
+}
+nav input
+{
+	margin: 0.25em;
 }
 
 main
@@ -162,7 +185,6 @@ footer p
 /* * * * * * * * * * * * */
 /*   Specific Classes    */
 /* * * * * * * * * * * * */
-
 
 
 /* * * * * * * * * * * * */

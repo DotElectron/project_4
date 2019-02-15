@@ -217,6 +217,7 @@
 
 	Error_manager::setErr('********* ACCOUNTS *********');
 	require_once('user_selector.php');
+	dbg_clearSession(true, true);
 	//User test connection...
 	Error_manager::setErr('------- SWITCH USER -------');
 	Error_manager::setErr('>> Admin connection <<');

@@ -49,6 +49,7 @@ else { Error_manager::setErr('Error: session is down !'); }
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
     <!-- Internal JavaScript -->
     <!-- <script src="public/js/anim.js"></script> -->
+    <script src="public/js/navbar.js"></script>
 </head>
 
 <body>
@@ -56,7 +57,9 @@ else { Error_manager::setErr('Error: session is down !'); }
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
         <a href=""><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
-        <h1>Jean Rochefort - Un billet en Alaska<?php if (isset($activeDebug)) {echo ' (Beta version)'; } ?></h1>    
+        <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- <div class="r-flx">
+            <span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
+            <?php if (isset($activeDebug)) {echo '<em> </em><span class="as-inblock">(Beta version)</span>'; } ?></h1>    
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php 

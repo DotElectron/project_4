@@ -6,7 +6,7 @@ final class Error_manager
 {
 	private function __construct() {}		//Force no instanciation...
 
-	private static $err;
+	private static $err = null;
 	public static function setErr($_err) 
 	{
 		$inErr = '';
@@ -18,6 +18,7 @@ final class Error_manager
 			$inErr = ' style="color:red"'; 
 		}
 		self::$err .= '<div' . $inErr . '>' . $_err . '</div>';
+		self::syncErr();
 	}
 	private static function getErr() 
 	{
@@ -26,6 +27,19 @@ final class Error_manager
 	private static function clearErr() 
 	{
 		self::$err = null;
+		unset($_SESSION['manager']);
+	}
+	private static function syncErr() 
+	{
+		if (self::$err === null
+			&& isset($_SESSION['manager']))
+		{
+			self::$err = $_SESSION['manager'];
+		}
+		else
+		{
+			$_SESSION['manager'] = self::$err;
+		}
 	}
 
 	/**
@@ -39,6 +53,7 @@ final class Error_manager
 			echo self::getErr();
 			self::clearErr();
 		}
+		else { self::syncErr(); }
 	}
 	/**
 	* [External test of: displayErr]					

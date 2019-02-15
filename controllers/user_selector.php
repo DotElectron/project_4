@@ -25,7 +25,7 @@ function userSelector()
 
 	if (isset($_POST['accHash']))
 	{
-		if (!(isSessionAlive()) 
+		if ((!(isSessionAlive()) || !(asAdminSession()))
 			&& !(empty($_POST['accHash'])))
 		{
 			//Administrator requested connection...
@@ -110,6 +110,8 @@ function userSelector()
 			$currentUser = null; 
 			unset($_SESSION['accType']);
 			unset($_SESSION['accTitle']);
+			unset($_POST['accHash']);
+			unset($_POST['accUser']);
 			if (isset($activeDebug)) { Error_manager::setErr('Account disconnected !'); }
 			if (!$select_once) { userSelector(); $select_once = true; }
 		}

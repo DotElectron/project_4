@@ -9,7 +9,6 @@ use Rochefort\Classes\UserType;
 $userName = 'Invité';
 $admin = false;
 $guest = true;
-//$connect = false;
 
 require_once('models/PDO_chapter.php');
 use Rochefort\Classes\PDO_chapter;
@@ -25,7 +24,6 @@ if (isset($_SESSION['accType']))
 	//Report the current account type...
 	$admin = ($_SESSION['accType'] == userType::ADMINISTRATOR);
 	$guest = ($_SESSION['accType'] == userType::GUEST_USER);
-	//$connect = isset($_GET['connect']);
 
 	//Call the associated view...
 	include_once('views/navbar.php');
@@ -33,7 +31,7 @@ if (isset($_SESSION['accType']))
 	if ($_SESSION['accType'] == userType::ADMINISTRATOR)
 	{
 		//Administrator menu...
-		
+		//...
 
 		//Call the associated view...
 		include_once('views/backend/navbar.php');
