@@ -10,7 +10,7 @@ session_name('PhpRootSession');
 if (session_start())
 {
     if (isset($activeDebug)) { Error_manager::setErr('[Session is loaded]'); }
-    else { include_once('controllers/user_selector.php'); }
+    else { require_once('controllers/user_selector.php'); userSelector(); }
 }
 else { Error_manager::setErr('Error: session is down !'); }
 
