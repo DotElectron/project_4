@@ -16,6 +16,17 @@ main, nav, h1, h2, h3, footer
 {
 	font-family: 'Anonymous Pro', Helvetica, sans-serif;
 }
+strong
+{
+	font-size: x-large;
+	font-weight: bold;
+}
+samp
+{
+	font-size: large;
+	font-weight: normal;
+	text-decoration: underline;
+}
 
 header
 {
@@ -26,7 +37,8 @@ header
 }
 header img
 {
-	height: 8em;
+	height: 100%;
+	max-height: 12em;
 }
 h1
 {
@@ -38,6 +50,21 @@ nav
 {
 	min-width: 4em;
 	margin-right: 4em;
+}
+nav a, 
+nav a:hover, 
+nav a:visited
+{
+	color: inherit;
+	text-decoration: none;
+}
+nav i:hover
+{
+	transform: rotateZ(25deg);
+}
+nav div
+{
+	padding: 0.5em;
 }
 
 main
@@ -135,6 +162,7 @@ footer p
 /* * * * * * * * * * * * */
 /*   Specific Classes    */
 /* * * * * * * * * * * * */
+
 
 
 /* * * * * * * * * * * * */
