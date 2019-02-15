@@ -216,11 +216,28 @@
 	//----------------------------------------------
 
 	Error_manager::setErr('********* ACCOUNTS *********');
-
+	require_once('user_selector.php');
 	//User test connection...
 	Error_manager::setErr('------- SWITCH USER -------');
-	require_once('user_selector.php');
-	// dbg_clearSession();
-	// Error_manager::setErr('...: ' . var_export(isValidPass(), true));
+	Error_manager::setErr('>> Admin connection <<');
+	$_POST['accHash'] = '@Test1Pass2At3Words$';
+	userSelector();
+	Error_manager::setErr('>> Admin disconnection <<');
+	userSelector();
+	Error_manager::setErr('>> Standard connection (switch user) <<');
+	$_POST['accUser'] = 'Tom le testeur';
+	userSelector();
+	Error_manager::setErr('>> (Current User) <<');
+	userSelector();
+	Error_manager::setErr('>> User Reconnection <<');
+	dbg_clearSession();
+	userSelector();
+	Error_manager::setErr('>> Guest "connection" <<');
+	dbg_clearSession(true);
+	userSelector();
+
+	//Data test : Clean DB...
+	Error_manager::setErr('------- CLEAN USER -------');
+	Error_manager::setErr('Account cleaned: ' . var_export(dbg_clearSession(true, true), true) . ' [---]');
 	
 ?>

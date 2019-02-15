@@ -77,8 +77,13 @@ final class User_manager
 	{
 		try
 		{
+			global $activeDebug;
 			$config = parse_ini_file('private/config.ini'); 
-			return ($config['pass_hash'] === password_hash($blockData, PASSWORD_DEFAULT));
+			if (isset($activeDebug)) 
+			{ 
+				return password_verify($blockData, $config['test_hash']); 
+			}
+			else { return password_verify($blockData, $config['pass_hash']); }
 		}
 		catch (\PDOException $err) 
 		{
