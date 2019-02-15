@@ -1,16 +1,22 @@
 <?php
 
+namespace Rochefort;
+
 //Error Management...
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
-$activeDebug = true;
+// $activeDebug = true;
 
 //Session management...
 session_name('PhpRootSession');
 if (session_start())
 {
     if (isset($activeDebug)) { Error_manager::setErr('[Session is loaded]'); }
-    else { require_once('controllers/user_selector.php'); userSelector(); }
+    else 
+    { 
+        require_once('controllers/user_selector.php'); 
+        Controllers\userSelector(); 
+    }
 }
 else { Error_manager::setErr('Error: session is down !'); }
 
@@ -54,8 +60,7 @@ else { Error_manager::setErr('Error: session is down !'); }
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php 
-                // include_once('controllers/nav_selector.php')
-                    // include_once('../views/navbar.php');
+                if (!(isset($activeDebug))) { include_once('controllers/nav_selector.php'); }
             ?>
         </nav>
     </header>
