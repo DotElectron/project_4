@@ -64,17 +64,15 @@ else { Error_manager::setErr('Error: session is down !'); }
         <!-- tmp: href "returnToReading" ? -->
         <a href=""><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
         <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- 
-            <div class="r-flx">
-                <span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span>
-                <?php 
-                    if (isset($activeDebug) || isset($activeTest))
-                    {
-                        $version = "alpha";
-                        if (!(isset($activeTest))) { $version = "beta"; }
-                        echo '<em></em><span class="as-inblock">(' . $version . ' version)</span>'; 
-                    }
-                ?>
-            </div>
+            <div class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
+            <?php 
+                if (isset($activeDebug) || isset($activeTest))
+                {
+                    $version = "alpha";
+                    if (!(isset($activeTest))) { $version = "beta"; }
+                    echo '<em></em><span class="as-inblock">(' . $version . ' version)</span>'; 
+                }
+            ?>
         </h1>    
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
