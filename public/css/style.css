@@ -68,13 +68,31 @@ nav a:visited
 	color: inherit;
 	text-decoration: none;
 }
+@keyframes shake-medium-effect 
+{
+	0%   { transform: rotateZ(0deg); }
+	20%  { transform: rotateZ(10deg); }
+	40%  { transform: rotateZ(-10deg); }
+	60%  { transform: rotateZ(10deg); }
+	80%  { transform: rotateZ(-10deg); }
+	100% { transform: rotateZ(0deg); }
+}
 nav i:hover
 {
-	transform: rotateZ(-25deg);
+	animation: shake-medium-effect 2.5s ease-in-out 0.1s 3 normal;
+}
+@keyframes shake-small-effect 
+{
+	0%   { transform: rotateZ(0deg); }
+	20%  { transform: rotateZ(5deg); }
+	40%  { transform: rotateZ(-5deg); }
+	60%  { transform: rotateZ(5deg); }
+	80%  { transform: rotateZ(-5deg); }
+	100% { transform: rotateZ(0deg); }
 }
 nav strong:hover
 {
-	transform: rotateZ(10deg);
+	animation: shake-small-effect 3.5s ease-in-out 0.1s 5 normal;
 }
 nav strong
 {
