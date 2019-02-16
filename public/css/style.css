@@ -93,13 +93,13 @@ nav input
 main
 {
 	width: 100%;
-	padding-top: 9em;
+	padding-top: 1em;
 	overflow: hidden;
 }
 #debug-area
 {
 	width: 100%;
-	max-height: 20em;	/* Release: 4em; */
+	max-height: 9em;
 	overflow-x: hidden;
 }
 

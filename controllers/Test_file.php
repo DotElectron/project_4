@@ -4,8 +4,6 @@
 	require_once('models/Error_manager.php');
 	use Rochefort\Classes\Error_manager;
 
-	Error_manager::setErr('* * * PHP version: ' . phpversion() . ' * * *');
-
 	// --------------------------------
 	// --------------------------------
 

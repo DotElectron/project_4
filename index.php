@@ -5,14 +5,19 @@ namespace Rochefort;
 //Error Management...
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
-// $activeDebug = true;
+$activeDebug = true;
+// $activeTest = true;
 
 //Session management...
 session_name('PhpRootSession');
 if (session_start())
 {
-    if (isset($activeDebug)) { Error_manager::setErr('[Session is loaded]'); }
-    else 
+    if (isset($activeDebug) || isset($activeTest)) 
+    { 
+        Error_manager::setErr('[Session is loaded]'); 
+        Error_manager::setErr('* * * PHP version: ' . phpversion() . ' * * *');
+    }
+    if (!(isset($activeTest)))
     { 
         require_once('controllers/user_selector.php'); 
         Controllers\userSelector(); 
@@ -49,32 +54,45 @@ else { Error_manager::setErr('Error: session is down !'); }
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
     <!-- Internal JavaScript -->
     <!-- <script src="public/js/anim.js"></script> -->
+    <script src="public/js/main.js"></script>
     <script src="public/js/navbar.js"></script>
 </head>
 
-<body>
+<body onload="top_replacement()">
     <!-- Header section -->
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
         <a href=""><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
-        <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- <div class="r-flx">
-            <span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
-            <?php if (isset($activeDebug)) {echo '<em> </em><span class="as-inblock">(Beta version)</span>'; } ?></h1>    
+        <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- 
+            <div class="r-flx">
+                <span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span>
+                <?php 
+                    if (isset($activeDebug) || isset($activeTest))
+                    {
+                        $version = "alpha";
+                        if (!(isset($activeTest))) { $version = "beta"; }
+                        echo '<em></em><span class="as-inblock">(' . $version . ' version)</span>'; 
+                    }
+                ?>
+            </div>
+        </h1>    
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php 
-                if (!(isset($activeDebug))) { include_once('controllers/nav_selector.php'); }
+                // if (!(isset($activeDebug))) { 
+                    include_once('controllers/nav_selector.php'); 
+                // }
             ?>
         </nav>
     </header>
 
     <!-- Main section -->
-    <main>
+    <main class="c-flx">
         <div id="debug-area" class="c-flx flx-jst-st">
             <?php 
                 // You can push here your instant unit test...
                 // OR include of your external test file.
-                if (isset($activeDebug)) { include_once('controllers/test_file.php'); }
+                if (isset($activeTest)) { include_once('controllers/test_file.php'); }
 
                 //Final display...
 	            Error_manager::displayErr();
