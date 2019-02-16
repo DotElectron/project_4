@@ -78,7 +78,7 @@ class PDO_comment extends PDO_manager
 
 	function __construct($_id = null)
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($_id !== null)
 		{
 			if ($this->hasConnection() || $this->dbConnect())
@@ -115,7 +115,7 @@ class PDO_comment extends PDO_manager
 			}
 			else { Error_manager::setErr('Erreur sur le commentaire : connexion impossible à la base de données !'); }
 		}
-		else if (isset($activeDebug))
+		else if (isset($activeTest))
 		{ 
 			Error_manager::setErr('[Empty Constructor]'); 
 		}
@@ -135,7 +135,7 @@ class PDO_comment extends PDO_manager
 	*/
 	protected function isExist($_id, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_id !== null && is_numeric($_id))
@@ -160,7 +160,7 @@ class PDO_comment extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
+			else if (!(isset($activeTest))) { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -192,7 +192,7 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function createComment($_part, $_htmlText, $_author = 'Invité', $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_part !== null && is_numeric($_part) && $_htmlText !== null)
@@ -214,7 +214,7 @@ class PDO_comment extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Un commentaire doit être rattaché à un épisode et avoir un contenu...'); }
+			else if (!(isset($activeTest))) { Error_manager::setErr('Un commentaire doit être rattaché à un épisode et avoir un contenu...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -243,7 +243,7 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function updateFlag($_id, $flagVector, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_id !== null && is_numeric($_id)
@@ -278,7 +278,7 @@ class PDO_comment extends PDO_manager
 				}
 				else { Error_manager::setErr('Le commentaire est invalide...'); return false; }
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
+			else if (!(isset($activeTest))) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -306,7 +306,7 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function updateMute($_id, $_muted, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_id !== null && is_numeric($_id)
@@ -339,7 +339,7 @@ class PDO_comment extends PDO_manager
 				}
 				else { Error_manager::setErr('Le commentaire est invalide...'); return false; }
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
+			else if (!(isset($activeTest))) { Error_manager::setErr('Les informations sur le commentaire sont invalides...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -366,8 +366,8 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function deleteAllComments($_part = -1, $__default = false) 
 	{
-		global $activeDebug;
-		if (isset($activeDebug))
+		global $activeTest;
+		if (isset($activeTest))
 		{
 			if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 			{
@@ -419,7 +419,7 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function deleteMuteComments($_part, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_part !== null && is_numeric($_part))
@@ -444,7 +444,7 @@ class PDO_comment extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('L\'épisode des commentaires masqués doit être spécifié...'); }
+			else if (!(isset($activeTest))) { Error_manager::setErr('L\'épisode des commentaires masqués doit être spécifié...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -473,7 +473,6 @@ class PDO_comment extends PDO_manager
 	*/
 	final public function getCommentsOfPart($_part, $flagOrder = false, $visibleRange = 0, $__default = false)
 	{
-		global $activeDebug;
 		if (($this->hasConnection() && !$this->asAdmin()) || $this->dbConnect())
 		{
 			//Select execution...

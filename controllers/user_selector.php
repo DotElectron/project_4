@@ -11,6 +11,7 @@ $select_once = false;
 
 function userSelector()
 {
+	global $activeTest;
 	global $activeDebug;
 	global $select_once;
 	// $_POST['accHash'] 		From admin request to login...
@@ -98,10 +99,12 @@ function userSelector()
 				else { $cookTime += (86400 * 30);			//(30 days)
 			}
 			setCookie('session', $cookValue, $cookTime, '/'); }
-			if (isset($activeDebug)) { Error_manager::setErr('Session account: lvl ' 
-															. $_SESSION['accType'] . ' - '
-															. $_SESSION['accTitle']
-															. ' [Cookie: ' . $cookValue . ';' . $cookTime . ']'); }
+			if (isset($activeDebug) || isset($activeTest)) 
+			{ 
+				Error_manager::setErr('Session account: lvl ' 
+										. $_SESSION['accType'] . ' - '
+										. $_SESSION['accTitle']
+										. ' [Cookie: ' . $cookValue . ';' . $cookTime . ']'); }
 			$_COOKIE['session'] = $cookValue;
 			$select_once = false;
 		}
@@ -112,11 +115,14 @@ function userSelector()
 			unset($_SESSION['accTitle']);
 			unset($_POST['accHash']);
 			unset($_POST['accUser']);
-			if (isset($activeDebug)) { Error_manager::setErr('Account disconnected !'); }
+			if (isset($activeDebug) || isset($activeTest)) { Error_manager::setErr('Account disconnected !'); }
 			if (!$select_once) { userSelector(); $select_once = true; }
 		}
 	}
-	else if (isset($activeDebug)) { Error_manager::setErr('Active account: ' . $_SESSION['accType'] . ' - ' . $_SESSION['accTitle']); }
+	else if (isset($activeDebug) || isset($activeTest))
+	{ 
+		Error_manager::setErr('Active account: ' . $_SESSION['accType'] . ' - ' . $_SESSION['accTitle']); 
+	}
 }
 
 function asUserSession()

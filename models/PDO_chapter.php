@@ -42,7 +42,7 @@ class PDO_chapter extends PDO_manager
 
 	function __construct($_title = null)
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($_title !== null)
 		{
 			if ($this->hasConnection() || $this->dbConnect())
@@ -67,7 +67,7 @@ class PDO_chapter extends PDO_manager
 			}
 			else { Error_manager::setErr('Erreur sur le chapitre : connexion impossible à la base de données !'); }
 		}
-		else if (isset($activeDebug))
+		else if (isset($activeTest))
 		{ 
 			Error_manager::setErr('[Empty Constructor]'); 
 		}
@@ -87,7 +87,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	protected function isExist($_id, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_id !== null && is_numeric($_id))
@@ -112,7 +112,7 @@ class PDO_chapter extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucun identifiant abstrait ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -140,7 +140,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	protected function isClean($_order, $_id = null, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -166,7 +166,7 @@ class PDO_chapter extends PDO_manager
 					return ($result < 1);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -196,7 +196,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	protected function getIdByTitle($_title, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_title !== null)
@@ -221,7 +221,7 @@ class PDO_chapter extends PDO_manager
 					return $result;
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -248,7 +248,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	protected function getIdByOrder($_order, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -273,7 +273,7 @@ class PDO_chapter extends PDO_manager
 					return $result;
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun chapitre sans position ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucun chapitre sans position ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -300,7 +300,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	protected function getTitleById($_id, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_id !== null && is_numeric($_id))
@@ -325,7 +325,7 @@ class PDO_chapter extends PDO_manager
 					return $result;
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucun chapitre sans titre ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -356,7 +356,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	final public function createChapter($_order, $_title, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order) && $_title !== null)
@@ -387,7 +387,7 @@ class PDO_chapter extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Vous devez choisir un titre et une position pour le chapitre...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Vous devez choisir un titre et une position pour le chapitre...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -417,7 +417,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	final public function updateChapter($_id, $_order, $_title, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_id !== null 
@@ -462,7 +462,7 @@ class PDO_chapter extends PDO_manager
 				}
 				else { Error_manager::setErr('Le chapitre est invalide...'); return false; }
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations du chapitre sont invalides...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Les informations du chapitre sont invalides...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -489,7 +489,7 @@ class PDO_chapter extends PDO_manager
 	*/
 	final public function deleteChapter($_id, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_id !== null)
@@ -518,7 +518,7 @@ class PDO_chapter extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Le chapitre doit être spécifié...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Le chapitre doit être spécifié...'); }
 			// Default blank response...
 			return $__default;
 		}

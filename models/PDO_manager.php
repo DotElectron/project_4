@@ -34,6 +34,7 @@ abstract class PDO_manager
 	{
 		global $SQL_Version;
 		global $activeDebug;
+		global $activeTest;
 		$this->db = null;
 		$this->acc = false;
 		try 
@@ -70,7 +71,7 @@ abstract class PDO_manager
 		finally
 		{
 			//Debug...
-			if (isset($activeDebug) && $this->hasConnection()) 
+			if ((isset($activeDebug) || isset($activeTest)) && $this->hasConnection()) 
 			{ 
 				if ($SQL_Version === null) 
 				{ 

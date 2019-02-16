@@ -78,11 +78,7 @@ else { Error_manager::setErr('Error: session is down !'); }
         </h1>    
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
-            <?php 
-                // if (!(isset($activeDebug))) { 
-                    include_once('controllers/nav_selector.php'); 
-                // }
-            ?>
+            <?php if (!(isset($activeTest))) { include_once('controllers/nav_selector.php'); } ?>
         </nav>
     </header>
 

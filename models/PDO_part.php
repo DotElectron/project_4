@@ -69,7 +69,7 @@ class PDO_part extends PDO_manager
 
 	function __construct($_order = null, $_subtitle = null)
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($_order !== null && is_numeric($_order)) 
 			|| $_subtitle !== null)
 		{
@@ -105,7 +105,7 @@ class PDO_part extends PDO_manager
 			}
 			else { Error_manager::setErr('Erreur sur l\'épisode : connexion impossible à la base de données !'); }
 		}
-		else if (isset($activeDebug))
+		else if (isset($activeTest))
 		{ 
 			Error_manager::setErr('[Empty Constructor]'); 
 		}
@@ -176,7 +176,7 @@ class PDO_part extends PDO_manager
 	*/
 	protected function isExist($_order, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if ($this->hasConnection() || $this->dbConnect())
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -201,7 +201,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucune position abstraite ne peut persister dans la base...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -233,7 +233,7 @@ class PDO_part extends PDO_manager
 	*/
 	final public function createPart($_chapter, $_htmlText, $_subtitle = null, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_chapter !== null && is_numeric($_chapter) && $_htmlText !== null)
@@ -258,7 +258,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Un épisode doit être rattaché à un chapitre et avoir un contenu...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Un épisode doit être rattaché à un chapitre et avoir un contenu...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -289,7 +289,7 @@ class PDO_part extends PDO_manager
 	*/
 	final public function updatePart($_order, $_chapter, $_subtitle, $_htmlText, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order) 
@@ -319,7 +319,7 @@ class PDO_part extends PDO_manager
 				}
 				else { Error_manager::setErr('L\'épisode est invalide...'); return false; }
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Les informations sur l\'épisode sont invalides...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Les informations sur l\'épisode sont invalides...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -349,6 +349,7 @@ class PDO_part extends PDO_manager
 	final public function changeOrder($last_order, $new_order, $recursiveTarget = -1, $__default = false) 
 	{
 		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			global $activeDebug;
@@ -413,7 +414,7 @@ class PDO_part extends PDO_manager
 				}
 				else { Error_manager::setErr('Les positions d\'épisodes doivent être différentes...'); }
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('Les positions d\'épisodes doivent être spécifiées...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Les positions d\'épisodes doivent être spécifiées...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -440,7 +441,7 @@ class PDO_part extends PDO_manager
 	*/
 	final public function deletePart($_order, $__default = false) 
 	{
-		global $activeDebug;
+		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order))
@@ -478,7 +479,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeDebug)) { Error_manager::setErr('La position de l\'épisode doit être spécifiée...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('La position de l\'épisode doit être spécifiée...'); }
 			// Default blank response...
 			return $__default;
 		}
