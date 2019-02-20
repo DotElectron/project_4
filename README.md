@@ -5,17 +5,21 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-0.1.7.2 - Admin extend in navbar (controller + view)
-	* Update the administrator treatment inside the navbar
-	* Update&Complete the Beta test plan
+0.2.0.1 - Corrective Index : "debug-area > boxed"
+0.2.0.0 - Finalize the selector & swap mechanisms
+	* Update all contents to smooth them together
+	* Write & Complete the test plan
 	* Beta test : PASSED !
 
-[0.x.x.x - Update security (https & redirections)]
+[0.x.x.x - class Chapter: getBy 'LIKE %']
 
 -----------------------
 
 Last versions :
 
+0.1.9.2 - Prepare basic : views (regular + admin)
+0.1.8.2 - Main_selector (controller and rewrite URL)
+0.1.7.2 - Admin extend in navbar (controller + view)
 0.1.6.2 - Navigation & connection (controllers + views)
 0.1.5.2 - Finalize Debug/Test jobs (all models +js)
 0.1.5.1 - Update and correctives : Debug/Test jobs
