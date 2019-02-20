@@ -78,10 +78,15 @@ final class User_manager
 		try
 		{
 			global $activeTest;
+			global $activeDebug;
 			$config = parse_ini_file('private/config.ini'); 
 			if (isset($activeTest)) 
 			{ 
 				return password_verify($blockData, $config['test_hash']); 
+			}
+			else if(isset($activeDebug)) 
+			{ 
+				return password_verify($blockData, $config['back_hash']); 
 			}
 			else { return password_verify($blockData, $config['pass_hash']); }
 		}
