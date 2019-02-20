@@ -1,14 +1,22 @@
 
 # BEGIN Rochefort
 Options -Indexes
+# Options +FollowSymlinks
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /project_4/github/
-RewriteRule ^index\.php$ - [L]
+RewriteBase /FormationWeb/Root/project_4/github/
+RewriteRule ^author.manage-chapters$ ?uChap [L]
+RewriteRule ^author.manage-parts$ ?uPart [L]
+RewriteRule ^author.manage-comments$ ?uComm [L]
+RewriteRule ^chapter.read-(.*)$ ?iChap=$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /project_4/github/index.php [L]
+RewriteRule . . [R=301,L]
+RewriteCond %{HTTP_HOST} !localhost
+RewriteCond %{REQUEST_SCHEME} !https
+RewriteCond %{HTTPS} !on
+RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
 
 # END Rochefort
