@@ -103,6 +103,16 @@ nav div
 {
 	padding: 0.5em;
 }
+nav samp
+{
+	padding: 0.5em;
+}
+nav select
+{
+	margin-left: 1em;
+	min-width: 6em;
+	max-width: 12em;
+}
 nav input
 {
 	margin: 0.25em;

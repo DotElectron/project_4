@@ -39,7 +39,7 @@ if (isset($_SESSION['accType']))
 	else
 	{
 		//Standard(Guest) menu...
-		$chapterClass = new PDO_chapter(0);
+		$chapterClass = new PDO_chapter('x');
 		$chapterList = $chapterClass->getAllChapters();
 		$chapterClass = null;
 

@@ -63,3 +63,13 @@ function hasRegistration()
 		blockRegister = null;
 	}
 }
+
+// Navbar switch to selected chapter...
+function switch_chapter()
+{
+	var blockChapter = document.getElementById("readChapter");
+	if (blockChapter !== null)
+	{
+		location.href = blockChapter.value;
+	}
+}
