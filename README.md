@@ -5,12 +5,12 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-[0.1.6.2 - Navigation & connection (controllers + views)]
-	* [Finalize "navbar" section with all components]
-	* [Update user navigation (selection chapter)]
-	* [Generate and execute the test file]
-	* [Write&Complete the Beta test plan]
-	* [Beta test : ...]
+0.1.6.2 - Navigation & connection (controllers + views)
+	* Finalize "navbar" section with all components
+	* Update user navigation (selection chapter)
+	* Generate and execute the test file
+	* Write&Complete the Beta test plan
+	* Beta test : PASSED !
 
 [0.1.7.2 - Update security (https & redirections)]
 
