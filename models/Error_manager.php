@@ -7,7 +7,7 @@ final class Error_manager
 	private function __construct() {}		//Force no instanciation...
 
 	private static $err = null;
-	public static function setErr($_err) 
+	public static function setErr($_err, $_force = false) 
 	{
 		$inErr = '';
 		if(stristr($_err, 'false')
@@ -19,6 +19,7 @@ final class Error_manager
 		}
 		self::$err .= '<div' . $inErr . '>' . $_err . '</div>';
 		self::syncErr();
+		if ($_force) { self::displayErr(); }
 	}
 	private static function getErr() 
 	{

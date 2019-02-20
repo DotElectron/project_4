@@ -81,17 +81,19 @@ else { Error_manager::setErr('Error: session is down !'); }
     </header>
 
     <!-- Main section -->
-    <main class="c-flx">  
-        <div class="c-flx flx-jst-st theme-boxed debug-area">
-            <?php 
-                // You can push here your instant unit test...
-                // OR include of your external test file.
-                if (isset($activeTest)) { include_once('controllers/test_file.php'); }
+    <main class="c-flx">
+        <?php 
+            echo '<div class="c-flx flx-jst-st';
+            if (isset($activeDebug) || isset($activeTest)) { echo 'theme-boxed'; }
+            echo 'debug-area">';
+            // You can push here your instant unit test...
+            // OR include of your external test file.
+            if (isset($activeTest)) { include_once('controllers/test_file.php'); }
 
-                //Final display...
-                Error_manager::displayErr();
-            ?>
-        </div>    
+            //Final display...
+            Error_manager::displayErr();
+            echo '</div>';
+        ?>   
         <div id="data-area" class="c-flx flx-wrp theme-bckgrnd-color theme-boxed">
             <?php 
                 if (!(isset($activeTest))) { include_once('controllers/main_selector.php'); } 
@@ -99,7 +101,7 @@ else { Error_manager::setErr('Error: session is down !'); }
             ?>
         </div>
         <?php
-            if (!(isset($activeTest)))
+            if (!(isset($activeTest)) && isset($activeDebug))
             {
                 echo '<div class="c-flx flx-jst-st theme-boxed debug-area">';
                 Error_manager::displayErr();

@@ -124,9 +124,16 @@ main
 	padding-top: 1em;
 	overflow: hidden;
 }
-#debug-area
+#data-area
 {
-	width: 100%;
+	width: 80%;
+	padding: 2em;
+	margin: 1em;
+}
+.debug-area
+{
+	max-width: 60%;
+	padding: 1em;
 	max-height: 9em;
 	overflow-x: hidden;
 }

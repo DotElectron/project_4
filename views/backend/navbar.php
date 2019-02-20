@@ -4,16 +4,19 @@
 	<!-- Admin controls -->
 	<ul>
 		<li>
-			<a href="?uChap">Gérer les chapitres</a>
+			<!-- ?uChap  (.htAccess) -->
+			<a href="author.manage-chapters">Gérer les chapitres</a>
 		</li>
 		<li>
-			<a href="?uPart">Rédiger les épisodes</a>
+			<!-- ?uPart  (.htAccess) -->
+			<a href="author.manage-parts">Rédiger les épisodes</a>
 		</li>
 		<li>
 			<?php 
 				if ($commentaries !== null)
 				{
-					echo '<a href="?uComm">Modérer les commentaires</a>';
+					// ?uComm  (.htAccess) \\
+					echo '<a href="author.manage-comments">Modérer les commentaires</a>';
 				}
 				else
 				{

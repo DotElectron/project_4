@@ -9,7 +9,8 @@
 				echo '<option value="">Faîtes votre sélection...</option>';
 				foreach ($chapterList as $data)
 				{
-					echo '<option value="?iChap=' . $data['chap_title'] . '">' . $data['chap_title'] . '</option>';
+					// ?iChap (.htAccess) \\
+					echo '<option value="chapter.read-' . $data['chap_title'] . '">' . $data['chap_title'] . '</option>';
 				}
 			}
 			else { echo '<option value="">Aucun chapitre...</option>'; }
