@@ -5,19 +5,18 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-0.1.6.2 - Navigation & connection (controllers + views)
-	* Finalize "navbar" section with all components
-	* Update user navigation (selection chapter)
-	* Generate and execute the test file
-	* Write&Complete the Beta test plan
+0.1.7.2 - Admin extend in navbar (controller + view)
+	* Update the administrator treatment inside the navbar
+	* Update&Complete the Beta test plan
 	* Beta test : PASSED !
 
-[0.1.7.2 - Update security (https & redirections)]
+[0.x.x.x - Update security (https & redirections)]
 
 -----------------------
 
 Last versions :
 
+0.1.6.2 - Navigation & connection (controllers + views)
 0.1.5.2 - Finalize Debug/Test jobs (all models +js)
 0.1.5.1 - Update and correctives : Debug/Test jobs
 0.1.5.0 - Prepare basic : Connection Controller (+js)
