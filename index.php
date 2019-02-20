@@ -62,7 +62,7 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- Header section -->
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
-        <a href=""><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
+        <a href="."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
         <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- 
             <div class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
             <?php 
@@ -81,22 +81,32 @@ else { Error_manager::setErr('Error: session is down !'); }
     </header>
 
     <!-- Main section -->
-    <main class="c-flx">
-        <div id="debug-area" class="c-flx flx-jst-st">
+    <main class="c-flx">  
+        <div class="c-flx flx-jst-st theme-boxed debug-area">
             <?php 
                 // You can push here your instant unit test...
                 // OR include of your external test file.
                 if (isset($activeTest)) { include_once('controllers/test_file.php'); }
 
                 //Final display...
-	            Error_manager::displayErr();
+                Error_manager::displayErr();
+            ?>
+        </div>    
+        <div id="data-area" class="c-flx flx-wrp theme-bckgrnd-color theme-boxed">
+            <?php 
+                if (!(isset($activeTest))) { include_once('controllers/main_selector.php'); } 
+                else { echo 'Alpha version is working, no content available...'; }
             ?>
         </div>
-        <?php 
-            // include_once('controllers/main_selector.php')
-                // include_once('../views/current_main.php'); 
+        <?php
+            if (!(isset($activeTest)))
+            {
+                echo '<div class="c-flx flx-jst-st theme-boxed debug-area">';
+                Error_manager::displayErr();
+                echo '</div>';
+            }
         ?>
-    </main>
+    </main> 
 
     <!-- Footer section -->
     <footer class="theme-boxed theme-color theme-bckgrnd-color c-flx">
