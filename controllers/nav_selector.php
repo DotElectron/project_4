@@ -13,6 +13,9 @@ $guest = true;
 require_once('models/PDO_chapter.php');
 use Rochefort\Classes\PDO_chapter;
 $chapterList = null;
+require_once('models/PDO_comment.php');
+use Rochefort\Classes\PDO_comment;
+$commentaries = null;
 
 if (isset($_SESSION['accType']))
 {
@@ -31,7 +34,9 @@ if (isset($_SESSION['accType']))
 	if ($_SESSION['accType'] == userType::ADMINISTRATOR)
 	{
 		//Administrator menu...
-		//...
+		$commClass = new PDO_comment('?');
+		$commentaries = $commClass->getId();
+		$commClass = null;
 
 		//Call the associated view...
 		include_once('views/backend/navbar.php');
@@ -39,7 +44,7 @@ if (isset($_SESSION['accType']))
 	else
 	{
 		//Standard(Guest) menu...
-		$chapterClass = new PDO_chapter('x');
+		$chapterClass = new PDO_chapter(' ');
 		$chapterList = $chapterClass->getAllChapters();
 		$chapterClass = null;
 

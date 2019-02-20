@@ -7,10 +7,19 @@
 			<a href="?uChap">Gérer les chapitres</a>
 		</li>
 		<li>
-		<a href="?uPart">Rédiger les épisodes</a>
+			<a href="?uPart">Rédiger les épisodes</a>
 		</li>
 		<li>
-			<a href="?uComm">Modérer les commentaires</a>
+			<?php 
+				if ($commentaries !== null)
+				{
+					echo '<a href="?uComm">Modérer les commentaires</a>';
+				}
+				else
+				{
+					echo '(Aucun commentaire)';
+				}
+			?>
 		</li>
 	</ul>
 </div>
