@@ -83,8 +83,8 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- Main section -->
     <main class="c-flx">
         <?php 
-            echo '<div class="c-flx flx-jst-st';
-            if (isset($activeDebug) || isset($activeTest)) { echo 'theme-boxed'; }
+            echo '<div class="c-flx flx-jst-st ';
+            if (isset($activeDebug) || isset($activeTest)) { echo 'theme-boxed '; }
             echo 'debug-area">';
             // You can push here your instant unit test...
             // OR include of your external test file.
