@@ -5,18 +5,26 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-0.2.0.1 - Corrective Index : "debug-area > boxed"
-0.2.0.0 - Finalize the selector & swap mechanisms
-	* Update all contents to smooth them together
-	* Write & Complete the test plan
-	* Beta test : PASSED !
-
-[0.x.x.x - class Chapter: getBy 'LIKE %']
+[0.2.4.1 - Admin: {finalize advanced} chapters actions (MVC)]
+	* Update "PDO_chapter" to manage u_way reorder
+	* Update "main_selector" to push actions
+	* Update "admin_chapters" to manager actions
+	* Update "chapters" view to display actions
+	* Update "admin.js" in association of view
+	* Update&Execute the alpha plan (Test file)
+TODO:
+	[* Write & Complete the Beta test plan]
+	[* Beta test : PASSED !]
 
 -----------------------
 
 Last versions :
 
+[0.2.3.1 - Admin: {prepare advanced} chapters actions (MVC)]
+[0.2.2.1 - Admin: {finalize basic} chapters actions (MVC)]
+[0.2.1.1 - Admin: {prepare basic} chapters actions (MVC)]
+0.2.0.1 - Corrective Index : "debug-area > boxed"
+0.2.0.0 - Finalize the selector & swap mechanisms
 0.1.9.2 - Prepare basic : views (regular + admin)
 0.1.8.2 - Main_selector (controller and rewrite URL)
 0.1.7.2 - Admin extend in navbar (controller + view)
