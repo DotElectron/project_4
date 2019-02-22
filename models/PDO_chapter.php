@@ -345,6 +345,58 @@ class PDO_chapter extends PDO_manager
 	* $PDO_test = null;
 	*/
 
+	/**
+	* ...		(internal request to return the order of the chapter from his id)
+	* @param int $_id
+	* @return int $order...
+	*/
+	protected function getOrderById($_id, $__default = false) 
+	{
+		global $activeTest;
+		if ($this->hasConnection() || $this->dbConnect())
+		{
+			if ($_id !== null && is_numeric($_id))
+			{
+				$result = null;
+				try
+				{
+					$request = $this->getConnection()->prepare('SELECT chap_order 
+																FROM chapters 
+																WHERE chap_id = ?');
+					if ($request->execute(array($_id)) > 0)
+					{
+						$result = $request->fetchColumn();
+					}
+				}
+				catch (\PDOException $err) 
+				{
+					Error_manager::setErr('Failed to find chapter: ' . $err->getCode() . ' - ' . $err->getMessage());
+				}
+				finally
+				{
+					return $result;
+				}
+			}
+			else if (!isset($activeTest)) { Error_manager::setErr('Aucun chapitre sans identifiant ne peut persister dans la base...'); }
+			// Default blank response...
+			return $__default;
+		}
+		//Connection error...
+		return false;
+	}
+	/**
+	* [External test of: getOrderById]					
+	* Conditions: scope public, not private...
+	*
+	* require_once('models/PDO_chapter.php');
+	* use Rochefort\Classes\PDO_chapter;
+	*
+	* $PDO_test = new PDO_chapter();
+	*
+	* echo 'DB connection: ' . var_export($PDO_test->getOrderById(null, true), true);
+	* $PDO_test = null;
+	*/
+
 	// --------------------------------
 	// --------------------------------
 
@@ -367,7 +419,7 @@ class PDO_chapter extends PDO_manager
 					//Move it to next position (about order)			//By object ? getChapterBy ?
 					$_parseId = $this->getIdByOrder($_order, $__default);
 					$this->updateChapter($_parseId, ($_order + 1), 
-											$this->getTitleById($_parseId, $__default));
+										 $this->getTitleById($_parseId, $__default), true);
 				}
 
 				//Create execution...
@@ -413,9 +465,10 @@ class PDO_chapter extends PDO_manager
 	* @param int $_id (or string->getIdByTitle)
 	* @param int $_order
 	* @param string $_title
+	* @param bool [optional] $forceOd
 	* @return bool connection/request
 	*/
-	final public function updateChapter($_id, $_order, $_title, $__default = false) 
+	final public function updateChapter($_id, $_order, $_title, $forceOd = false, $__default = false) 
 	{
 		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
@@ -436,9 +489,21 @@ class PDO_chapter extends PDO_manager
 					//Check a clean order...
 					if (!$this->isClean($_order, $_id, $__default))
 					{
-						//Move it to next position (about order)			//By object ? getChapterBy ?
+						//Define vector...
+						$vector = 1;
+						$parseOd = $this->getOrderById($_id, $__default);
+						if (!$forceOd && $_order > $parseOd) { $vector = -1; }
+						//Bufferize vector...
+						if ($vector < 0)
+						{
+							$request = $this->getConnection()->prepare('UPDATE chapters 
+																		SET  chap_order = -1
+																		WHERE chap_order = ?');
+							$request->execute(array($parseOd));
+						}
+						//Move it to next position (about order)
 						$_parseId = $this->getIdByOrder($_order, $__default);
-						$this->updateChapter($_parseId, ($_order + 1), 
+						$this->updateChapter($_parseId, ($_order + $vector), 
 											 $this->getTitleById($_parseId, $__default));
 					}
 
