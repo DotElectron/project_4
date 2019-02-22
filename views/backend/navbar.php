@@ -1,6 +1,6 @@
 <!-- HTML - NavBar treatment -->
 <div>
-	<samp>Administrer :</samp>
+	<samp class="theme-boxed-shadow">Administrer :</samp>
 	<!-- Admin controls -->
 	<ul>
 		<li>

@@ -56,9 +56,10 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- <script src="public/js/anim.js"></script> -->
     <script src="public/js/main.js"></script>
     <script src="public/js/navbar.js"></script>
+    <script src="public/js/admin.js"></script>
 </head>
 
-<body onload="top_replacement()">
+<body onload="body_adjustement()">
     <!-- Header section -->
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
@@ -83,27 +84,29 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- Main section -->
     <main class="c-flx">
         <?php 
-            echo '<div class="c-flx flx-jst-st ';
-            if (isset($activeDebug) || isset($activeTest)) { echo 'theme-boxed '; }
-            echo 'debug-area">';
-            // You can push here your instant unit test...
-            // OR include of your external test file.
-            if (isset($activeTest)) { include_once('controllers/test_file.php'); }
+            if (isset($activeDebug) || isset($activeTest)) 
+            { 
+                echo '<div class="c-flx flx-jst-st theme-boxed debug-area">'; 
+                // You can push here your instant unit test...
+                // OR include of your external test file.
+                if (isset($activeTest)) { include_once('controllers/test_file.php'); }
 
-            //Final display...
-            Error_manager::displayErr();
-            echo '</div>';
+                //Final display...
+                Error_manager::displayErr();
+                echo '</div>';
+            }
         ?>   
-        <div id="data-area" class="c-flx flx-wrp theme-bckgrnd-color theme-boxed">
+        <div id="data-area" class="c-flx flx-wrp">
             <?php 
                 if (!(isset($activeTest))) { include_once('controllers/main_selector.php'); } 
                 else { echo 'Alpha version is working, no content available...'; }
             ?>
         </div>
         <?php
-            if (!(isset($activeTest)) && isset($activeDebug))
+            if (!(isset($activeTest)))
             {
-                echo '<div class="c-flx flx-jst-st theme-boxed debug-area">';
+                echo '<div id="last-debug" class="c-flx flx-jst-st theme-boxed debug-area">'; 
+                if (!(isset($activeDebug))) { echo '<i class="fas fa-2x fa-clipboard-check theme-color"></i>'; }
                 Error_manager::displayErr();
                 echo '</div>';
             }
