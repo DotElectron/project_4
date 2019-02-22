@@ -22,7 +22,7 @@
 	// Error_manager::setErr('DB connection-fetchTitle-Id: ' . var_export($PDO_test->getTitleById(null, true), true));
 	//(Necessary section)
 	Error_manager::setErr('DB connection-create: ' . var_export($PDO_test->createChapter(null, null, true), true));
-	Error_manager::setErr('DB connection-update: ' . var_export($PDO_test->updateChapter(null, null, null, true), true));
+	Error_manager::setErr('DB connection-update: ' . var_export($PDO_test->updateChapter(null, null, null, null, true), true));
 	Error_manager::setErr('DB connection-delete: ' . var_export($PDO_test->deleteChapter(null, true), true));
 	Error_manager::setErr('DB connection-fetchAll: ' . gettype($PDO_test->getAllChapters(true)));
 	
