@@ -1,8 +1,9 @@
 // --------------------------
 // --------------------------
-// Main replacement (margin-top)...
-function top_replacement()
+// Body Adjustement (multi-jobs)
+function body_adjustement()
 {
+	// Main replacement (margin-top)...
 	var topContList = document.getElementsByTagName('header');
 	var mainContList = document.getElementsByTagName('main');
 	if ((topContList.length > 0 && topContList[0] !== null)
@@ -16,4 +17,15 @@ function top_replacement()
 	}
 	topContList = null;
 	mainContList = null;
+
+	// Debug visibility...
+	var test = document.getElementById('last-debug');
+	if (test.childNodes.length < 2)
+	{
+		test.style.display = "none";
+	}
+	else
+	{
+		test.style.display = "flex";
+	}
 }
