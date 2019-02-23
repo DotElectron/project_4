@@ -10,7 +10,7 @@ use Rochefort\Classes\PDO_chapter;
 if (isset($_POST['admLastData']))
 {
 	if (isset($activeDebug)) { Error_manager::setErr('* * * Admin Actions * * *'); }
-	
+
 	//Administrator treatments...
 	if (isset($_POST['admChapter'])
 		&& $_POST['admChapter'] !== $_POST['admLastData'])
@@ -18,50 +18,36 @@ if (isset($_POST['admLastData']))
 		// An (title) update request was sent...
 		$chapterClass = new PDO_chapter($_POST['admLastData']);
 		if (isset($activeDebug)) { Error_manager::setErr('Admin: get chapter < ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
-		//Prepare data...
-		$admChapter = htmlspecialchars($_POST['admChapter']);
-		if (is_numeric($admChapter))
-		{
-			$admChapter .= '¤';
-		}
 		if ($chapterClass->getId()
 			&& $chapterClass->updateChapter($chapterClass->getId(), 
 										 	$chapterClass->getOrder(), 
-										 	$admChapter))
+										 	htmlspecialchars($_POST['admChapter'])))
 		{
-			$chapterClass = new PDO_chapter($admChapter);
+			$chapterClass = new PDO_chapter(htmlspecialchars($_POST['admChapter']));
 			if (isset($activeDebug)) { Error_manager::setErr('Admin: update chapter >>> ' . $chapterClass->getTitle()); }
 			else { Error_manager::setErr('Chapitre actualisé : "' . $chapterClass->getTitle() . '"'); }
 		}
 		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to update chapter ! [' . $chapterClass->getTitle() . ']'); }
 		else { Error_manager::setErr('Actualisation impossible depuis : "' . htmlspecialchars($_POST['admLastData']) . '"'); }
-		$admChapter = null;
 	}
 	else if (isset($_POST['admNewChapter']))
 	{
 		// A creation request was sent...
-		$chapterClass = new PDO_chapter('¤');
-		//Prepare data...
-		$admNewChapter = htmlspecialchars($_POST['admNewChapter']);
-		if (is_numeric($admNewChapter))
-		{
-			$admNewChapter .= '¤';
-		}
+		$chapterClass = new PDO_chapter(' ');
 		if ($chapterClass->createChapter($_POST['admLastData'], 
-										 $admNewChapter))
+										 htmlspecialchars($_POST['admNewChapter'])))
 		{
-			$chapterClass = new PDO_chapter($admNewChapter);
+			$chapterClass = new PDO_chapter(htmlspecialchars($_POST['admNewChapter']));
 			if (isset($activeDebug)) { Error_manager::setErr('Admin: create chapter >>> ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
 			else { Error_manager::setErr('Chapitre créé : "' . $chapterClass->getTitle() . '"'); }
 		}
 		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to create chapter ! [' . $chapterClass->getTitle() . ']'); }
-		else { Error_manager::setErr('Création impossible pour : "' . $admNewChapter . '"'); }
-		$admNewChapter = null;
+		else { Error_manager::setErr('Création impossible pour : "' . htmlspecialchars($_POST['admNewChapter']) . '"'); }
 	}
 	else if (isset($_POST['admDelChapter']))
 	{
 		// A delete request was sent...
-		$chapterClass = new PDO_chapter('¤');
+		$chapterClass = new PDO_chapter(' ');
 		if ($chapterClass->deleteChapter($_POST['admLastData']))
 		{
 			if (isset($activeDebug)) { Error_manager::setErr('Admin: delete chapter >>> ' . htmlspecialchars($_POST['admLastData'])); }
@@ -75,15 +61,9 @@ if (isset($_POST['admLastData']))
 		// An (reorder) update request was sent...
 		$chapterClass = new PDO_chapter($_POST['admLastData']);
 		if (isset($activeDebug)) { Error_manager::setErr('Admin: get chapter < ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
-		//Prepare data...
-		$admMoveChapter = htmlspecialchars($_POST['admMoveChapter']);
-		if (is_numeric($admMoveChapter))
-		{
-			$admMoveChapter .= '¤';
-		}
 		if ($chapterClass->getId()
 			&& $chapterClass->updateChapter($chapterClass->getId(), 
-											$admMoveChapter, 
+											htmlspecialchars($_POST['admMoveChapter']), 
 											$chapterClass->getTitle()))
 		{
 			$chapterClass = new PDO_chapter(htmlspecialchars($_POST['admLastData']));
@@ -92,7 +72,6 @@ if (isset($_POST['admLastData']))
 		}
 		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to update chapter ! [' . $chapterClass->getTitle() . ']'); }
 		else { Error_manager::setErr('Déplacement impossible depuis : "' . htmlspecialchars($_POST['admLastData']) . '"'); }
-		$admMoveChapter = null;
 	}
 }
 
