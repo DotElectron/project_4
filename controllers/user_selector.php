@@ -119,8 +119,20 @@ function userSelector()
 			if (!$select_once) { userSelector(); $select_once = true; }
 		}
 	}
-	else if (isset($activeDebug) || isset($activeTest))
-	{ 
+	else if (isValidSession())
+	{	
+		//Refresh the session cookie...	
+		if (asAdminSession())
+		{
+			setCookie('session', $_COOKIE['session'], time() + 1800, '/');
+		}
+		else if (asUserSession())
+		{
+			setCookie('session', $_COOKIE['session'], time() + (86400 * 30), '/');
+		}
+	}
+	if (isset($activeDebug) || isset($activeTest))
+	{
 		Error_manager::setErr('Active account: ' . $_SESSION['accType'] . ' - ' . $_SESSION['accTitle']); 
 	}
 }
@@ -158,8 +170,8 @@ function isValidSession()
 
 function dbg_clearSession($expSimulated = false, $expNow = false)
 {
-	global $activeDebug;
-	if (isset($activeDebug))
+	global $activeTest;
+	if (isset($activeTest))
 	{
 		unset($_SESSION['accType']);
 		unset($_SESSION['accTitle']);
