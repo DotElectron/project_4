@@ -182,6 +182,19 @@ footer p
 	padding: 0;
 }
 
+.user-alert
+{
+	margin: auto;
+	color: darkred;
+	font-weight: bold;
+	text-align: center;
+}
+.user-warning
+{
+	color: orangered;
+	text-align: center;
+}
+
 .as-inblock
 {
 	display: inline-block;
@@ -253,12 +266,14 @@ footer p
 /*   Specific Classes    */
 /* * * * * * * * * * * * */
 
-#a-m-chapters
+#a-m-chapters,
+#a-m-parts
 {
 	min-width: 30em;
 	width: 100%;
 }
-#a-m-chapters div
+#a-m-chapters div,
+#a-m-parts .spacing
 {
 	margin-top: 2em;
 	padding: 1em;
@@ -281,12 +296,42 @@ footer p
 {
 	position: relative;
 }
-.test
+
+/* ------------------------ */
+
+#a-m-parts .lite-container
 {
-	background-color: red;
-	width: 100%;
-	z-index: 1000;
+	width: 90%;
+	margin: 1em;
 }
+#a-m-parts .lite-spacing
+{
+	width: 70%;
+	margin: 1em;
+}
+#a-m-parts .form-container
+{
+	width: 100%;
+	margin: 1em;
+}
+#editable-part
+{
+	min-height: 35em;
+}
+#a-m-parts input[type="submit"],
+#a-m-parts input[type="button"]
+{
+	margin-bottom: 4em;
+}
+#a-m-parts label
+{
+	margin-right: 1em;
+	min-width: 4em;
+}
+/* #part-delete
+{
+	position: relative;
+} */
 
 /* * * * * * * * * * * * */
 /*     Media Queries     */
