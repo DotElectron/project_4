@@ -84,6 +84,10 @@ class PDO_part extends PDO_manager
 						$compField = 'part_subtitle'; 
 						$compValue = $_subtitle;
 					}
+					else if ($_order === '?')
+					{
+						$compValue = ($this->nextOrder() - 1);
+					}
 					$request = $this->getConnection()->prepare('SELECT *
 																FROM parts 
 																WHERE ' . $compField . ' = ?');
@@ -236,7 +240,7 @@ class PDO_part extends PDO_manager
 		global $activeTest;
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
-			if ($_chapter !== null && is_numeric($_chapter) && $_htmlText !== null)
+			if (($_chapter === null || is_numeric($_chapter)) && $_htmlText !== null)
 			{
 				//Get a clean order...
 				$_order = $this->nextOrder();
@@ -258,7 +262,7 @@ class PDO_part extends PDO_manager
 					return ($result > 0);
 				}
 			}
-			else if (!isset($activeTest)) { Error_manager::setErr('Un épisode doit être rattaché à un chapitre et avoir un contenu...'); }
+			else if (!isset($activeTest)) { Error_manager::setErr('Un épisode doit être rattaché à un chapitre valide et avoir un contenu...'); }
 			// Default blank response...
 			return $__default;
 		}
@@ -293,8 +297,8 @@ class PDO_part extends PDO_manager
 		if (($this->hasConnection() && $this->asAdmin()) || $this->dbConnect(true))
 		{
 			if ($_order !== null && is_numeric($_order) 
-				&& $_chapter !== null && is_numeric($_chapter) 
-				&& $_subtitle !== null && $_htmlText !== null)
+				&& ($_chapter === null || is_numeric($_chapter))
+				&& $_htmlText !== null)
 			{
 				//Check a valid Order...
 				if ($this->isExist($_order))
@@ -519,7 +523,7 @@ class PDO_part extends PDO_manager
 					// Particular case: get draft parts...
 					$statement = ' IS NULL ';
 				}
-				$request = $this->getConnection()->prepare('SELECT part_subtitle, part_text
+				$request = $this->getConnection()->prepare('SELECT part_subtitle, part_text, part_order
 														   FROM parts
 														   WHERE part_chap_id' . $statement
 														   . 'ORDER BY part_order ASC');
