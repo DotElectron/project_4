@@ -21,7 +21,7 @@ if (isset($_GET['uChap'])
 	include_once('controllers/admin_chapters.php');
 
 	// Load the entire chapters module...
-	$chapterClass = new PDO_chapter(' ');
+	$chapterClass = new PDO_chapter('¤');
 	$chapterList = $chapterClass->getAllChapters();
 	$chapterClass = null;
 	if (isset($activeDebug)) 
@@ -35,7 +35,36 @@ if (isset($_GET['uChap'])
 else if (isset($_GET['uPart'])
 		 && asAdminSession())
 {
+	//Verify administrator actions...
+	include_once('controllers/admin_parts.php');
+
 	// Load the entire parts module...
+	$chapterClass = new PDO_chapter('¤');
+	$chapterList = $chapterClass->getAllChapters();
+	$chapterClass = null;
+	$selectedChapter = null;
+	$selChapData = null;
+	if (isset($_GET['chapter'])
+		&& $_GET['chapter'] !== 'draft')
+	{
+		// A real chapter is active...
+		$selectedChapter = htmlspecialchars($_GET['chapter']);
+		$chapterClass = new PDO_chapter($selectedChapter);
+		$selChapData = $chapterClass->getId();
+		$chapterClass = null;
+	}
+	$partClass = new PDO_part(null, '¤');
+	$partList = $partClass->getPartsOfChapter($selChapData); 
+	$partClass = null;
+	$selectedPart = null;
+	$selPartData = null;
+	if (isset($_GET['part'])
+		&& $_GET['part'] !== 'new')
+	{
+		// A real part is active...
+		$selectedPart = htmlspecialchars($_GET['part']);
+		$selPartData = new PDO_part($selectedPart);
+	}
 	if (isset($activeDebug)) 
 	{ 
 		Error_manager::setErr('* * * Main - Rewrite admin url * * *');
