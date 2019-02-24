@@ -7,6 +7,9 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /FormationWeb/Root/project_4/github/
 RewriteRule ^author.manage-chapters$ ?uChap [L]
+RewriteCond %{REQUEST_URI} /author.manage-parts
+RewriteRule (.*) $1///%{QUERY_STRING} [C]
+RewriteRule ^author.manage-parts///(.*)$ ?uPart&$1 [L]
 RewriteRule ^author.manage-parts$ ?uPart [L]
 RewriteRule ^author.manage-comments$ ?uComm [L]
 RewriteRule ^chapter.read-(.*)$ ?iChap=$1 [L]
