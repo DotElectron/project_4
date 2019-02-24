@@ -61,7 +61,7 @@ if (isset($_POST['admLastData']))
 	else if (isset($_POST['admDelChapter']))
 	{
 		// A delete request was sent...
-		$chapterClass = new PDO_chapter(' ');
+		$chapterClass = new PDO_chapter('¤');
 		if ($chapterClass->deleteChapter($_POST['admLastData']))
 		{
 			if (isset($activeDebug)) { Error_manager::setErr('Admin: delete chapter >>> ' . htmlspecialchars($_POST['admLastData'])); }
