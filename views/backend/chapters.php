@@ -10,22 +10,22 @@
                 {
                     // ?iChap (.htAccess) \\
                     echo '<p id="chap-' . $_order . '">';
-                        echo '<a href="#chap-' . $_order . '" onclick="javascript:switch_adm_chapter();">';
+                        echo '<a href="#chapt-' . $_order . '" onclick="javascript:switch_adm_chapter();">';
                             echo '<span id="chap-s--' . $_order . '">' . $data['chap_title'] . '</span>';
                             echo '<i id="chap-i--' . $_order . '" class="fas fa-pencil-alt" title="Modifier le chapitre..."></i>';
                         echo '</a>';
-                        echo '<a href="#chap-' . $_order . '" onclick="javascript:switch_adm_chapter();">';
+                        echo '<a href="#chapt-' . $_order . '" onclick="javascript:switch_adm_chapter();">';
                             echo '<i id="chap-d--' . $_order . '" class="fas fa-trash-alt" title="Supprimer le chapitre..."></i>';
                         echo '</a>';
                         if ($_order < ($chapterList->rowCount() - 1))
                         {
-                            echo '<a href="#chap-' . $_order . '" onclick="javascript:document.getElementById(\'chap-fmu--'. $_order . '\').submit();">';
+                            echo '<a href="#chapt-' . $_order . '" onclick="javascript:document.getElementById(\'chap-fmu--'. $_order . '\').submit();">';
                                 echo '<i id="chap-mu--' . $_order . '" class="fas fa-caret-down" title="Descendre..."></i>';
                             echo '</a>';
                         }
                         if ($_order > 0)
                         {
-                            echo '<a href="#chap-' . $_order . '" onclick="javascript:document.getElementById(\'chap-fmd--'. $_order . '\').submit();">';
+                            echo '<a href="#chapt-' . $_order . '" onclick="javascript:document.getElementById(\'chap-fmd--'. $_order . '\').submit();">';
                                 echo '<i id="chap-md--' . $_order . '" class="fas fa-caret-up" title="Monter..."></i>';
                             echo '</a>';
                         }
@@ -58,13 +58,13 @@
         ?>
         <div id="a-m-chapters--new" class="c-flx">
             <p id="new-chap">
-                <a href="#new-chap" onclick="javascript:switch_adm_toNewChap();">
+                <a href="#new-chapt" onclick="javascript:switch_adm_toNewChap();">
                     <i class="fas fa-pencil-ruler"></i>
                     <span id="chap-s--new-chap">Ajouter un nouveau chapitre</span>
                     <i class="fas fa-pencil-ruler"></i>
                 </a>
             </p>
-            <form id="chap-f--new-chap" class="hidden-tag chap-tag" action="#new-chap" method="POST">
+            <form id="chap-f--new-chap" class="hidden-tag chap-tag" action="#new-chapt" method="POST">
                 <input type="hidden" name="admLastData" value="<?php if ($chapterList) { echo $chapterList->rowCount(); } else { echo '0'; } ?>"/>
                 <input type="text" name="admNewChapter" placeholder="Titre du chapitre" value="" maxlength="60" size="30" required/>
                 <input type="submit" value="Ajouter"/>
