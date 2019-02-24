@@ -20,12 +20,15 @@ function body_adjustement()
 
 	// Debug visibility...
 	var test = document.getElementById('last-debug');
-	if (test.childNodes.length < 2)
+	if (test !== null)
 	{
-		test.style.display = "none";
-	}
-	else
-	{
-		test.style.display = "flex";
+		if (test.childNodes.length < 2)
+		{
+			test.style.display = "none";
+		}
+		else
+		{
+			test.style.display = "flex";
+		}
 	}
 }
