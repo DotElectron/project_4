@@ -22,21 +22,21 @@ function switch_adm_chapter(e)
 			if (sendId.includes('-fd--'))
 			{
 				// Extra job: left position...
-				var ParId = sendId.replace('-fd--', '-');
-				var parentSubmit = document.getElementById(ParId);
+				var parId = sendId.replace('-fd--', '-');
+				var parentSubmit = document.getElementById(parId);
 				if (parentSubmit !== null)
 				{
-					var SubId = sendId.replace('-fd--', '-fs--');
-					var chapterSubmit = document.getElementById(SubId);
+					var subId = sendId.replace('-fd--', '-fs--');
+					var chapterSubmit = document.getElementById(subId);
 					if (chapterSubmit !== null)
 					{
-						var LeftSubmit = (sender.offsetLeft
+						var leftSubmit = (sender.offsetLeft
 										- parentSubmit.offsetLeft
 										- chapterSubmit.clientWidth
 										+ sender.clientWidth);
-						if (LeftSubmit < 0) { LeftSubmit = 0; }
+						if (leftSubmit < 0) { leftSubmit = 0; }
 						// Apply the new relative location...
-						chapterSubmit.style.left = LeftSubmit + "px";
+						chapterSubmit.style.left = leftSubmit + "px";
 					}
 				}
 			}
@@ -99,3 +99,89 @@ function switch_adm_toNewChap()
 		chapSource = null;
 	}
 }
+
+// -------------------------------------
+// ----------- TINY M C E --------------
+
+function tiny_initialize(htmlContent = null)
+{
+	//Load content...
+	if (htmlContent !== null)
+	{
+		var edPart = document.getElementById("editable-part");
+		if (edPart !== null)
+		{
+			edPart.innerHTML = htmlContent;
+		}
+	}
+
+	//Initialize MCE...
+	tinymce.init(
+	{
+		selector: '#editable-part',
+		language : "fr_FR",
+		branding: false
+	});
+}
+
+function chapterSubmit()
+{
+	//From chapter...
+	selectedSubmit(true);
+}
+
+function selectedSubmit(fromChapter = false)
+{
+	var selEdit = document.getElementById("sel-edit");
+	if (selEdit !== null)
+	{
+		//Chapter case: no part data (default: new)
+		if (fromChapter)
+		{
+			var pSel = document.getElementById("part-selector");
+			if (pSel !== null)
+			{
+				pSel.value = "new";
+			}
+		}
+
+		//Submit the GET form...
+		selEdit.submit();
+	}
+}
+
+function getContentToSubmit()
+{
+	var TinyOutput = document.getElementById("hidden-part");
+	if (TinyOutput !== null)
+	{
+		//Report the tiny content in the form component...
+		TinyOutput.value = tinymce.activeEditor.getContent();
+	}
+}
+
+function confirmBeforeSubmit()
+{
+	if (new RegExp("&part=[0-9]+").test(window.location))
+	{
+		if (confirm("Voulez-vous vraiment supprimer cet épisode (irréversible) ?"))
+		{
+			var partDelete = document.getElementById("part-delete");
+			if (partDelete !== null)
+			{
+				var pattern = /author\.manage-parts\?chapter=.*&part=/g;
+				var root = pattern.exec(window.location);
+				partDelete.action = root + "new";
+				partDelete.submit();
+			}
+			partDelete = null;
+		}
+	}
+	else if (confirm("Voulez-vous vraiment abandonner cet épisode (non enregistré) ?"))
+	{
+		window.location.reload();
+	}
+}
+
+// -------------------------------------
+// -------------------------------------
