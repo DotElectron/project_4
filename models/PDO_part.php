@@ -35,9 +35,13 @@ class PDO_part extends PDO_manager
 	{
 		$this->subtitle = $_subtitle;
 	}
-	public function getSubtitle() 
+	public function getSubtitle($strip = true) 
 	{
-		return ($this->subtitle);
+		if ($strip && $this->subtitle !== null) 
+		{ 
+			return (self::htmlSecure($this->subtitle, true, true)); 
+		}
+		else { return ($this->subtitle); }
 	}
 	final protected function setHtmlText($_htmlText) 
 	{
@@ -45,7 +49,7 @@ class PDO_part extends PDO_manager
 	}
 	public function getHtmlText()
 	{
-		return ($this->htmlText);
+		return (self::htmlSecure($this->htmlText, true));
 	}
 	final protected function setTimeStamp($_timeStamp) 
 	{
@@ -531,6 +535,15 @@ class PDO_part extends PDO_manager
 					|| ($_chapter === null && $request->execute() > 0))
 				{
 					$result = $request->fetchAll();
+					//Html_decode...
+					for ($i = 0; $i < count($result); $i++)
+					{
+						if ($result[$i]['part_subtitle'] !== null)
+						{
+							$result[$i]['part_subtitle'] = self::htmlSecure($result[$i]['part_subtitle'], true, true);
+						}
+						$result[$i]['part_text'] = self::htmlSecure($result[$i]['part_text'], true);
+					}
 				}
 			}
 			catch (\PDOException $err) 

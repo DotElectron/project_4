@@ -8,7 +8,7 @@
                 <select id="chap-selector" name="chapter" required onchange="chapterSubmit()">
                     <option value="draft" <?php if ($selectedChapter === null) { echo ' selected'; } ?>>Brouillon...</option>
                     <?php 
-                        if ($chapterList && $chapterList->rowCount() > 0)
+                        if ($chapterList && count($chapterList) > 0)    // (->rowCount() if query)
                         {
                             foreach ($chapterList as $data)
                             {
@@ -46,7 +46,7 @@
                                 }
                                 else
                                 {
-                                    echo '>' . html_entity_decode(substr($data['part_text'], 0, 60)) . '</option>';
+                                    echo '>' . substr($data['part_text'], 0, 60) . '</option>';
                                 }
                             }
                         }
@@ -66,7 +66,7 @@
             </form>
             <form id="part-reorder" action="#move-part" method="POST">
                 <input type="hidden" name="admMovePart" value="<?php echo $selectedPart; ?>"/>
-                <label for="admMoveBefore">Mettre avant : </label>
+                <label for="admMoveBefore">Nouvelle position : </label>
                 <select name="admMoveBefore" required>
                     <?php 
                         if ($partList && count($partList) > 1)
@@ -83,7 +83,7 @@
                                     }
                                     else
                                     {
-                                        echo '>' . html_entity_decode(substr($data['part_text'], 0, 60)) . '</option>';
+                                        echo '>' . substr($data['part_text'], 0, 60) . '</option>';
                                     }
                                 }
                             }
@@ -105,5 +105,5 @@
 
 <script>
     // Tiny-MCE...
-    tiny_initialize(<?php if ($selPartData !== null) { echo '"' . strip_tags(html_entity_decode($selPartData->getHtmlText())) . '"'; } ?>);
+    tiny_initialize(<?php if ($selPartData !== null) { echo '"' . $selPartData->getHtmlText() . '"'; } ?>);
 </script>

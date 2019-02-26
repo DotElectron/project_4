@@ -14,11 +14,6 @@ if (isset($_POST['admRegister']))
 	if (isset($activeDebug)) { Error_manager::setErr('* * * Admin Actions * * *'); }
 	
 	//Administrator treatments...
-	// if (isset($_POST['admMoveChapter']))
-	// {
-	// 	$_GET['chapter'] = $_POST['admMoveChapter'];
-	// }
-
 	if (isset($_GET['part'])
 		&& $_GET['part'] !== 'new')
 	{
@@ -37,13 +32,13 @@ if (isset($_POST['admRegister']))
 		$admSubtitle = null;
 		if (!(empty($_POST['admSubtitle'])))
 		{
-			$admSubtitle = htmlspecialchars($_POST['admSubtitle']);
+			$admSubtitle = PDO_part::htmlSecure($_POST['admSubtitle'], false, true);
 		}
 		$admHtmlText = null;
 		if (isset($_POST['admHtmlText'])
 			&& !(empty($_POST['admHtmlText'])))
 		{
-			$admHtmlText = htmlspecialchars($_POST['admHtmlText']);
+			$admHtmlText = PDO_part::htmlSecure($_POST['admHtmlText']);
 		}
 		$admShortTitle = null;
 		if ($admSubtitle !== null) 
@@ -97,13 +92,13 @@ if (isset($_POST['admRegister']))
 		$admSubtitle = null;
 		if (!(empty($_POST['admSubtitle'])))
 		{
-			$admSubtitle = htmlspecialchars($_POST['admSubtitle']);
+			$admSubtitle = PDO_part::htmlSecure($_POST['admSubtitle'], false, true);
 		}
 		$admHtmlText = null;
 		if (isset($_POST['admHtmlText'])
 			&& !(empty($_POST['admHtmlText'])))
 		{
-			$admHtmlText = htmlspecialchars($_POST['admHtmlText']);
+			$admHtmlText = PDO_part::htmlSecure($_POST['admHtmlText']);
 		}
 		$admShortTitle = null;
 		if ($admSubtitle !== null) 
@@ -120,7 +115,7 @@ if (isset($_POST['admRegister']))
 								   $admSubtitle))
 		{
 			$PartClass = new PDO_part('?', "¤");
-			$_GET['part'] = $PartClass->getOrder();
+			$_GET['part'] = $PartClass->getOrder();	//Partial: not in url...
 			if (isset($activeDebug)) 
 			{ 		
 				if ($admFromChapter === null)
@@ -177,6 +172,7 @@ else if (isset($_POST['admMovePart']))
 								$admMoveBefore))
 	{
 		$PartClass = new PDO_part($admMoveBefore);
+		$_GET['part'] = $PartClass->getOrder();		//Partial: not in url...
 		if (isset($activeDebug)) { Error_manager::setErr('Admin: reorder Part >>> n°' . $PartClass->getOrder() . ' (from n°' . $admFromPart . ')'); }
 		else { Error_manager::setErr('Episode déplacé vers : "' . $PartClass->getOrder() . '"'); }
 	}
