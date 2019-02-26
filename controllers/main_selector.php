@@ -88,7 +88,23 @@ else if (isSessionAlive()
 		&& (isset($_GET['iChap'])
 		 	|| asAdminSession()))
 {
-	// Load the specified [as user] or last [as admin] chapter (list of embedded parts + comments)...
+	// Load the chapter (Embedded parts + comments)...
+	$chapterClassObject = null;
+	if (isset($_GET['iChap']))
+	{
+		//Specified chapter [as user]
+
+		$chapterClassObject = new PDO_chapter(htmlspecialchars($_GET['iChap']));
+	}
+	else
+	{
+		//Last chapter [as admin]
+		$chapterClassObject = new PDO_chapter('?');
+	}
+	$partClass = new PDO_part(null, '¤');
+	$partList = $partClass->getPartsOfChapter($chapterClassObject->getId()); 
+	$partClass = null;
+
 	if (isset($activeDebug)) 
 	{ 
 		Error_manager::setErr('* * * Main - Rewrite standard url * * *');

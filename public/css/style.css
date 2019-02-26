@@ -17,7 +17,12 @@ main, nav, h1, h2, h3, footer
 {
 	font-family: 'Anonymous Pro', Helvetica, sans-serif;
 }
-strong
+h2
+{
+	font-size: xx-large;
+	font-weight: bold;
+}
+strong, h3
 {
 	font-size: x-large;
 	font-weight: bold;
@@ -53,7 +58,6 @@ h1
 {
 	padding-left: 1em;
 	padding-right: 1em;
-	font-weight: bold;
 }
 h1 em
 {
@@ -137,7 +141,6 @@ main
 {
 	width: 100%;
 	padding: 1em;
-	margin: auto;
 	text-align: center;
 }
 .debug-area
@@ -267,7 +270,8 @@ footer p
 /* * * * * * * * * * * * */
 
 #a-m-chapters,
-#a-m-parts
+#a-m-parts,
+#i-reader--container
 {
 	min-width: 30em;
 	width: 100%;
@@ -329,18 +333,167 @@ footer p
 	min-width: 4em;
 }
 
+/* ------------------------ */
+
+#i-reader-parts--container
+{
+	width: 90%;
+	margin: 3em;
+	margin-right: 6em;
+}
+#i-reader-parts--container h3
+{
+	margin-top: 1em;
+	padding-bottom: 1em;
+	text-align: center;
+}
+#i-reader-parts--container article
+{
+	padding: 2em;
+	min-width: 20em;
+}
+
 /* * * * * * * * * * * * */
 /*     Media Queries     */
 /* * * * * * * * * * * * */
 
+@media screen and (min-width: 140.001em)
+{
+	#i-reader-parts--container article
+	{
+		max-width: 30%;
+	}
+}
+@media screen and (max-width: 140em)
+{
+	#i-reader-parts--container
+	{
+		justify-content: start;
+	}
+	#i-reader-parts--container article
+	{
+		max-width: 45%;
+	}
+}
+@media screen and (max-width: 95em)
+{
+	#i-reader-parts--container
+	{
+		justify-content: center;
+	}
+	#i-reader-parts--container article
+	{
+		padding: 1em;
+		max-width: 90%;
+	}
+}
+
 @media screen and (max-width: 55em)
 {
-	
+	#data-area h2
+	{
+		width: 95%;
+		margin-left:-5%;
+	}
+	#a-m-chapters,
+	#a-m-parts,
+	#i-reader--container
+	{
+		margin-left:-1em;
+	}
+	#i-reader-parts--container article
+	{
+		padding: 0.5em;
+		max-width: 90%;
+	}
+	/* ----------------- */
+	#a-m-chapters span,
+	footer, 
+	#a-m-parts form input,
+	#a-m-parts form select,
+	#a-m-parts form label,
+	.debug-area
+	{
+		font-size: large;
+	}
+	#data-area h2,
+	nav, nav strong, nav samp,
+	#a-m-chapters i
+	{
+		font-size: x-large;
+	}
+	header img
+	{
+		font-size: 0;
+	}
+	#a-m-parts form
+	{
+		display: flex;
+	}
+	#a-m-parts form
+	{
+		flex-direction: column;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	#data-area, #data-area h2
+	{
+		width: 101%;
+		margin: 0;
+		padding: 0;
+	}
+	#data-area h2
+	{
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
 }
 
 @media screen and (max-width: 28em)
 {
-	
+	header,
+	#a-m-parts .lite-spacing,
+	#a-m-parts .form-container
+	{
+		flex-direction: column;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	body, strong, h3, samp
+	{
+		font-size: xx-small;
+	}
+	header
+	{
+		font-size: large;
+	}
+	nav, 
+	#i-reader-parts--container,
+	.debug-area,
+	#a-m-parts .lite-container,
+	#a-m-parts .lite-spacing
+	{
+		width: 101%;
+		margin: 0;
+		padding: 0;
+	}
+	#a-m-parts .lite-spacing
+	{
+		margin-left: 5em;
+	}
+	#a-m-parts form
+	{
+		margin-left: 1em;
+	}
+	header h1
+	{
+		font-size: 0;
+	}
+	#i-reader-parts--container article
+	{
+		padding: 0.25em;
+		max-width: 100%;
+	}
 }
 
 /* * * * * * * * */
