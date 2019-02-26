@@ -16,10 +16,10 @@ if (isset($_POST['admLastData']))
 		&& $_POST['admChapter'] !== $_POST['admLastData'])
 	{
 		// An (title) update request was sent...
-		$chapterClass = new PDO_chapter($_POST['admLastData']);
+		$chapterClass = new PDO_chapter(PDO_chapter::htmlSecure($_POST['admLastData'], false, true));
 		if (isset($activeDebug)) { Error_manager::setErr('Admin: get chapter < ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
 		//Prepare data...
-		$admChapter = htmlspecialchars($_POST['admChapter']);
+		$admChapter = PDO_chapter::htmlSecure($_POST['admChapter'], false, true);
 		if (is_numeric($admChapter))
 		{
 			$admChapter .= '¤';
@@ -42,7 +42,7 @@ if (isset($_POST['admLastData']))
 		// A creation request was sent...
 		$chapterClass = new PDO_chapter('¤');
 		//Prepare data...
-		$admNewChapter = htmlspecialchars($_POST['admNewChapter']);
+		$admNewChapter = PDO_chapter::htmlSecure($_POST['admNewChapter'], false, true);
 		if (is_numeric($admNewChapter))
 		{
 			$admNewChapter .= '¤';
@@ -62,30 +62,32 @@ if (isset($_POST['admLastData']))
 	{
 		// A delete request was sent...
 		$chapterClass = new PDO_chapter('¤');
-		if ($chapterClass->deleteChapter($_POST['admLastData']))
+		$admLastData = PDO_chapter::htmlSecure($_POST['admLastData'], false, true);
+		if ($chapterClass->deleteChapter($admLastData))
 		{
-			if (isset($activeDebug)) { Error_manager::setErr('Admin: delete chapter >>> ' . htmlspecialchars($_POST['admLastData'])); }
-			else { Error_manager::setErr('Chapitre supprimé : "' . htmlspecialchars($_POST['admLastData']) . '"'); }
+			if (isset($activeDebug)) { Error_manager::setErr('Admin: delete chapter >>> ' . $admLastData); }
+			else { Error_manager::setErr('Chapitre supprimé : "' . $admLastData . '"'); }
 		}
-		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to delete chapter ! [' . htmlspecialchars($_POST['admLastData']) . ']'); }
-		else { Error_manager::setErr('Suppression impossible pour : "' . htmlspecialchars($_POST['admLastData']) . '"'); }
+		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to delete chapter ! [' . $admLastData . ']'); }
+		else { Error_manager::setErr('Suppression impossible pour : "' . $admLastData . '"'); }
 	}
 	else if (isset($_POST['admMoveChapter']))
 	{
 		// An (reorder) update request was sent...
-		$chapterClass = new PDO_chapter($_POST['admLastData']);
+		$admLastData = PDO_chapter::htmlSecure($_POST['admLastData'], false, true);
+		$chapterClass = new PDO_chapter($admLastData);
 		if (isset($activeDebug)) { Error_manager::setErr('Admin: get chapter < ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
 		if ($chapterClass->getId()
 			&& $chapterClass->updateChapter($chapterClass->getId(), 
 											htmlspecialchars($_POST['admMoveChapter']), 
-											$chapterClass->getTitle()))
+											$chapterClass->getTitle(false)))
 		{
 			$chapterClass = new PDO_chapter(htmlspecialchars($_POST['admLastData']));
 			if (isset($activeDebug)) { Error_manager::setErr('Admin: update chapter >>> ' . $chapterClass->getTitle() . ' (' . $chapterClass->getOrder() . ')'); }
 			else { Error_manager::setErr('Chapitre déplacé : "' . $chapterClass->getTitle() . '"'); }
 		}
 		elseif (isset($activeDebug)) { Error_manager::setErr('Admin: failed to update chapter ! [' . $chapterClass->getTitle() . ']'); }
-		else { Error_manager::setErr('Déplacement impossible depuis : "' . htmlspecialchars($_POST['admLastData']) . '"'); }
+		else { Error_manager::setErr('Déplacement impossible depuis : "' . $admLastData . '"'); }
 	}
 }
 

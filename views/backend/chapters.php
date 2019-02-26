@@ -3,7 +3,7 @@
     <h2 class="theme-color theme-boxed-shadow theme-bckgrnd-color theme-boxed">Gestion des chapitres du livre</h2>
     <div class="c-flx flx-itm-st theme-dashed theme-dark-color theme-bckgrnd-color">
         <?php
-            if ($chapterList && $chapterList->rowCount() > 0)
+            if ($chapterList && count($chapterList) > 0)    // (->rowCount() if query)
             {
                 $_order = 0;
                 foreach ($chapterList as $data)
@@ -17,7 +17,7 @@
                         echo '<a href="#chapt-' . $_order . '" onclick="javascript:switch_adm_chapter();">';
                             echo '<i id="chap-d--' . $_order . '" class="fas fa-trash-alt" title="Supprimer le chapitre..."></i>';
                         echo '</a>';
-                        if ($_order < ($chapterList->rowCount() - 1))
+                        if ($_order < (count($chapterList) - 1))    // (->rowCount() if query)
                         {
                             echo '<a href="#chapt-' . $_order . '" onclick="javascript:document.getElementById(\'chap-fmu--'. $_order . '\').submit();">';
                                 echo '<i id="chap-mu--' . $_order . '" class="fas fa-caret-down" title="Descendre..."></i>';
@@ -65,7 +65,7 @@
                 </a>
             </p>
             <form id="chap-f--new-chap" class="hidden-tag chap-tag" action="#new-chapt" method="POST">
-                <input type="hidden" name="admLastData" value="<?php if ($chapterList) { echo $chapterList->rowCount(); } else { echo '0'; } ?>"/>
+                <input type="hidden" name="admLastData" value="<?php if ($chapterList) { echo count($chapterList); } else { echo '0'; } ?>"/>
                 <input type="text" name="admNewChapter" placeholder="Titre du chapitre" value="" maxlength="60" size="30" required/>
                 <input type="submit" value="Ajouter"/>
             </form>

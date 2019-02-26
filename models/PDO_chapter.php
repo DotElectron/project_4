@@ -32,9 +32,10 @@ class PDO_chapter extends PDO_manager
 	{
 		$this->title = $_title;
 	}
-	public function getTitle() 
+	public function getTitle($strip = true) 
 	{
-		return ($this->title);
+		if ($strip) { return (self::htmlSecure($this->title, true, true)); }
+		else { return ($this->title); }
 	}
 
 	// --------------------------------
@@ -462,7 +463,7 @@ class PDO_chapter extends PDO_manager
 
 	/**
 	* ...		(when admin modifies the chapter)
-	* @param int $_id (or string->getIdByTitle)
+	* @param mixed $_id (or string->getIdByTitle)
 	* @param int $_order
 	* @param string $_title
 	* @param bool [optional] $forceOd
@@ -549,7 +550,7 @@ class PDO_chapter extends PDO_manager
 
 	/**
 	* ...		(when admin deletes the chapter)
-	* @param int $_id (or string->getIdByTitle)
+	* @param mixed $_id (or string->getIdByTitle)
 	* @return bool connection/request
 	*/
 	final public function deleteChapter($_id, $__default = false) 
@@ -614,9 +615,19 @@ class PDO_chapter extends PDO_manager
 			$result = null;
 			try
 			{
-				$result = $this->getConnection()->query('SELECT chap_title 
-														 FROM chapters 
-														 ORDER BY chap_order ASC');
+				$request = $this->getConnection()->prepare('SELECT chap_title 
+														   FROM chapters 
+														   ORDER BY chap_order ASC');
+				if ($request->execute() > 0)
+				{
+					$result = $request->fetchAll();
+					//Html_decode...
+					for ($i = 0; $i < count($result); $i++)
+					{
+						$result[$i]['chap_title'] = self::htmlSecure($result[$i]['chap_title'], true, true);
+					}
+				}
+				
 			}
 			catch (\PDOException $err) 
 			{

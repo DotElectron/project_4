@@ -141,10 +141,9 @@ function selectedSubmit(fromChapter = false)
 			var pSel = document.getElementById("part-selector");
 			if (pSel !== null)
 			{
-				pSel.value = "new";
+				pSel.selectedIndex = 0; // value = "new";
 			}
 		}
-
 		//Submit the GET form...
 		selEdit.submit();
 	}
