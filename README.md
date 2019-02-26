@@ -5,18 +5,18 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-0.2.8.4 - Admin: {finalize advanced} parts actions (MVC)
+0.2.8.6 - Admin: {finalize advanced} parts actions (MVC)
 	* Update ...
 	* Execute the alpha plan (Test file)
 	* Write & Complete the Beta test plan
 	* Beta test : PASSED !
 
-!!!!!!!!!! ERROR ON CARRIER RETURN IN TINY MCE UPLOAD^^ !!!!!!!!!!!!!
-
 -----------------------
 
 Last versions :
 
+0.2.7.6 - Admin: {corrective} htmlSecure > Parts (MVC)
+0.2.7.5 - Admin: {corrective} htmlSecure > Chapters (MVC)
 0.2.7.4 - Admin: {corrective} PDO_part conditions (M)
 0.2.7.3 - Admin: {prepare advanced} parts actions (MVC)
 0.2.6.3 - Admin: {finalize basic} parts actions (MVC)
