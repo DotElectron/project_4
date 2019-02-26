@@ -116,6 +116,40 @@ abstract class PDO_manager
 			$this->acc = false;
 		}
 	}
+
+	// --------------------------------
+	// --------------------------------
+
+	public static function htmlSecure($htmlContent, $unlock = false, $force = false)
+	{
+		if ($unlock)
+		{
+			// Database to html...
+			if ($force)
+			{
+				//To unsafe html component...
+				return strip_tags($htmlContent);
+			}
+			else
+			{
+				//To secured html component...
+				return trim(preg_replace('/\s+/', ' ', html_entity_decode($htmlContent)));
+			}
+		}
+		else
+		{
+			if ($force)
+			{
+				//From unsafe html to database...
+				return strip_tags(str_replace(array('javascript:', '"'), '', $htmlContent));
+			}
+			else
+			{
+				//From secured html to database...
+				return htmlspecialchars(addslashes(preg_replace(array('/\&lt;\/?script\&gt;/', '/javascript:/'), '', $htmlContent)));
+			}
+		}
+	}
 }
 
 ?>
