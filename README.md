@@ -6,7 +6,9 @@ OpenClassRooms Project
 Current version (to write) :
 
 0.2.8.6 - Admin: {finalize advanced} parts actions (MVC)
-	* Update ...
+	* Update "Parts" (M) to manage chap reorder
+	* Update "admin.js" in association of view
+	* Update "Parts" (V) : W3C html validation
 	* Execute the alpha plan (Test file)
 	* Write & Complete the Beta test plan
 	* Beta test : PASSED !
