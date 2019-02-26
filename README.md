@@ -11,7 +11,7 @@ Current version (to write) :
 	* Update "Parts" (V) : W3C html validation
 	* Execute the alpha plan (Test file)
 	* Write & Complete the Beta test plan
-	* Beta test : PASSED !
+	* Beta test : PASSED ! ok.
 
 -----------------------
 

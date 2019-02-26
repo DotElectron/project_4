@@ -44,7 +44,7 @@ if (isset($_SESSION['accType']))
 	else
 	{
 		//Standard(Guest) menu...
-		$chapterClass = new PDO_chapter(' ');
+		$chapterClass = new PDO_chapter('¤');
 		$chapterList = $chapterClass->getAllChapters();
 		$chapterClass = null;
 
