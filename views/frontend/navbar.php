@@ -4,7 +4,7 @@
 	<!-- List of Chapters -->
 	<select id="readChapter" onchange="switch_chapter()">
 		<?php 
-			if ($chapterList && $chapterList->rowCount() > 0)
+			if ($chapterList && count($chapterList) > 0)    // (->rowCount() if query)
 			{
 				echo '<option value="">Faîtes votre sélection...</option>';
 				foreach ($chapterList as $data)
