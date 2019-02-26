@@ -4,7 +4,7 @@
     <div id="a-m-parts-lite" class="c-flx theme-dashed theme-dark-color theme-bckgrnd-color spacing lite-container">
         <form id="sel-edit" class="lite-spacing r-flx flx-jst-sb theme-boxed-shadow" method="GET">
             <div>
-                <label for="chapter">Chapitre : </label>
+                <label for="chap-selector">Chapitre : </label>
                 <select id="chap-selector" name="chapter" required onchange="chapterSubmit()">
                     <option value="draft" <?php if ($selectedChapter === null) { echo ' selected'; } ?>>Brouillon...</option>
                     <?php 
@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div>
-                <label for="part" class="cCase">épisode : </label>
+                <label for="part-selector" class="cCase">épisode : </label>
                 <select id="part-selector" name="part" required onchange="selectedSubmit()">
                     <option value="new" <?php if ($selectedPart === null) { echo ' selected'; } ?>>Nouveau...</option>
                     <?php 
@@ -57,7 +57,7 @@
         <?php if (isset($noChapter)) { echo '<p class="user-alert">Vous devrez créer un chapitre pour publier l\'épisode.</p>'; } ?>
         <div class="r-flx flx-jst-sa form-container">
             <form id="part-edit" action="#save-part" method="POST" onsubmit="getContentToSubmit()">
-                <label for="admSubtitle">Titre de l'épisode : </label>
+                <label for="adm-subtitle">Titre de l'épisode : </label>
                 <input type="text" id="adm-subtitle" name="admSubtitle" placeholder="(optionnel)" 
                     value="<?php if ($selPartData !== null) { echo $selPartData->getSubtitle(); } ?>" maxlength="60" size="30"/>
                 <input type="submit" value="Enregistrer l'épisode"/>
@@ -66,8 +66,8 @@
             </form>
             <form id="part-reorder" action="#move-part" method="POST">
                 <input type="hidden" name="admMovePart" value="<?php echo $selectedPart; ?>"/>
-                <label for="admMoveBefore">Nouvelle position : </label>
-                <select name="admMoveBefore" required>
+                <label for="adm-move-before">Nouvelle position : </label>
+                <select id="adm-move-before" name="admMoveBefore" required>
                     <?php 
                         if ($partList && count($partList) > 1)
                         {
@@ -92,6 +92,7 @@
                 </select>
                 <input type="submit" value="Déplacer l'épisode"/>
             </form>
+            
             <form id="part-delete" action="#del-part" method="POST">
                 <input type="hidden" name="admDelPart" value="<?php echo $selectedPart; ?>"/>
                 <input type="button" class="user-warning" value="Supprimer l'épisode" onclick="confirmBeforeSubmit()"/>            
