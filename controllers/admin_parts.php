@@ -22,6 +22,11 @@ if (isset($_POST['admRegister']))
 		$PartClass = new PDO_part($admFromPart);
 		//Prepare data...
 		$admFromChapter = null;
+		if (isset($_POST['admForeign'])
+			&& !(empty($_POST['admForeign'])))
+		{
+			$_GET['chapter'] = $_POST['admForeign'];	//Partial: not in url...
+		}
 		if (isset($_GET['chapter'])
 			&& $_GET['chapter'] !== 'draft')
 		{

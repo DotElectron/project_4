@@ -60,6 +60,11 @@
                 <label for="adm-subtitle">Titre de l'épisode : </label>
                 <input type="text" id="adm-subtitle" name="admSubtitle" placeholder="(optionnel)" 
                     value="<?php if ($selPartData !== null) { echo $selPartData->getSubtitle(); } ?>" maxlength="60" size="30"/>
+                <label title="Activer la case et choisissez un chapitre avant d'enregistrer">
+                    <input type="hidden" id="adm-foreign" name="admForeign" value=""/>
+                    <input type="checkbox" id="adm-for-check" onchange="switchChapSelAction()"/>
+                    Changer de chapitre
+                </label>
                 <input type="submit" value="Enregistrer l'épisode"/>
                 <input type="hidden" name="admRegister" value="¤"/>
                 <input type="hidden" id="hidden-part" name="admHtmlText" value=""/>
@@ -92,7 +97,6 @@
                 </select>
                 <input type="submit" value="Déplacer l'épisode"/>
             </form>
-            
             <form id="part-delete" action="#del-part" method="POST">
                 <input type="hidden" name="admDelPart" value="<?php echo $selectedPart; ?>"/>
                 <input type="button" class="user-warning" value="Supprimer l'épisode" onclick="confirmBeforeSubmit()"/>            

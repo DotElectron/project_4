@@ -151,11 +151,24 @@ function selectedSubmit(fromChapter = false)
 
 function getContentToSubmit()
 {
-	var TinyOutput = document.getElementById("hidden-part");
-	if (TinyOutput !== null)
+	var tinyOutput = document.getElementById("hidden-part");
+	if (tinyOutput !== null)
 	{
 		//Report the tiny content in the form component...
-		TinyOutput.value = tinymce.activeEditor.getContent();
+		tinyOutput.value = tinymce.activeEditor.getContent();
+	}
+
+	var admForCheck = document.getElementById("adm-for-check");
+	if (admForCheck !== null
+		&& admForCheck.checked)
+	{
+		var admForeign = document.getElementById("adm-foreign");
+		var chapSelector = document.getElementById("chap-selector");
+		if (admForeign !== null
+			&& chapSelector !== null)
+		{
+			admForeign.value = chapSelector.value;
+		}
 	}
 }
 
@@ -179,6 +192,28 @@ function confirmBeforeSubmit()
 	else if (confirm("Voulez-vous vraiment abandonner cet épisode (non enregistré) ?"))
 	{
 		window.location.reload();
+	}
+}
+
+function switchChapSelAction()
+{
+	var chapSelector = document.getElementById("chap-selector");
+	var partSelector = document.getElementById("part-selector");
+	if (chapSelector !== null
+		&& partSelector !== null)
+	{
+		if (chapSelector.onchange)
+		{
+			chapSelector.lastvalue = chapSelector.value;
+			chapSelector.onchange = "";
+			partSelector.disabled = "disabled";
+		}
+		else 
+		{ 
+			chapSelector.value = chapSelector.lastvalue;
+			chapSelector.onchange = chapterSubmit;
+			partSelector.disabled = "";
+		}
 	}
 }
 
