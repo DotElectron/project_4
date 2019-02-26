@@ -197,6 +197,26 @@ footer p
 	color: orangered;
 	text-align: center;
 }
+span.user-info
+{
+	color: darkolivegreen;
+	font-weight: bold;
+}
+i.user-info
+{
+	color: darkslategrey;		/* .theme-dark-color */
+	font-size: large;
+}
+p.user-info
+{
+	font-size: large;
+	font-style: italic;
+	text-align: justify;
+}
+.user-mask
+{
+	opacity: 0.8;
+}
 
 .as-inblock
 {
@@ -245,6 +265,13 @@ footer p
 	border-color: #D6AF8C;			/* ton6 chamois */
 }
 
+.theme-marked
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #D6AF8C;			/* ton6 chamois */
+}
+
 .theme-radius
 {
 	border-radius: 1em;
@@ -263,6 +290,11 @@ footer p
 .theme-boxed-shadow
 {
 	text-shadow: #D6AF8C 1px 1px 1px;
+}
+
+.theme-bckgrnd-mask
+{
+	background-color: rgba(255, 255, 255, 0.2);		/* white */
 }
 
 /* * * * * * * * * * * * */
@@ -351,6 +383,67 @@ footer p
 {
 	padding: 2em;
 	min-width: 20em;
+}
+
+#i-reader-parts--container article .user-info
+{
+	padding-left: 1em;
+	padding-top: 1em;
+	padding-right: 0.2em;
+}
+
+#i-reader-parts--container article .master-comment
+{
+	margin-top: 1em;
+}
+#i-reader-parts--container article a
+{
+	float: right;
+	margin-right: 1em;
+}
+#i-reader-parts--container article textarea
+{
+	margin-left: 3em;
+	width: 80%;
+	resize: none;
+}
+#i-reader-parts--container article .comm-submit
+{
+	margin-top: 2em;
+	float: right;
+}
+
+#i-reader-parts--container article .inner-comment
+{
+	margin-top: 2em;
+	padding: 1em;
+	margin-left: 3em;
+	width: 90%;
+
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;;
+}
+#i-reader-parts--container article .inner-comment span
+{
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#i-reader-parts--container article .inner-comment i.user-info
+{
+	margin-top: 0;
+	padding-top: 0;
+	float: right;
+}
+#i-reader-parts--container article .inner-comment p.user-info
+{
+	margin-left: 2em;
+	padding-bottom: 1em;
+	padding-right: 1em;
+	width: 80%;
 }
 
 /* * * * * * * * * * * * */
@@ -459,7 +552,7 @@ footer p
 		justify-content: center;
 		flex-wrap: wrap;
 	}
-	body, strong, h3, samp
+	body, strong, samp
 	{
 		font-size: xx-small;
 	}

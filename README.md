@@ -5,18 +5,39 @@ OpenClassRooms Project
 
 Current version (to write) :
 
-0.2.8.6 - Admin: {finalize advanced} parts actions (MVC)
-	* Update "Parts" (M) to manage chap reorder
-	* Update "admin.js" in association of view
-	* Update "Parts" (V) : W3C html validation
+0.x.x.x - 'Group': {'Step'} 'Title' ('Target')
+	* Update ...
 	* Execute the alpha plan (Test file)
 	* Write & Complete the Beta test plan
-	* Beta test : PASSED ! ok.
+	* Beta test : ...
+
+-----------------------
+
+AtTheEnd:
+0.x.x.x - 'About - Welcome (basic)'
+0.x.x.x - 'RGPD popup &responsive'
+
+0.x.x.x - ...
+
+ToDo:
+0.3.7.0 - Reader: {finalize advanced} comments for Admin (M?VC)
+0.3.6.0 - Reader: {prepare advanced} comments for Admin (M?VC)
+0.3.5.0 - Reader: {finalize basic} comments for Admin (VC)
+0.3.4.0 - Reader: {prepare basic} comments for Admin (VC)
+
+0.3.3.0 - Reader: {finalize advanced} comments for User (M?VC)
+
+Working:
+0.3.2.0 - Reader: {prepare advanced} comments for User (M?VC)
 
 -----------------------
 
 Last versions :
 
+0.3.1.0 - Reader: {basic} comments for user (VC)
+0.3.0.0 - General: {finalize} fully responsive (CSS)
+0.2.9.6 - Reader: {basic} reader for user (VC)
+0.2.8.6 - Admin: {finalize advanced} parts actions (MVC)
 0.2.7.6 - Admin: {corrective} htmlSecure > Parts (MVC)
 0.2.7.5 - Admin: {corrective} htmlSecure > Chapters (MVC)
 0.2.7.4 - Admin: {corrective} PDO_part conditions (M)

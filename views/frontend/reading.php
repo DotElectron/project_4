@@ -7,12 +7,41 @@
             {
                 foreach ($partList as $data)
                 {
-                    echo '<article>';
+                    echo '<article id="comments-' . $data['part_order'] . '" >';
+                        echo '<span class="user-info"><i class="fas fa-star user-info"></i>' . $data['part_order'] . '</span>';
                         if ($data['part_subtitle'] !== null)
                         {
                             echo '<h3>' . $data['part_subtitle'] . '</h3>';
                         }
                         echo stripslashes($data['part_text']);
+                        echo '<div class="master-comment">';
+                            echo '<a href="#comments" onclick="javascript:expandComments();">';
+                                echo '<i id="com-i--' . $data['part_order'] . '" class="fas fa-2x fa-angle-double-down" title="Consulter les commentaires..."></i>';
+                            echo '</a>';
+                            echo '<div id="com-d--' . $data['part_order'] . '" class="hidden-tag">';
+                                echo '<form id="com-f--' . $data['part_order'] . '" action="#comments-' . $data['part_order'] . '" method="POST"> ';
+                                    echo '<input type="hidden" name="userNewComm" value="¤"/>';
+                                    echo '<input type="hidden" id="com-c--' . $data['part_order'] . '" name="userComment" value=""/>';
+                                    echo '<i id="com-s--' . $data['part_order'] . '" class="fas fa-2x fa-sign-in-alt comm-submit" title="Poster votre commentaire..." onclick="javascript:submitComment();"></i>';
+                                echo '</form>';
+                                echo '<p id="com-l--' . $data['part_order'] . '" class="hidden-tag user-alert">Vous devez remplir le commentaire avant de poster...</p>';
+                                echo '<textarea id="com-t--' . $data['part_order'] . '" placeholder="Vous pouvez laisser ici votre commentaire..." value="" rows="7" maxlength="512"></textarea>';
+                                if ($data['comm_list'] && $data['comm_list']->rowCount() > 0)
+                                {
+                                    foreach ($data['comm_list'] as $commData)
+                                    {
+                                        echo '<div class="inner-comment theme-marked">';
+                                            echo '<span class="user-info">' . $commData['com_author'] . '</span>';
+                                            echo '<span class="user-info">' . $commData['com_date_fr'] . '</span>';
+                                            echo '<a href="#alert" onclick="">';
+                                                echo '<i class="fas fa-exclamation-triangle user-info user-mask" title="Signaler le commentaire..."></i>';
+                                            echo '</a>';
+                                            echo '<p class="user-info theme-bckgrnd-mask">' . $commData['com_text'] . '</p>';
+                                        echo '</div>';
+                                    }
+                                }
+                            echo '</div>';
+                        echo '</div>';
                     echo '</article>';
                 }
             }

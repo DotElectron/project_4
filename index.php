@@ -53,6 +53,7 @@ else { Error_manager::setErr('Error: session is down !'); }
     <script src="public/js/main.js"></script>
     <script src="public/js/navbar.js"></script>
     <script src="public/js/admin.js"></script>
+    <script src="public/js/user.js"></script>
     <script src="public/js/tiny-mce--fr.js"></script>
 </head>
 

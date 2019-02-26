@@ -75,6 +75,9 @@ else if (isset($_GET['uPart'])
 else if (isset($_GET['uComm'])
 		 && asAdminSession())
 {
+	//Verify administrator actions...
+	//include_once('controllers/admin_comments.php');
+
 	//Load the entire commentaries module...
 	if (isset($activeDebug)) 
 	{ 
@@ -88,12 +91,14 @@ else if (isSessionAlive()
 		&& (isset($_GET['iChap'])
 		 	|| asAdminSession()))
 {
+	//Verify user actions...
+	//include_once('controllers/user_comments.php');
+
 	// Load the chapter (Embedded parts + comments)...
 	$chapterClassObject = null;
 	if (isset($_GET['iChap']))
 	{
 		//Specified chapter [as user]
-
 		$chapterClassObject = new PDO_chapter(htmlspecialchars($_GET['iChap']));
 	}
 	else
@@ -104,6 +109,18 @@ else if (isSessionAlive()
 	$partClass = new PDO_part(null, '¤');
 	$partList = $partClass->getPartsOfChapter($chapterClassObject->getId()); 
 	$partClass = null;
+
+	//Update partList with respective comments...
+	for ($i = 0; $i < count($partList); $i++)
+	{
+		$partClass = new PDO_part($partList[$i]['part_order']);
+		$commClass = new PDO_comment("¤");
+		$commList = $commClass->getCommentsOfPart($partClass->getId());
+		//Dynamic add to partList...
+		$partList[$i]['comm_list'] = $commList;
+		$partClass = null;
+		$commClass = null;
+	}
 
 	if (isset($activeDebug)) 
 	{ 
