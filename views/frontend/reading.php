@@ -35,8 +35,8 @@
                                         echo '<div class="inner-comment theme-marked">';
                                             echo '<span class="user-info">' . $commData['com_author'] . '</span>';
                                             echo '<span class="user-info">' . $commData['com_date_fr'] . '</span>';
-                                            echo '<a href="#alert" onclick="">';
-                                                echo '<i class="fas fa-exclamation-triangle user-info user-mask" title="Signaler le commentaire..."></i>';
+                                            echo '<a href="#alert" onclick="javascript:reportComment();">';
+                                                echo '<i id="com-r--' . $commData['com_id'] . '" class="fas fa-exclamation-triangle user-info user-mask comm-tag" title="Signaler le commentaire..."></i>';
                                             echo '</a>';
                                             echo '<p class="user-info theme-bckgrnd-mask">' . stripslashes($commData['com_text']) . '</p>';
                                         echo '</div>';

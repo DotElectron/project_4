@@ -140,7 +140,10 @@ main
 #data-area h2
 {
 	width: 100%;
+	margin-left: -5%;
 	padding: 1em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
 	text-align: center;
 }
 .debug-area
@@ -215,7 +218,7 @@ p.user-info
 }
 .user-mask
 {
-	opacity: 0.8;
+	opacity: 0.7;
 }
 
 .as-inblock
@@ -483,11 +486,6 @@ p.user-info
 
 @media screen and (max-width: 55em)
 {
-	#data-area h2
-	{
-		width: 95%;
-		margin-left:-5%;
-	}
 	#a-m-chapters,
 	#a-m-parts,
 	#i-reader--container
@@ -531,7 +529,7 @@ p.user-info
 	}
 	#data-area, #data-area h2
 	{
-		width: 101%;
+		width: 100%;
 		margin: 0;
 		padding: 0;
 	}
@@ -539,6 +537,7 @@ p.user-info
 	{
 		padding-top: 1em;
 		padding-bottom: 1em;
+		margin-left: -5%;
 	}
 }
 
@@ -586,6 +585,10 @@ p.user-info
 	{
 		padding: 0.25em;
 		max-width: 100%;
+	}
+	#data-area, #data-area h2
+	{
+		margin: 0;
 	}
 }
 

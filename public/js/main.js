@@ -61,4 +61,17 @@ function body_adjustement()
 		}
 	}
 	winLocStr = null;
+
+	// Comm'alerts from user cookies...
+	var commList = document.getElementsByClassName("comm-tag");
+	for (let comm of commList)
+	{
+		if (document.cookie.includes(comm.id))
+		{
+			//Update the alert...
+			comm.classList.remove("user-info");
+			comm.classList.add("user-alert");
+		}
+	}
+	commList = null;
 }

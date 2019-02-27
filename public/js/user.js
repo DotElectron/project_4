@@ -102,3 +102,41 @@ function submitComment(e)
 		}
 	}
 }
+
+function reportComment(e)
+{
+	if (!e) { e = window.event; }
+	var sender = e.srcElement || e.target;
+	if (sender !== null) 
+	{
+		if (sender.classList.contains("user-alert"))
+		{
+			// User removed his alert...
+			sender.classList.remove("user-alert");
+			sender.classList.add("user-info");
+			sender.title = "Signaler le commentaire...";
+			// Use ajax to update the database...
+			ajaxRemAlertOnComment(sender.id.replace('com-r--', ''));
+			// Unset action in cookie...
+			document.cookie = sender.id + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+		}
+		else
+		{
+			// User sended an alert...
+			sender.classList.remove("user-info");
+			sender.classList.add("user-alert");
+			sender.title = "Retirer votre signalement...";
+			// Use ajax to update the database...
+			ajaxSendAlertOnComment(sender.id.replace('com-r--', ''));
+			// Set action in cookie...
+			var utcMilliAtOneMonth = Date.now() + (1000*60*60*24*30);		//30 days in ms
+			var utcStrDateAtOneMonth = new Date(utcMilliAtOneMonth).toUTCString();
+			document.cookie = sender.id + "=reportedComment; expires=" + utcStrDateAtOneMonth + "; path=/";
+			utcMilliAtOneMonth = null;
+			utcStrDateAtOneMonth = null;
+		}
+	}
+}
+
+// -------------------------------------
+// -------------------------------------

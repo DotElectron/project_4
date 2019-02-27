@@ -12,6 +12,7 @@ $activeDebug = true;
 session_name('PhpRootSession');
 if (session_start())
 {
+    $_SESSION['activeDebug'] = $activeDebug;
     if (isset($activeDebug) || isset($activeTest)) 
     { 
         Error_manager::setErr('[Session is loaded]'); 
@@ -54,6 +55,7 @@ else { Error_manager::setErr('Error: session is down !'); }
     <script src="public/js/navbar.js"></script>
     <script src="public/js/admin.js"></script>
     <script src="public/js/user.js"></script>
+    <script src="public/js/ajax.js"></script>
     <script src="public/js/tiny-mce--fr.js"></script>
 </head>
 

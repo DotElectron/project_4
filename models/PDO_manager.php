@@ -3,7 +3,7 @@
 namespace Rochefort\Classes;
 require_once('Error_manager.php');
 
-$SQL_Version = null;
+$sqlVersion = null;
 
 abstract class PDO_manager
 {
@@ -32,7 +32,8 @@ abstract class PDO_manager
 	*/
 	final protected function dbConnect($asWriter = false) 
 	{
-		global $SQL_Version;
+		global $altRootPath;		//from upstream file: ajax job...
+		global $sqlVersion;
 		global $activeDebug;
 		global $activeTest;
 		$this->db = null;
@@ -40,7 +41,7 @@ abstract class PDO_manager
 		try 
 		{
 			//Get the configuration...
-			$config = parse_ini_file('private/config.ini'); 
+			$config = parse_ini_file($altRootPath . 'private/config.ini'); 
 			$account = null;
 			$password = null;
 			if (!$asWriter)
@@ -73,10 +74,10 @@ abstract class PDO_manager
 			//Debug...
 			if ((isset($activeDebug) || isset($activeTest)) && $this->hasConnection()) 
 			{ 
-				if ($SQL_Version === null) 
+				if ($sqlVersion === null) 
 				{ 
-						$SQL_Version = $this->db->getAttribute(\PDO::ATTR_SERVER_VERSION);
-						Error_manager::setErr('* * * SQL version: ' . $SQL_Version . ' * * *');
+						$sqlVersion = $this->db->getAttribute(\PDO::ATTR_SERVER_VERSION);
+						Error_manager::setErr('* * * SQL version: ' . $sqlVersion . ' * * *');
 				}
 				$accType = '';
 				if ($config['reader'] === $config['writer'])

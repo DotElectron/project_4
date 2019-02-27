@@ -13,6 +13,7 @@ RewriteRule ^author.manage-parts///(.*)$ ?uPart&$1 [L]
 RewriteRule ^author.manage-parts$ ?uPart [L]
 RewriteRule ^author.manage-comments$ ?uComm [L]
 RewriteRule ^chapter.read-(.*)$ ?iChap=$1 [L]
+RewriteRule ^ajax-redir--(.*)$ controllers/$1.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . . [R=301,L]

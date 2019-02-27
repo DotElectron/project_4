@@ -494,7 +494,7 @@ class PDO_comment extends PDO_manager
 					$range .= ' AND com_flag > 0';
 				}
 				//First version is the user fields...
-				$fields = ' com_author, DATE_FORMAT(com_modifier, \'%d/%m/%y %H:%i\') AS com_date_fr, com_text';
+				$fields = ' com_author, DATE_FORMAT(com_modifier, \'%d/%m/%y %H:%i\') AS com_date_fr, com_text, com_id';
 				if ($flagOrder || (is_numeric($visibleRange) && $visibleRange > 0) || $_part === null)
 				{
 					//This version is the admin fields...
