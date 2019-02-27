@@ -34,23 +34,18 @@ function body_adjustement()
 
 	// Comments area visibility...
 	var winLocStr = window.location.toString();
-	console.log("url: " + winLocStr);
 	if (winLocStr.includes("#comments-"))
 	{
 		//Get the current ordered component...
 		var idx = winLocStr.indexOf("#comments-");
-		console.log("idx: " + idx);
 		var id = winLocStr.substring((idx + 10));
-		console.log("id: " + id);
 
 		//Transform the current to update his visbility...
 		var blockId = "com-d--" + id; 
-		console.log("blockId: " + blockId);
 		var blockComment = document.getElementById(blockId);
 		if (blockComment !== null)
 		{
 			var iconId = "com-i--" + id; 
-			console.log("iconId: " + iconId);
 			var iconComment = document.getElementById(iconId);
 			if (blockComment.style.display === ""
 				|| blockComment.style.display === "none")

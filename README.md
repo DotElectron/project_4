@@ -1,6 +1,8 @@
 # Project_4
 OpenClassRooms Project
 
+Dev inner version at the end: 0.40.14+
+
 -----------------------
 
 Current version (to write) :
@@ -30,6 +32,7 @@ ToDo (Thursday):
 
 Working:
 0.3.3.3 - Reader: {finalize advanced} comments for User (M?VC+js:Ajax?)
+... corrective css: Ipad responsive step.
 
 -----------------------
 
