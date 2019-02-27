@@ -24,7 +24,29 @@ function expandComments(e)
 				blockComment.style.display = "none";
 				sender.className = "fas fa-2x fa-angle-double-down";
 			}
+			usrResetActions(sendId);
 			blockComment = null;
+		}
+	}
+}
+
+function usrResetActions(senderId)
+{
+	//Applied on all taggued components: 'part-tag' (div) [except sender]
+	for (let iPart of document.getElementsByClassName('part-tag'))
+	{
+		if (iPart.id !== senderId
+			&& iPart.style.display === "block")
+		{
+			iPart.style.display = "none";
+			var blockId = iPart.id.replace('-d--', '-i--'); 
+			var blockComment = document.getElementById(blockId);
+			if (blockComment !== null)
+			{
+				blockComment.className = "fas fa-2x fa-angle-double-down";
+			}
+			blockComment = null;
+			blockId = null;
 		}
 	}
 }

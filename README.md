@@ -22,18 +22,18 @@ AtTheEnd:
 ToDo:
 0.3.7.x - Reader: {finalize advanced} comments for Admin (M?VC)
 0.3.6.x - Reader: {prepare advanced} comments for Admin (M?VC)
+
 0.3.5.x - Reader: {finalize basic} comments for Admin (VC)
 0.3.4.x - Reader: {prepare basic} comments for Admin (VC)
 
-0.3.3.1 - Reader: {finalize advanced} comments for User (M?VC)
-
 Working:
-0.3.2.1 - Reader: {prepare advanced} comments for User (M?VC)
+0.3.3.1 - Reader: {finalize advanced} comments for User (M?VC)
 
 -----------------------
 
 Last versions :
 
+0.3.2.1 - Reader: {prepare advanced} comments for User (MVC)
 0.3.1.1 - Admin: {corrective} htmlSecure - url restrictions (M)
 0.3.1.0 - Reader: {basic} comments for user (VC)
 0.3.0.0 - General: {finalize} fully responsive (CSS)

@@ -92,7 +92,7 @@ else if (isSessionAlive()
 		 	|| asAdminSession()))
 {
 	//Verify user actions...
-	//include_once('controllers/user_comments.php');
+	include_once('controllers/user_comments.php');
 
 	// Load the chapter (Embedded parts + comments)...
 	$chapterClassObject = null;

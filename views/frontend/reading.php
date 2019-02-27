@@ -18,11 +18,13 @@
                             echo '<a href="#comments" onclick="javascript:expandComments();">';
                                 echo '<i id="com-i--' . $data['part_order'] . '" class="fas fa-2x fa-angle-double-down" title="Consulter les commentaires..."></i>';
                             echo '</a>';
-                            echo '<div id="com-d--' . $data['part_order'] . '" class="hidden-tag">';
+                            echo '<div id="com-d--' . $data['part_order'] . '" class="hidden-tag part-tag">';
                                 echo '<form id="com-f--' . $data['part_order'] . '" action="#comments-' . $data['part_order'] . '" method="POST"> ';
-                                    echo '<input type="hidden" name="userNewComm" value="¤"/>';
+                                    echo '<input type="hidden" name="userNewComm" value="' . $data['part_order'] .'"/>';
                                     echo '<input type="hidden" id="com-c--' . $data['part_order'] . '" name="userComment" value=""/>';
-                                    echo '<i id="com-s--' . $data['part_order'] . '" class="fas fa-2x fa-sign-in-alt comm-submit" title="Poster votre commentaire..." onclick="javascript:submitComment();"></i>';
+                                    echo '<a href="#comments-post" onclick="javascript:submitComment();">';
+                                        echo '<i id="com-s--' . $data['part_order'] . '" class="fas fa-2x fa-sign-in-alt comm-submit" title="Poster votre commentaire..."></i>';
+                                    echo '</a>';
                                 echo '</form>';
                                 echo '<p id="com-l--' . $data['part_order'] . '" class="hidden-tag user-alert">Vous devez remplir le commentaire avant de poster...</p>';
                                 echo '<textarea id="com-t--' . $data['part_order'] . '" placeholder="Vous pouvez laisser ici votre commentaire..." value="" rows="7" maxlength="512"></textarea>';

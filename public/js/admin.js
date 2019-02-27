@@ -46,7 +46,7 @@ function switch_adm_chapter(e)
 			chapterForm.style.display = "none";
 		}
 		// hasAction(sendId);
-		resetActions(sendId);
+		admResetActions(sendId);
 		chapterForm = null;
 	}
 	sendId = null;
@@ -78,14 +78,14 @@ function switch_adm_chapter(e)
 // 	altSendId = null;
 // }
 
-function resetActions(senderId)
+function admResetActions(senderId)
 {
 	//Applied on all taggued components: 'chap-tag' (forms) [except sender]
-	for (let chapi of document.getElementsByClassName('chap-tag'))
+	for (let iChap of document.getElementsByClassName('chap-tag'))
 	{
-		if (chapi.id !== senderId)
+		if (iChap.id !== senderId)
 		{
-			chapi.style.display = "none";
+			iChap.style.display = "none";
 		}
 	}
 }

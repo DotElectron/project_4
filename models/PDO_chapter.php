@@ -50,9 +50,16 @@ class PDO_chapter extends PDO_manager
 			{	
 				try
 				{
+					$statement = ' WHERE chap_title = ?';
+					if ($_title === '?')
+					{
+						// Particular case: get last id...
+						$statement = ' ORDER BY chap_order DESC LIMIT 1';
+					}
+
 					$request = $this->getConnection()->prepare('SELECT *
-																FROM chapters 
-																WHERE chap_title = ?');
+																FROM chapters'
+																. $statement);
 					if ($request->execute(array($_title)) > 0)
 					{
 						$result = $request->fetch();
