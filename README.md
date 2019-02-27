@@ -27,12 +27,13 @@ ToDo:
 0.3.4.x - Reader: {prepare basic} comments for Admin (VC)
 
 Working:
-0.3.3.1 - Reader: {finalize advanced} comments for User (M?VC)
+0.3.3.2 - Reader: {finalize advanced} comments for User (M?VC)
 
 -----------------------
 
 Last versions :
 
+0.3.2.2 - Reader: {minor update} username & visual comment (MVC)
 0.3.2.1 - Reader: {prepare advanced} comments for User (MVC)
 0.3.1.1 - Admin: {corrective} htmlSecure - url restrictions (M)
 0.3.1.0 - Reader: {basic} comments for user (VC)

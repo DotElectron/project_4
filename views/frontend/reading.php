@@ -38,7 +38,7 @@
                                             echo '<a href="#alert" onclick="">';
                                                 echo '<i class="fas fa-exclamation-triangle user-info user-mask" title="Signaler le commentaire..."></i>';
                                             echo '</a>';
-                                            echo '<p class="user-info theme-bckgrnd-mask">' . $commData['com_text'] . '</p>';
+                                            echo '<p class="user-info theme-bckgrnd-mask">' . stripslashes($commData['com_text']) . '</p>';
                                         echo '</div>';
                                     }
                                 }

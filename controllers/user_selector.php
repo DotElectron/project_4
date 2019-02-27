@@ -3,6 +3,10 @@
 namespace Rochefort\Controllers;
 require_once('models/Error_manager.php');
 use Rochefort\Classes\Error_manager;
+
+require_once('models/PDO_manager.php');
+use Rochefort\Classes\PDO_manager; 
+
 require_once('models/User_manager.php');
 use Rochefort\Classes\User_manager; 
 use Rochefort\Classes\UserType; 
@@ -58,7 +62,7 @@ function userSelector()
 		{
 			//Standard user requested connection...
 			$currentUser = new User_manager(userType::STANDARD_USER, 
-											htmlspecialchars($_POST['accUser']));
+											PDO_manager::htmlSecure($_POST['accUser'], false, true));
 			if (isset($activeDebug)) { Error_manager::setErr('Try ACC [>>User]: ' 
 															. var_export($currentUser->hasValidAccount(), true)); }
 			unset($_POST['accUser']);

@@ -141,7 +141,7 @@ abstract class PDO_manager
 			if ($force)
 			{
 				//Remove restricted characters... (accents allowed & treated by unicode chars)
-				$htmlContent = preg_replace('/[^\p{L}a-zA-Z0-9\$\_\-\*\'\(\) ]+/u', '', $htmlContent);
+				$htmlContent = preg_replace('/[^\p{L}\p{N}\$\_\-\*\'\(\) ]+/u', '', $htmlContent);
 				//From unsafe html to database...
 				return strip_tags(str_replace(array('javascript:', '"'), '', $htmlContent));
 			}
