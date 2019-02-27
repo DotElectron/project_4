@@ -315,7 +315,7 @@ class PDO_comment extends PDO_manager
 				//Check a valid Order...
 				if ($this->isExist($_id))
 				{
-					//Corrective value...		//See 'bindValue'
+					//Corrective value...		//See 'bindValue': \PDO::PARAM_BOOL
 					//if (!$_muted) { $_muted = 0; }
 					//Update execution...
 					$result = -1;
@@ -360,7 +360,7 @@ class PDO_comment extends PDO_manager
 	*/
 
 	/**
-	* ...		(when BETA TEST deletes from part)
+	* ...		(when APLHA TEST deletes from part)
 	* @param int [optional] $_part default=-1
 	* @return bool connection/request
 	*/

@@ -7,14 +7,14 @@
             {
                 foreach ($partList as $data)
                 {
-                    echo '<article id="comments-' . $data['part_order'] . '" >';
+                    echo '<article>';
                         echo '<span class="user-info"><i class="fas fa-star user-info"></i>' . $data['part_order'] . '</span>';
                         if ($data['part_subtitle'] !== null)
                         {
                             echo '<h3>' . $data['part_subtitle'] . '</h3>';
                         }
                         echo stripslashes($data['part_text']);
-                        echo '<div class="master-comment">';
+                        echo '<div class="master-comment" id="comments-' . $data['part_order'] . '">';
                             echo '<a href="#comments" onclick="javascript:expandComments();">';
                                 echo '<i id="com-i--' . $data['part_order'] . '" class="fas fa-2x fa-angle-double-down" title="Consulter les commentaires..."></i>';
                             echo '</a>';

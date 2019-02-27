@@ -57,7 +57,7 @@ if (isset($_POST['userNewComm']))
 		$usrHtmlText = null;
 		$CommClass = null;
 	}
-	elseif (isset($_GET['userAlert']))
+	elseif (isset($_POST['userAlert']))
 	{
 		// A 'alert' request was sent...
 	}
