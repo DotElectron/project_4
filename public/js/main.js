@@ -60,7 +60,6 @@ function body_adjustement()
 			blockComment = null;
 		}
 	}
-	winLocStr = null;
 
 	// Comm'alerts from user cookies...
 	var commList = document.getElementsByClassName("comm-tag");
@@ -74,4 +73,23 @@ function body_adjustement()
 		}
 	}
 	commList = null;
+
+	//Comm'admin visibility
+	if (winLocStr.includes("?mut"))
+	{
+		var commSwapper = document.getElementById("comm-swapper");
+		if (commSwapper !== null)
+		{
+			commSwapper.state = winLocStr.substring(winLocStr.length - 1);
+			if (commSwapper.state == 1)
+			{
+				commSwapper.checked = true;
+			} 
+			else if (commSwapper.state == 2)
+			{
+				commSwapper.indeterminate = true;
+			}
+		}
+	}
+	winLocStr = null;
 }

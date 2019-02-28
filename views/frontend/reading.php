@@ -28,7 +28,7 @@
                                 echo '</form>';
                                 echo '<p id="com-l--' . $data['part_order'] . '" class="hidden-tag user-alert">Vous devez remplir le commentaire avant de poster...</p>';
                                 echo '<textarea id="com-t--' . $data['part_order'] . '" placeholder="Vous pouvez laisser ici votre commentaire..." value="" rows="7" maxlength="512"></textarea>';
-                                if ($data['comm_list'] && $data['comm_list']->rowCount() > 0)
+                                if ($data['comm_list'] && count($data['comm_list']) > 0)    // (->rowCount() if query)
                                 {
                                     foreach ($data['comm_list'] as $commData)
                                     {

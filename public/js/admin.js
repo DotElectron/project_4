@@ -218,4 +218,85 @@ function switchChapSelAction()
 }
 
 // -------------------------------------
+// ------------ COMMENTS ---------------
+
+function muteSwap(e)
+{
+	if (!e) { e = window.event; }
+	var sender = e.srcElement || e.target;
+	if (sender !== null) 
+	{
+		//Initialize the "static" property...
+		if (typeof sender.state === "undefined")
+		{
+			sender.state = 0;
+		}
+
+		//Verify the state...
+		if (sender.checked 
+			&& sender.state == 0)
+		{
+			sender.state = 1;
+		}
+		else if (!sender.checked
+				 && sender.state == 1)
+		{
+			sender.indeterminate = true;
+			sender.state = 2;
+		}
+		else if (sender.checked
+				 && sender.state == 2)
+		{
+			sender.checked = false;
+			sender.state = 0;
+		}
+	}
+}
+
+function flagSwap()
+{
+	var commSwapper = document.getElementById("comm-swapper");
+	if (commSwapper !== null)
+	{
+		if (commSwapper.state)
+		{
+			window.location = "?mute=" + commSwapper.state;
+		}
+		else { window.location = "?mute=0"; }
+	}
+	else { window.location.reload(); } 
+}
+
+function muteComment(e)
+{
+	if (!e) { e = window.event; }
+	var sender = e.srcElement || e.target;
+	if (sender !== null) 
+	{
+		if (sender.classList.contains("user-alert"))
+		{
+			// Admin removed the ban...
+			sender.classList.remove("user-alert");
+			sender.classList.add("user-info");
+			sender.classList.remove("fa-eye-slash");
+			sender.classList.add("fa-eye");
+			sender.title = "Retirer le commentaire...";
+			// Use ajax to update the database...
+			ajaxRemBanOnComment(sender.id.replace('com-rm--', ''));
+		}
+		else
+		{
+			// Admin revoked the comment...
+			sender.classList.remove("user-info");
+			sender.classList.add("user-alert");
+			sender.classList.remove("fa-eye");
+			sender.classList.add("fa-eye-slash");
+			sender.title = "Remettre le commentaire...";
+			// Use ajax to update the database...
+			ajaxSendBanOnComment(sender.id.replace('com-rm--', ''));
+		}
+	}
+}
+
+// -------------------------------------
 // -------------------------------------

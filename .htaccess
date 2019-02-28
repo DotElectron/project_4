@@ -11,6 +11,9 @@ RewriteCond %{REQUEST_URI} /author.manage-parts
 RewriteRule (.*) $1///%{QUERY_STRING} [C]
 RewriteRule ^author.manage-parts///(.*)$ ?uPart&$1 [L]
 RewriteRule ^author.manage-parts$ ?uPart [L]
+RewriteCond %{REQUEST_URI} /author.manage-comments
+RewriteRule (.*) $1///%{QUERY_STRING} [C]
+RewriteRule ^author.manage-comments///(.*)$ ?uComm&$1 [L]
 RewriteRule ^author.manage-comments$ ?uComm [L]
 RewriteRule ^chapter.read-(.*)$ ?iChap=$1 [L]
 RewriteRule ^ajax-redir--(.*)$ controllers/$1.php [L]

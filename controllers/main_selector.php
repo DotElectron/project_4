@@ -75,8 +75,17 @@ else if (isset($_GET['uPart'])
 else if (isset($_GET['uComm'])
 		 && asAdminSession())
 {
-	//Verify administrator actions...
+	//Verify administrator actions (delete case?)...
 	//include_once('controllers/admin_comments.php');
+
+	$muted = 0;
+	if (isset($_GET['mute']))
+	{
+		$muted = htmlspecialchars($_GET['mute']);
+	}
+
+	$commClass = new PDO_comment("¤");
+	$commList = $commClass->getCommentsOfPart('?', true, $muted);
 
 	//Load the entire commentaries module...
 	if (isset($activeDebug)) 
@@ -111,13 +120,13 @@ else if (isSessionAlive()
 	$partClass = null;
 
 	//Update partList with respective comments...
-	for ($i = 0; $i < count($partList); $i++)
+	for ($item = 0; $item < count($partList); $item++)
 	{
-		$partClass = new PDO_part($partList[$i]['part_order']);
+		$partClass = new PDO_part($partList[$item]['part_order']);
 		$commClass = new PDO_comment("¤");
 		$commList = $commClass->getCommentsOfPart($partClass->getId());
 		//Dynamic add to partList...
-		$partList[$i]['comm_list'] = $commList;
+		$partList[$item]['comm_list'] = $commList;
 		$partClass = null;
 		$commClass = null;
 	}

@@ -15,7 +15,7 @@ Current version (to write) :
 
 -----------------------
 
-AtTheEnd (Friday):
+ToDo:
 0.3.8.x - 'About - Welcome (basic: html/css)' (V)
 	... dynamic head data in html (simulate new pages)
 0.3.9.x - 'RGPD popup &responsive' (basic+js+LocalStorage)
@@ -24,19 +24,18 @@ AtTheEnd (Friday):
 ... Graph-scheme of MVC modelization.
 ... Graph-scheme of database modelization.
 
-ToDo (Thursday):
-0.3.7.x - Reader: {finalize advanced} comments for Admin (M?VC)
-0.3.6.x - Reader: {prepare advanced} comments for Admin (M?VC)
-
 Working:
-0.3.5.x - Reader: {basic} comments for Admin (V+js?C)
+0.3.7.4 - General: {finalize} update visual effects (CSS)
 
 -----------------------
 
 Last versions :
 
+0.3.7.3 - Admin: {finalize advanced} comments actions (MVC)
+0.3.6.3 - Admin: {prepare advanced} comments actions (MVC)
+0.3.5.3 - Admin: {basic} comments actions (VC+js+ajax)
 0.3.4.3 - Reader+: {enhanced} comments for User (C+js)
-0.3.3.3 - Reader: {finalize advanced} comments for User (MV+js+Ajax)
+0.3.3.3 - Reader: {finalize advanced} comments for User (MV+js+ajax)
 0.3.2.3 - Reader: {minor update} comment visual return (V+js)
 0.3.2.2 - Reader: {minor update} username & visual comment (MVC)
 0.3.2.1 - Reader: {prepare advanced} comments for User (MVC)

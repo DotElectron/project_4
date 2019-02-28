@@ -466,7 +466,7 @@ class PDO_comment extends PDO_manager
 
 	/**
 	* ...		(when user/admin requests a group of comments)
-	* @param int $_part
+	* @param mixed $_part (int or null or '?')
 	* @param bool [optional] $flagOrder (else: dateOrder) default=false
 	* @param bool [optional] $visibleRange (0:notMutedOnly;1:mutedOnly;2:both) default=0
 	* @return bool All ordered Comments of the part...
@@ -482,6 +482,7 @@ class PDO_comment extends PDO_manager
 				//Query values insertion...
 				$where = ' = ' . $_part;
 				if ($_part === null) { $where = ' IS NULL'; }
+				elseif ($_part === '?') { $where = ' LIKE "%"'; }
 				$range = '';
 				if (is_numeric($visibleRange) & $visibleRange < 2)
 				{
@@ -495,15 +496,36 @@ class PDO_comment extends PDO_manager
 				}
 				//First version is the user fields...
 				$fields = ' com_author, DATE_FORMAT(com_modifier, \'%d/%m/%y %H:%i\') AS com_date_fr, com_text, com_id';
+				$join = '';
 				if ($flagOrder || (is_numeric($visibleRange) && $visibleRange > 0) || $_part === null)
 				{
 					//This version is the admin fields...
-					$fields = ' com_flag, com_part_id, com_author, com_text, com_muted ';
+					$fields = ' com_flag, com_author, com_text, com_muted, com_id';
+					if ($_part !== null) 
+					{ 
+						$join = ' INNER JOIN parts ON com_part_id = part_id'; 
+						$fields .= ', SUBSTRING(CONCAT(part_subtitle, " - ", part_text) FROM 1 FOR 600) as part_short_title';
+					}
 				}
-				$result = $this->getConnection()->query('SELECT' . $fields 
-														. ' FROM comments
-															WHERE com_part_id' . $where . $range
-														. ' ORDER BY' . $orderBy . 'DESC');
+				$request = $this->getConnection()->prepare('SELECT' . $fields 
+														  . ' FROM comments' . $join
+														  . ' WHERE com_part_id' . $where . $range
+														  . ' ORDER BY' . $orderBy . 'DESC');
+				if ($request->execute() > 0)
+				{
+					$result = $request->fetchAll();
+					//Html_decode...
+					for ($i = 0; $i < count($result); $i++)
+					{
+						$result[$i]['com_author'] = self::htmlSecure($result[$i]['com_author'], true, true);
+						$result[$i]['com_text'] = self::htmlSecure($result[$i]['com_text'], true);
+						if (!(empty($join)))
+						{
+							$result[$i]['part_short_title'] = 
+								substr(strip_tags(self::htmlSecure($result[$i]['part_short_title'], true)), 0, 120) . '...';
+						}
+					}
+				}
 			}
 			catch (\PDOException $err) 
 			{

@@ -7,6 +7,8 @@ var ajaxCat =
 	// Ajax command...
 	AddAlert: 1,
 	RemAlert: 2,
+	AddBan: 3,
+	RemBan: 4,
 	properties: 
 	{
 		1: 
@@ -20,6 +22,18 @@ var ajaxCat =
 			name: "Remove_Alert_Comment", 
 			code: "ajax-redir--user_comm-alert",
 			action: "userAlert=false&userIdentifier="
+		},
+		3: 
+	  	{
+			name: "Add_Ban_Comment", 
+			code: "ajax-redir--admin_comm-ban",
+			action: "adminBan=true&adminIdentifier="
+		},
+		4: 
+	  	{
+			name: "Remove_Ban_Comment", 
+			code: "ajax-redir--admin_comm-ban",
+			action: "adminBan=false&adminIdentifier="
 		}
 	}
 };
@@ -72,6 +86,19 @@ function ajaxRemAlertOnComment(commId)
 	ajaxMasterTreatment(ajaxCat.RemAlert, commId);
 }
 
+// -------------------
+
+function ajaxSendBanOnComment(commId)
+{
+	//Update comment with a positive mute state...
+	ajaxMasterTreatment(ajaxCat.AddBan, commId);
+}
+
+function ajaxRemBanOnComment(commId)
+{
+	//Update comment with a negative mute state...
+	ajaxMasterTreatment(ajaxCat.RemBan, commId);
+}
 
 // -------------------------------------
 // -------------------------------------
