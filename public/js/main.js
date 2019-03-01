@@ -92,4 +92,50 @@ function body_adjustement()
 		}
 	}
 	winLocStr = null;
+
+	//Verify RGPD validation (once)...
+	if (sessionStorage.getItem("jfr_rgpd") === null)
+	{
+		if (typeof localStorage != 'undefined')
+		{
+			var rgpd_ls = localStorage.getItem("jfr_rgpd");
+			if (rgpd_ls !== null
+				&& (rgpd_ls + (1000*60*60*24*7)) > Date.now())		// 7 days
+			{
+				sessionStorage.setItem("jfr_rgpd", Date.now().toString());
+				valid_rgpd();
+			}
+		}
+	}
+	else { valid_rgpd(); }
+}
+
+// -----------------------------
+
+function valid_rgpd()
+{
+	var rgpd = document.getElementById("rgpd");
+	if (rgpd !== null)
+	{
+		rgpd.style.display = "none";
+		var cookies = document.getElementById("cookies");
+		if (cookies !== null)
+		{
+			cookies.style.display = "none";
+		}
+	}
+	// Store validation in local storage...
+	if (typeof localStorage != 'undefined')
+	{
+		localStorage.setItem('jfr_rgpd', Date.now().toString());
+	}
+}
+
+function explain_rgpd()
+{
+	var cookies = document.getElementById("cookies");
+	if (cookies !== null)
+	{
+		cookies.style.display = "block";
+	}
 }

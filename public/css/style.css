@@ -159,19 +159,57 @@ main
 	padding-bottom: 0.5em;
 }
 
-footer
+footer,
+#rgpd
 {
+	z-index: 1;
 	width: 100%;
 	height: 4em;
 	position: fixed;
 	bottom: 0;
 }
-footer p
+#copyright,
+#rgpd p,
+#cookies p
 {
 	padding-top: 1em;
 	font-weight: bold;
 }
 
+#rgpd
+{
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#cookies
+{
+	z-index: 2;
+	margin: auto;
+	position: fixed;
+	left: 10%;
+	top: 25%;
+	width: 80%;
+	min-height: 40%;
+}
+#rgpd p,
+#cookies p
+{
+	padding-left: 1em;
+	padding-right: 1em;
+	text-align: justify;
+}
+#cookies strong
+{
+	padding: 1em;
+	margin-bottom: 1em;
+}
+#cookies button
+{
+	padding: 1em;
+	font-size: large;
+	margin-top: 2em;
+}
 
 /* * * * * * * * * * * */
 /*   Generic Classes   */
@@ -205,7 +243,8 @@ span.user-info
 	color: darkolivegreen;
 	font-weight: bold;
 }
-i.user-info
+i.user-info,
+strong.user-info
 {
 	color: darkslategrey;		/* .theme-dark-color */
 	font-size: large;
@@ -265,6 +304,13 @@ p.user-info
 {
 	border-style: dashed;
 	border-width: 2px;
+	border-color: #D6AF8C;			/* ton6 chamois */
+}
+
+.theme-double
+{
+	border-style: double;
+	border-width: 3px;
 	border-color: #D6AF8C;			/* ton6 chamois */
 }
 

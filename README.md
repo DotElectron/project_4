@@ -16,19 +16,19 @@ Current version (to write) :
 -----------------------
 
 ToDo:
-0.4.0.0 - 'User redirected to reading' (js+LocalStorage)
 
 ... dynamic head data in html (simulate new pages) ?
 ... Graph-scheme of MVC modelization.
 ... Graph-scheme of database modelization.
 
 Working:
-0.3.9.x - 'RGPD popup &responsive' (basic+js+LocalStorage)
+0.4.0.0 - 'User redirected to reading' (js+LocalStorage)
 
 -----------------------
 
 Last versions :
 
+0.3.9.4 - General: {finalize} RGPD responsivepopup (V+js)
 0.3.8.4 - General: {finalize} update visual effects (CSS)
 0.3.8.3 - About + conformity 'Forteroche' (basic: html/css)' (V) + (MCV)
 0.3.7.3 - Admin: {finalize advanced} comments actions (MVC)

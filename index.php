@@ -117,8 +117,8 @@ else { Error_manager::setErr('Error: session is down !'); }
 
     <!-- Footer section -->
     <footer class="theme-boxed theme-color theme-bckgrnd-color c-flx">
-        <span>Ce site est un projet de formation...</span>
-        <!-- Add a front z-index to alert about cookies usage -->
+        <span id="copyright">Ce site est un projet de formation...</span>
+        <?php if (!(isset($activeTest))) { include_once('views/rgpd.php'); } ?>
     </footer>
 </body>
 </html>
