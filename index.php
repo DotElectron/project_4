@@ -1,10 +1,10 @@
 <?php
 
-namespace Rochefort;
+namespace Forteroche;
 
 //Error Management...
 require_once('models/Error_manager.php');
-use Rochefort\Classes\Error_manager;
+use Forteroche\Classes\Error_manager;
 $activeDebug = true;
 // $activeTest = true;
 
@@ -31,11 +31,11 @@ else { Error_manager::setErr('Error: session is down !'); }
 <!DOCTYPE HTML>
 <html lang="fr">
 <head>
-    <title>Jean Rochefort - Un billet en Alaska</title>   
+    <title>Jean Forteroche - Un billet en Alaska</title>   
     <!-- Metas -->
     <meta charset="utf-8">
     <meta name="language" content="fr-FR">
-    <meta name="description" content="Projet de formation : créer un blog pour un écrivain. Le site répond au modèle MVC, PHP orienté objet, support MySQL avec interface d'administration,  librairie BootStrap pour la présentation, FontAwesome en soutien et police personnalisée.">
+    <meta name="description" content="Projet de formation : créer un blog pour un écrivain. Le site répond au modèle MVC, PHP orienté objet, support MySQL avec interface d'administration, extension Tiny-Mce pour la rédaction.">
     <meta name="author" content="David ESQUIS">
     <meta name="viewport" content="width=device-width">
     <!-- Favicons -->
@@ -63,18 +63,20 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- Header section -->
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
-        <a href="."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Rochefort"></a>
-        <h1 class="c-flx"><span class="title">Jean Rochefort</span> --- 
-            <div class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
-            <?php 
-                if (isset($activeDebug) || isset($activeTest))
-                {
-                    $version = "alpha";
-                    if (!(isset($activeTest))) { $version = "beta"; }
-                    echo '<em></em><span class="as-inblock">(' . $version . ' version)</span>'; 
-                }
-            ?>
-        </h1>    
+        <a class="reading" href="."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Forteroche"></a>
+        <a href=".">
+            <h1 class="c-flx"><span class="title">Jean Forteroche</span> --- 
+                <div class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
+                <?php 
+                    if (isset($activeDebug) || isset($activeTest))
+                    {
+                        $version = "alpha";
+                        if (!(isset($activeTest))) { $version = "beta"; }
+                        echo '<em></em><span class="as-inblock">(' . $version . ' version)</span>'; 
+                    }
+                ?>
+            </h1>    
+        </a>
         <!-- Dynamic menu -->
         <nav class="theme-boxed">
             <?php if (!(isset($activeTest))) { include_once('controllers/nav_selector.php'); } ?>

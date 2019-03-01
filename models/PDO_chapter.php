@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 require_once('PDO_manager.php');
 
 class PDO_chapter extends PDO_manager
@@ -132,7 +132,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -186,7 +186,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -241,7 +241,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -293,7 +293,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -345,7 +345,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -397,7 +397,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -459,7 +459,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -547,7 +547,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -603,7 +603,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*
@@ -655,7 +655,7 @@ class PDO_chapter extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_chapter.php');
-	* use Rochefort\Classes\PDO_chapter;
+	* use Forteroche\Classes\PDO_chapter;
 	*
 	* $PDO_test = new PDO_chapter();
 	*

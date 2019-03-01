@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 
 final class Error_manager
 {
@@ -61,7 +61,7 @@ final class Error_manager
 	* Conditions: ---
 	*
 	* require_once('models/Error_manager.php');
-	* use Rochefort\Classes\Error_manager;
+	* use Forteroche\Classes\Error_manager;
 	*
 	* Error_manager::setErr('BLANK TEST: is a valid test !');
 	* Error_manager::displayErr();

@@ -1,5 +1,5 @@
 <!-- HTML - Reading data -->
-<section id="i-reader--container" class="c-flx flx-wrp spacing"> <!-- onload="tiny_initialize()"> -->
+<section id="i-reader--container" class="c-flx flx-wrp spacing">
     <h2 class="theme-color theme-boxed-shadow theme-bckgrnd-color theme-boxed"><?php echo $chapterClassObject->getTitle(); ?></h2>
     <div id="i-reader-parts--container" class="r-flx flx-wrp theme-dashed theme-dark-color theme-bckgrnd-color">
         <?php 
@@ -49,4 +49,4 @@
             }
         ?>
     </div>
-        </section>
+</section>

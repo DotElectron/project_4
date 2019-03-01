@@ -8,9 +8,9 @@
 
 body
 {
-	margin: auto;
 	width: 100%;
 	min-width: 55em;
+	margin: 0;
 }
 
 main, nav, h1, h2, h3, footer
@@ -52,7 +52,7 @@ header img
 {
 	padding-top: 0.25em;
 	padding-left: 0.25em;
-	max-height: 12em;
+	max-height: 11em;
 }
 h1
 {
@@ -65,7 +65,7 @@ h1 em
 }
 h1 .title
 {
-	min-width: 8em;
+	min-width: 9em;
 }
 nav
 {
@@ -129,18 +129,14 @@ main
 {
 	width: 100%;
 	margin-bottom: 6em;
-	overflow: hidden;
 }
 #data-area
 {
 	width: 100%;
-	margin: 1em;
-	overflow: hidden;
 }
 #data-area h2
 {
 	width: 100%;
-	margin-left: -5%;
 	padding: 1em;
 	padding-left: 1.5em;
 	padding-right: 1.5em;
@@ -150,7 +146,7 @@ main
 {
 	max-width: 85%;
 	padding: 1em;
-	margin-top: 1em;
+	margin-top: 1.5em;
 	max-height: 9em;
 	overflow-x: hidden;
 }
@@ -401,7 +397,7 @@ p.user-info
 
 /* ------------------------ */
 
-#a-m-comments .lite-container
+ #a-m-comments .lite-container
 {
 	width: 90%;
 }
@@ -556,23 +552,22 @@ p.user-info
 }
 
 @media screen and (max-width: 55em)
-{
-	#i-reader--container
+{	
+	#i-reader-parts--container
 	{
-		margin-left:-1em;
+		width: 90%;
 	}
 	#i-reader-parts--container article
 	{
 		padding: 0.5em;
 		max-width: 90%;
 	}
-	/* ----------------- */
+	
 	#a-m-chapters span,
 	footer, 
 	#a-m-parts form input,
 	#a-m-parts form select,
 	#a-m-parts form label,
-	#a-m-comments label,
 	.debug-area
 	{
 		font-size: large;
@@ -600,22 +595,13 @@ p.user-info
 	#data-area, #data-area h2
 	{
 		width: 100%;
-		margin: 0;
+		margin-left: -1.5em;
 		padding: 0;
 	}
 	#data-area h2
 	{
 		padding-top: 1em;
 		padding-bottom: 1em;
-	}
-	#i-reader--container h2
-	{
-		margin-left: -5%;
-	}
-	#a-m-comments h2
-	{
-		width: 101%;
-		margin-left: -1%;
 	}
 }
 
@@ -649,16 +635,15 @@ p.user-info
 		justify-content: center;
 		flex-wrap: wrap;
 	}
-
 	body, strong, samp
 	{
 		font-size: xx-small;
 	}
-	header
+	header,
+	.inner-comment .user-info
 	{
 		font-size: large;
 	}
-
 	nav, 
 	#i-reader-parts--container,
 	.debug-area,
@@ -666,19 +651,18 @@ p.user-info
 	#a-m-comments .lite-container,
 	#a-m-parts .lite-spacing
 	{
-		width: 101%;
+		width: 100%;
 		margin: 0;
 		padding: 0;
 	}
 	#a-m-parts .lite-spacing
 	{
-		margin-left: 5em;
+		margin-left: 0em;
 	}
 	#a-m-parts form
 	{
 		margin-left: 1em;
 	}
-
 	header h1
 	{
 		font-size: 0;
@@ -688,7 +672,6 @@ p.user-info
 		width: 100%;
 		height: 100%;
 	}
-
 	#i-reader-parts--container article
 	{
 		padding: 0.25em;
@@ -696,8 +679,7 @@ p.user-info
 	}
 	#data-area, #data-area h2
 	{
+		width: 100%;
 		margin: 0;
 	}
 }
-
-/* * * * * * * * */

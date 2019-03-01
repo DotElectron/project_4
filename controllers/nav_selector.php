@@ -1,20 +1,20 @@
 <?php
 
-namespace Rochefort\Controllers;
+namespace Forteroche\Controllers;
 require_once('models/Error_manager.php');
-use Rochefort\Classes\Error_manager;
+use Forteroche\Classes\Error_manager;
 
 require_once('models/User_manager.php');
-use Rochefort\Classes\UserType; 
+use Forteroche\Classes\UserType; 
 $userName = 'Invité';
 $admin = false;
 $guest = true;
 
 require_once('models/PDO_chapter.php');
-use Rochefort\Classes\PDO_chapter;
+use Forteroche\Classes\PDO_chapter;
 $chapterList = null;
 require_once('models/PDO_comment.php');
-use Rochefort\Classes\PDO_comment;
+use Forteroche\Classes\PDO_comment;
 $commentaries = null;
 
 if (isset($_SESSION['accType']))

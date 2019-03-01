@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 require_once('Error_manager.php');
 
 $sqlVersion = null;
@@ -87,7 +87,7 @@ abstract class PDO_manager
 					if ($this->acc) { $accType = ' [asWriter]'; }
 					else { $accType = ' [asReader]'; }
 				}
-				Error_manager::setErr('ConnectTo(' . str_replace('Rochefort\Classes\\PDO_', '', get_class($this)) . '): ' . $account . $accType); 
+				Error_manager::setErr('ConnectTo(' . str_replace('Forteroche\Classes\\PDO_', '', get_class($this)) . '): ' . $account . $accType); 
 			}
 			//Release data...
 			unset($config);
@@ -101,7 +101,7 @@ abstract class PDO_manager
 	* Conditions: without 'abstract' & 'protected' scope 
 	*
 	* require_once('models/PDO_manager.php');
-	* use Rochefort\Classes\PDO_manager;
+	* use Forteroche\Classes\PDO_manager;
 	*
 	* $PDO_test = new PDO_manager();
 	*

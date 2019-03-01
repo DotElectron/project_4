@@ -1,13 +1,13 @@
 <?php
 
-namespace Rochefort\Controllers;
+namespace Forteroche\Controllers;
 require_once('../models/Error_manager.php');
-use Rochefort\Classes\Error_manager;
+use Forteroche\Classes\Error_manager;
 
 require_once('../models/PDO_part.php');
-use Rochefort\Classes\PDO_part;
+use Forteroche\Classes\PDO_part;
 require_once('../models/PDO_comment.php');
-use Rochefort\Classes\PDO_comment;
+use Forteroche\Classes\PDO_comment;
 
 //Cause ajax job: reload session...
 session_name('PhpRootSession');

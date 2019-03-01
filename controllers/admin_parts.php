@@ -1,13 +1,13 @@
 <?php
 
-namespace Rochefort\Controllers;
+namespace Forteroche\Controllers;
 require_once('models/Error_manager.php');
-use Rochefort\Classes\Error_manager;
+use Forteroche\Classes\Error_manager;
 
 require_once('models/PDO_chapter.php');
-use Rochefort\Classes\PDO_chapter;
+use Forteroche\Classes\PDO_chapter;
 require_once('models/PDO_part.php');
-use Rochefort\Classes\PDO_part;
+use Forteroche\Classes\PDO_part;
 
 if (isset($_POST['admRegister']))
 {

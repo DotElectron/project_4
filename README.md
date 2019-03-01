@@ -16,21 +16,21 @@ Current version (to write) :
 -----------------------
 
 ToDo:
-0.3.8.x - 'About - Welcome (basic: html/css)' (V)
-	... dynamic head data in html (simulate new pages)
-0.3.9.x - 'RGPD popup &responsive' (basic+js+LocalStorage)
 0.4.0.0 - 'User redirected to reading' (js+LocalStorage)
 
+... dynamic head data in html (simulate new pages) ?
 ... Graph-scheme of MVC modelization.
 ... Graph-scheme of database modelization.
 
 Working:
-0.3.7.4 - General: {finalize} update visual effects (CSS)
+0.3.9.x - 'RGPD popup &responsive' (basic+js+LocalStorage)
 
 -----------------------
 
 Last versions :
 
+0.3.8.4 - General: {finalize} update visual effects (CSS)
+0.3.8.3 - About + conformity 'Forteroche' (basic: html/css)' (V) + (MCV)
 0.3.7.3 - Admin: {finalize advanced} comments actions (MVC)
 0.3.6.3 - Admin: {prepare advanced} comments actions (MVC)
 0.3.5.3 - Admin: {basic} comments actions (VC+js+ajax)

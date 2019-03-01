@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 require_once('PDO_manager.php');
 
 class PDO_comment extends PDO_manager
@@ -172,7 +172,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -226,7 +226,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -290,7 +290,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -351,7 +351,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -404,7 +404,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -456,7 +456,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*
@@ -546,7 +546,7 @@ class PDO_comment extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_comment.php');
-	* use Rochefort\Classes\PDO_comment;
+	* use Forteroche\Classes\PDO_comment;
 	*
 	* $PDO_test = new PDO_comment();
 	*

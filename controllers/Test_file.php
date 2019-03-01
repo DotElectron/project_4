@@ -1,8 +1,8 @@
 <?php
 
-	namespace Rochefort\Controllers;
+	namespace Forteroche\Controllers;
 	require_once('models/Error_manager.php');
-	use Rochefort\Classes\Error_manager;
+	use Forteroche\Classes\Error_manager;
 
 	// --------------------------------
 	// --------------------------------
@@ -12,7 +12,7 @@
 	//Empty test: DB connection...
 	Error_manager::setErr('------- BLANK "CHAP" TEST -------');
 	require_once('models/PDO_chapter.php');
-	use Rochefort\Classes\PDO_chapter;
+	use Forteroche\Classes\PDO_chapter;
 	$PDO_test = new PDO_chapter();
 	//(Optional section)
 	// Error_manager::setErr('DB connection-CheckOne: ' . var_export($PDO_test->isExist(null, true), true));
@@ -60,7 +60,7 @@
 	Error_manager::setErr('---------------------------------');
 	Error_manager::setErr('------- BLANK "PART" TEST -------');
 	require_once('models/PDO_part.php');
-	use Rochefort\Classes\PDO_part;
+	use Forteroche\Classes\PDO_part;
 	$PDO_test = new PDO_part();
 	//(Optional section)
 	// Error_manager::setErr('DB connection-CheckOne: ' . var_export($PDO_test->isExist(null, true), true));
@@ -124,7 +124,7 @@
 	Error_manager::setErr('--------------------------------');
 	Error_manager::setErr('------- BLANK "COM" TEST -------');
 	require_once('models/PDO_comment.php');
-	use Rochefort\Classes\PDO_comment;
+	use Forteroche\Classes\PDO_comment;
 	$PDO_test = new PDO_comment();
 	//(Optional section)
 	//Error_manager::setErr('DB connection-checkOne: ' . var_export($PDO_test->isExist(null, true), true));

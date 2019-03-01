@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 require_once('Error_manager.php');
 
 final class userType
@@ -57,7 +57,7 @@ final class User_manager
 			case userType::ADMINISTRATOR:
 				if ($this->isValidPassword($userData))
 				{
-					$this->setAccountTitle('Jean Rochefort');
+					$this->setAccountTitle('Jean Forteroche');
 				}
 				else { $this->setAccountType(-1); }
 				break;

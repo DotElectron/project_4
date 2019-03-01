@@ -1,6 +1,6 @@
 <?php
 
-namespace Rochefort\Classes;
+namespace Forteroche\Classes;
 require_once('PDO_manager.php');
 
 class PDO_part extends PDO_manager
@@ -169,7 +169,7 @@ class PDO_part extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -221,7 +221,7 @@ class PDO_part extends PDO_manager
 	* Conditions: scope public, not private...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -278,7 +278,7 @@ class PDO_part extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -339,7 +339,7 @@ class PDO_part extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -434,7 +434,7 @@ class PDO_part extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -499,7 +499,7 @@ class PDO_part extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*
@@ -565,7 +565,7 @@ class PDO_part extends PDO_manager
 	* Conditions: any particular...
 	*
 	* require_once('models/PDO_part.php');
-	* use Rochefort\Classes\PDO_part;
+	* use Forteroche\Classes\PDO_part;
 	*
 	* $PDO_test = new PDO_part();
 	*

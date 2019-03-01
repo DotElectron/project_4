@@ -1,15 +1,15 @@
 <?php
 
-namespace Rochefort\Controllers;
+namespace Forteroche\Controllers;
 require_once('models/Error_manager.php');
-use Rochefort\Classes\Error_manager;
+use Forteroche\Classes\Error_manager;
 
 require_once('models/PDO_manager.php');
-use Rochefort\Classes\PDO_manager; 
+use Forteroche\Classes\PDO_manager; 
 
 require_once('models/User_manager.php');
-use Rochefort\Classes\User_manager; 
-use Rochefort\Classes\UserType; 
+use Forteroche\Classes\User_manager; 
+use Forteroche\Classes\UserType; 
 
 $select_once = false;
 
