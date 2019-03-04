@@ -512,13 +512,19 @@ p.user-it
 	min-width: 20em;
 }
 
-#i-reader-parts--container article .user-info
+#i-reader-parts--container article .user-info,
+#i-reader-parts--container article .user-warning
 {
 	padding-left: 1em;
 	padding-top: 1em;
 	padding-right: 0.2em;
 }
-
+#reading:hover,
+#i-reader-parts--container article .user-info:hover,
+#i-reader-parts--container article .user-warning:hover
+{
+	cursor: pointer;
+}
 #i-reader-parts--container article .master-comment
 {
 	margin-top: 1em;

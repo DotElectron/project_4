@@ -63,8 +63,8 @@ else { Error_manager::setErr('Error: session is down !'); }
     <!-- Header section -->
     <header class="theme-boxed theme-color theme-bckgrnd-color r-flx flx-jst-sb">
         <!-- tmp: href "returnToReading" ? -->
-        <a class="reading" href="."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Forteroche"></a>
-        <a href=".">
+        <a class="reading" href="." title="Retour à l'accueil..."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Forteroche"></a>
+        <a id="reading" onclick="javascript:getReadingChapter();" title="Reprendre la lecture">
             <h1 class="c-flx"><span class="title">Jean Forteroche</span> --- 
                 <div class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></div>
                 <?php 

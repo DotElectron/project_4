@@ -8,7 +8,7 @@
                 foreach ($partList as $data)
                 {
                     echo '<article>';
-                        echo '<span class="user-info"><i class="fas fa-star user-info"></i>' . $data['part_order'] . '</span>';
+                        echo '<span class="user-info" onclick="javascript:saveReading(' . $data['part_order'] . ');"><i id="reading--' . $data['part_order'] . '" class="fas fa-star user-info save-tag" title="Enregistrer votre progression..."></i>' . ($data['part_order'] + 1) . '</span>';
                         if ($data['part_subtitle'] !== null)
                         {
                             echo '<h3>' . $data['part_subtitle'] . '</h3>';

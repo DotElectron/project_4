@@ -138,5 +138,42 @@ function reportComment(e)
 	}
 }
 
+function saveReading(currentPart)
+{
+	if (typeof localStorage != 'undefined')
+	{
+		// Store reading state in local storage...
+		localStorage.setItem("jfr_rdng", currentPart);
+		// Store the current chapter...
+		localStorage.setItem("jfr_rchp", window.location.toString().split("#")[0]);
+	}
+	else
+	{
+		// Set state in cookie...
+		var utcMilliAtOneMonth = Date.now() + (1000*60*60*24*180);		//~6 months (180 days) in ms
+		var utcStrDateAtOneMonth = new Date(utcMilliAtOneMonth).toUTCString();
+		document.cookie = "jfr_rdng=" + currentPart + "; expires=" + utcStrDateAtOneMonth + "; path=/";
+		utcMilliAtOneMonth = null;
+		utcStrDateAtOneMonth = null;
+	}
+	//Apply the action...
+	var savedPart = document.getElementById("reading--" + currentPart);
+	if (savedPart !== null)
+	{
+		savedPart.classList.remove("user-info");
+		savedPart.classList.add("user-warning");
+		//Remove all other
+		for (let iPart of document.getElementsByClassName('save-tag'))
+		{
+			if (iPart.id !== savedPart.id
+				&& iPart.classList.contains("user-warning"))
+			{
+				iPart.classList.remove("user-warning");
+				iPart.classList.add("user-info");
+			}
+		}
+	}
+}
+
 // -------------------------------------
 // -------------------------------------

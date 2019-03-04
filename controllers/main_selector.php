@@ -140,7 +140,22 @@ else if (isSessionAlive()
 		}
 		else { Error_manager::setErr('[iChap as Admin: valid test]');  }
 	}
-	include_once('views/frontend/reading.php');
+
+	if (count($partList) > 0)
+	{
+		// Reading view...
+		include_once('views/frontend/reading.php');
+	}
+	else
+	{
+		if (isset($activeDebug)) 
+		{ 
+			Error_manager::setErr('>>> !! Warning - PHP Redirection !! <<<');
+			Error_manager::setErr('[iChap: invalid content]'); 
+		}
+		// Default view...
+		include_once('views/about.php');
+	}
 }
 else
 {

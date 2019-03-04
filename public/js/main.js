@@ -4,6 +4,7 @@
 function body_adjustement()
 {
 	// Main replacement (margin-top)...
+	var winLocStr = window.location.toString();
 	var topContList = document.getElementsByTagName('header');
 	var mainContList = document.getElementsByTagName('main');
 	if ((topContList.length > 0 && topContList[0] !== null)
@@ -91,7 +92,6 @@ function body_adjustement()
 			}
 		}
 	}
-	winLocStr = null;
 
 	//Verify RGPD validation (once)...
 	if (sessionStorage.getItem("jfr_rgpd") === null)
@@ -108,6 +108,71 @@ function body_adjustement()
 		}
 	}
 	else { valid_rgpd(); }
+
+	// Get the reading position...
+	if (winLocStr.includes(".read-"))
+	{
+		var locReading = null;
+		if (typeof localStorage != 'undefined')
+		{
+			// Get state in local storage...
+			locReading = localStorage.getItem("jfr_rdng");
+		}
+		else
+		{
+			// Get state in cookie...
+			locReading = getCookValue("jfr_rdng");
+		}
+		if (locReading !== null)
+		{
+			//Report the save...
+			var savedPart = document.getElementById("reading--" + locReading);
+			if (savedPart !== null)
+			{
+				savedPart.classList.remove("user-info");
+				savedPart.classList.add("user-warning");
+				savedPart.scrollIntoView();
+			}
+		}
+	}
+	winLocStr = null;
+}
+
+// -----------------------------
+
+function getCookValue(cookName)
+{
+	for (let iCook of document.cookie.split(";"))
+	{
+		if (iCook.includes(cookName + "="))
+		{
+			return (iCook.replace(cookName + "=", "")).trim();
+		}
+	}
+	return null;
+}
+
+function getReadingChapter()
+{
+	var rLink = document.getElementById("reading");
+	if (rLink !== null)
+	{
+		var lastChapter = null;
+		if (typeof localStorage != 'undefined')
+		{
+			// Get the last chapter...
+			lastChapter = localStorage.getItem("jfr_rchp");
+			if (lastChapter !== null)
+			{
+				window.location = lastChapter;
+			}
+		}
+		if (lastChapter === null)
+		{
+			rLink.id = "no-reading";
+			rLink.title = "Aucun historique de lecture...";
+		}
+	}
 }
 
 // -----------------------------
