@@ -2,15 +2,16 @@
 <div id="a-m-comments" class="c-flx flx-wrp spacing">
     <h2 class="theme-color theme-boxed-shadow theme-bckgrnd-color theme-boxed">Modérer les commentaires du livre</h2>
     <div id="a-m-comments-lite" class="c-flx theme-dashed theme-dark-color theme-bckgrnd-color spacing lite-container">
-		<div class="r-flx flx-wrp">
-			<label title="Pensez à rafraichir après l'avoir modifier...">
-				<input id="comm-swapper" type="checkbox" onclick="javascript:muteSwap();"/>
-				Commentaires masqués ?
-			</label>
-			<a href="#refresh" title="Rafraichir la liste..." onclick="javascript:flagSwap();">
-				<i class="fas fa-redo-alt"></i>
-			</a>
-		</div>
+			<div class="r-flx flx-wrp">
+				<label title="Pensez à rafraichir après l'avoir modifier...">
+					<input id="comm-swapper" type="checkbox" onclick="javascript:muteSwap();"/>
+					Commentaires masqués ?
+				</label>
+				<a href="#refresh" title="Rafraichir la liste..." onclick="javascript:flagSwap();">
+					<i class="fas fa-redo-alt"></i>
+				</a>
+			</div>
+			<p class="user-it">[Vous pouvez choisir d'afficher les commentaires déjà masqués, ceux à traiter (défaut) ou l'ensemble des alertes]</p>
 		<?php
 			if ($commList && count($commList) > 0)    // (->rowCount() if query)
 			{

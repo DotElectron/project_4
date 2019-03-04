@@ -255,6 +255,12 @@ p.user-info
 	font-style: italic;
 	text-align: justify;
 }
+p.user-it
+{
+	color: darkslategrey;		/* .theme-dark-color */
+	font-style: italic;
+	text-align: center;
+}
 .user-mask
 {
 	opacity: 0.7;
@@ -462,7 +468,8 @@ p.user-info
 
 #a-m-comments .r-flx label,
 #a-m-comments .inner-comment i,
-#a-m-comments .spacing
+#a-m-comments .spacing,
+#a-m-comments .user-it
 {
 	margin-left: 2em;
 	margin-right: 2em;
@@ -619,6 +626,8 @@ p.user-info
 	#a-m-parts form select,
 	#a-m-parts form label,
 	#a-m-comments label,
+	#a-m-comments i,
+	#a-m-comments .user-it,
 	.debug-area
 	{
 		font-size: large;

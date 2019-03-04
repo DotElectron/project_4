@@ -28,6 +28,7 @@ Working:
 
 Last versions :
 
+0.3.9.5 - Admin: {minor update} new info in comments actions (V)
 0.3.9.4 - General: {finalize} RGPD responsivepopup (V+js)
 0.3.8.4 - General: {finalize} update visual effects (CSS)
 0.3.8.3 - About + conformity 'Forteroche' (basic: html/css)' (V) + (MCV)
