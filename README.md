@@ -1,7 +1,7 @@
 # Project_4
 OpenClassRooms Project
 
-Dev inner version at the end: 0.40.14+
+Dev inner version: 0.40.17
 
 -----------------------
 
@@ -11,22 +11,24 @@ Current version (to write) :
 	* Update ...
 	* Execute the alpha plan (Test file)
 	* Write & Complete the Beta test plan
-	* Beta test : ...
+	* Beta test : [validation step]
 
 -----------------------
 
-ToDo:
+Possible evolution:
 
-... dynamic head data in html (simulate new pages) ?
-... Graph-scheme of MVC modelization.
-... Graph-scheme of database modelization.
+... dynamic head data in html (simulate new pages to SEO) 
 
 Working:
+
+... Graph-scheme of MVC modelization.
+... Graph-scheme of database modelization.
 
 -----------------------
 
 Last versions :
 
+0.4.0.1 - General: {corrective} absence de conflit (js) + plan de test
 0.4.0.0 - General: {basic} User redirected to reading (VC+js)
 0.3.9.5 - Admin: {minor update} new info in comments actions (V)
 0.3.9.4 - General: {finalize} RGPD responsivepopup (V+js)

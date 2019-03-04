@@ -94,18 +94,22 @@ function body_adjustement()
 	}
 
 	//Verify RGPD validation (once)...
-	if (sessionStorage.getItem("jfr_rgpd") === null)
+	if (typeof localStorage != 'undefined')
 	{
-		if (typeof localStorage != 'undefined')
+		if (sessionStorage.getItem("jfr_rgpd") === null)
 		{
-			var rgpd_ls = localStorage.getItem("jfr_rgpd");
-			if (rgpd_ls !== null
-				&& (rgpd_ls + (1000*60*60*24*7)) > Date.now())		// 7 days
+			if (typeof localStorage != 'undefined')
 			{
-				sessionStorage.setItem("jfr_rgpd", Date.now().toString());
-				valid_rgpd();
+				var rgpd_ls = localStorage.getItem("jfr_rgpd");
+				if (rgpd_ls !== null
+					&& (rgpd_ls + (1000*60*60*24*7)) > Date.now())		// 7 days
+				{
+					sessionStorage.setItem("jfr_rgpd", Date.now().toString());
+					valid_rgpd();
+				}
 			}
 		}
+		else { valid_rgpd(); }
 	}
 	else { valid_rgpd(); }
 
@@ -131,7 +135,10 @@ function body_adjustement()
 			{
 				savedPart.classList.remove("user-info");
 				savedPart.classList.add("user-warning");
-				savedPart.scrollIntoView();
+				if (!(winLocStr.includes("#comments")))
+				{
+					savedPart.scrollIntoView();
+				}
 			}
 		}
 	}

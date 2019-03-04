@@ -140,37 +140,62 @@ function reportComment(e)
 
 function saveReading(currentPart)
 {
+	var needToApply = true;
 	if (typeof localStorage != 'undefined')
 	{
-		// Store reading state in local storage...
-		localStorage.setItem("jfr_rdng", currentPart);
-		// Store the current chapter...
-		localStorage.setItem("jfr_rchp", window.location.toString().split("#")[0]);
+		if (localStorage.getItem("jfr_rdng") === null)
+		{
+			// Store reading state in local storage...
+			localStorage.setItem("jfr_rdng", currentPart);
+			// Store the current chapter...
+			localStorage.setItem("jfr_rchp", window.location.toString().split("#")[0]);
+		}
+		else 
+		{  
+			localStorage.removeItem("jfr_rdng");
+			needToApply = false;
+		}
 	}
 	else
 	{
-		// Set state in cookie...
-		var utcMilliAtOneMonth = Date.now() + (1000*60*60*24*180);		//~6 months (180 days) in ms
-		var utcStrDateAtOneMonth = new Date(utcMilliAtOneMonth).toUTCString();
-		document.cookie = "jfr_rdng=" + currentPart + "; expires=" + utcStrDateAtOneMonth + "; path=/";
-		utcMilliAtOneMonth = null;
-		utcStrDateAtOneMonth = null;
+		if (!(document.cookie.includes("jfr_rdng")))
+		{
+			// Set state in cookie...
+			var utcMilliAtOneMonth = Date.now() + (1000*60*60*24*180);		//~6 months (180 days) in ms
+			var utcStrDateAtOneMonth = new Date(utcMilliAtOneMonth).toUTCString();
+			document.cookie = "jfr_rdng=" + currentPart + "; expires=" + utcStrDateAtOneMonth + "; path=/";
+			utcMilliAtOneMonth = null;
+			utcStrDateAtOneMonth = null;
+		}
+		else
+		{
+			document.cookie = "jfr_rdng=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+			needToApply = false;
+		}
 	}
 	//Apply the action...
 	var savedPart = document.getElementById("reading--" + currentPart);
 	if (savedPart !== null)
 	{
-		savedPart.classList.remove("user-info");
-		savedPart.classList.add("user-warning");
-		//Remove all other
-		for (let iPart of document.getElementsByClassName('save-tag'))
+		if (needToApply)
 		{
-			if (iPart.id !== savedPart.id
-				&& iPart.classList.contains("user-warning"))
+			savedPart.classList.remove("user-info");
+			savedPart.classList.add("user-warning");
+			//Remove all other
+			for (let iPart of document.getElementsByClassName('save-tag'))
 			{
-				iPart.classList.remove("user-warning");
-				iPart.classList.add("user-info");
+				if (iPart.id !== savedPart.id
+					&& iPart.classList.contains("user-warning"))
+				{
+					iPart.classList.remove("user-warning");
+					iPart.classList.add("user-info");
+				}
 			}
+		}
+		else if (savedPart.classList.contains("user-warning"))
+		{
+			savedPart.classList.remove("user-warning");
+			savedPart.classList.add("user-info");
 		}
 	}
 }
