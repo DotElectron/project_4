@@ -12,7 +12,10 @@ $activeDebug = true;
 session_name('PhpRootSession');
 if (session_start())
 {
-    $_SESSION['activeDebug'] = $activeDebug;
+    if (isset($activeDebug))
+    {
+        $_SESSION['activeDebug'] = $activeDebug;
+    }
     if (isset($activeDebug) || isset($activeTest)) 
     { 
         Error_manager::setErr('[Session is loaded]'); 

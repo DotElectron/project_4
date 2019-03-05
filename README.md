@@ -1,7 +1,7 @@
 # Project_4
 OpenClassRooms Project
 
-Dev inner version: 0.40.18
+Dev inner version: 0.40.19
 
 -----------------------
 
@@ -28,6 +28,7 @@ Working:
 
 Last versions :
 
+0.4.0.3 - General: {corrective} Debug management on multi-session...
 0.4.0.2 - General: {corrective} W3C HTML + CSS in conformity (html/css)
 0.4.0.1 - General: {corrective} without conflict (js) + beta test plan
 0.4.0.0 - General: {basic} User redirected to reading (VC+js)
