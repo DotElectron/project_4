@@ -104,7 +104,7 @@ nav strong:hover
 nav strong
 {
 	padding-left: 0.5em;
-	word-break: break-word;
+	word-break: break-all;
 }
 nav div
 {

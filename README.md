@@ -1,7 +1,7 @@
 # Project_4
 OpenClassRooms Project
 
-Dev inner version: 0.40.17
+Dev inner version: 0.40.18
 
 -----------------------
 
@@ -28,7 +28,8 @@ Working:
 
 Last versions :
 
-0.4.0.1 - General: {corrective} absence de conflit (js) + plan de test
+0.4.0.2 - General: {corrective} W3C HTML + CSS in conformity (html/css)
+0.4.0.1 - General: {corrective} without conflict (js) + beta test plan
 0.4.0.0 - General: {basic} User redirected to reading (VC+js)
 0.3.9.5 - Admin: {minor update} new info in comments actions (V)
 0.3.9.4 - General: {finalize} RGPD responsivepopup (V+js)
