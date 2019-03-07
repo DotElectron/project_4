@@ -13,6 +13,8 @@ $guest = true;
 require_once('models/PDO_chapter.php');
 use Forteroche\Classes\PDO_chapter;
 $chapterList = null;
+require_once('models/PDO_part.php');
+use Forteroche\Classes\PDO_part;
 require_once('models/PDO_comment.php');
 use Forteroche\Classes\PDO_comment;
 $commentaries = null;
@@ -47,6 +49,21 @@ if (isset($_SESSION['accType']))
 		$chapterClass = new PDO_chapter('¤');
 		$chapterList = $chapterClass->getAllChapters();
 		$chapterClass = null;
+
+		//Verify an existing content...
+		$partClass = new PDO_part(null, '¤');
+		for ($item = 0; $item < count($chapterList); $item++)
+		{
+			$chapterClassObject = new PDO_chapter($chapterList[$item]['chap_title']);
+			$partList = $partClass->getPartsOfChapter($chapterClassObject->getId()); 
+			if (empty($partList))
+			{
+				$chapterList[$item] = null;
+			}
+			$chapterClassObject = null;
+			$partList = null;
+		}
+		$partClass = null;
 
 		//Call the associated view...
 		include_once('views/frontend/navbar.php');

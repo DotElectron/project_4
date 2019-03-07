@@ -34,7 +34,7 @@ else { Error_manager::setErr('Error: session is down !'); }
 <!DOCTYPE HTML>
 <html lang="fr">
 <head>
-    <title>Jean Forteroche - Un billet en Alaska</title>   
+    <title>Jean Forteroche - Billet simple pour l'Alaska</title>   
     <!-- Metas -->
     <meta charset="utf-8">
     <meta name="language" content="fr-FR">
@@ -69,7 +69,7 @@ else { Error_manager::setErr('Error: session is down !'); }
         <a class="reading" href="." title="Retour à l'accueil..."><img src="public/img/book_jf.jpg" alt="Logo du livre de Jean Forteroche"></a>
         <a id="reading" onclick="javascript:getReadingChapter();" title="Reprendre la lecture">
             <h1 class="c-flx"><span class="title">Jean Forteroche</span> --- 
-                <span class="r-flx"><span class="as-inblock">Un billet</span><em> </em><span class="as-inblock">en Alaska</span></span>
+                <span class="r-flx"><span class="as-inblock">Billet simple</span><em> </em><span class="as-inblock">pour l'Alaska</span></span>
                 <?php 
                     if (isset($activeDebug) || isset($activeTest))
                     {

@@ -10,7 +10,7 @@
 			Après plusieurs romans aussi haletants qu'inspirants, le voici de retour avec ce nouvel ouvrage dont vous découvrirez les épisodes au fur et à mesure.
 		</p>
 		<p class="user-info theme-strip-shadow theme-bckgrnd-light-mask">
-			Vous pourrez suivre pas à pas l'histoire surprenante qui va se dérouler sous vos yeux et serez même convier à lui laisser directement vos impressions.
+			Vous pourrez suivre pas à pas l'histoire surprenante qui va se dérouler sous vos yeux et serez même conviés à lui laisser directement vos impressions.
 		</p>
 	</div>
 </div>

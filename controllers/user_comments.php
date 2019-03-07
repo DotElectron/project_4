@@ -29,7 +29,7 @@ if (isset($_POST['userNewComm'])
 	
 	$usrHtmlText = null;
 	$usrShortTitle = null;
-	$usrHtmlText = PDO_comment::htmlSecure($_POST['userComment']);
+	$usrHtmlText = PDO_comment::htmlSecure($_POST['userComment'], false, true);
 	$usrShortTitle = substr($usrHtmlText, 0, 60);
 	//Send data...
 	$CommClass = new PDO_comment('¤');
