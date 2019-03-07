@@ -5,7 +5,7 @@ namespace Forteroche;
 //Error Management...
 require_once('models/Error_manager.php');
 use Forteroche\Classes\Error_manager;
-$activeDebug = true;
+// $activeDebug = true;
 // $activeTest = true;
 
 //Session management...
